@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceHolder : MonoBehaviour
+public class MonsterController : MonoBehaviour
 {
+    [SerializeField] private SO_Monster monsterType;
+    
+    
+    
     // Start is called before the first frame update
     void Start()
     {
