@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 [CreateAssetMenu(fileName = "New Monster", menuName = "MonsterPalace/Monster")]
 public class SO_Monster : ScriptableObject
 {
 
-    public string speciesName;
+    public MonsterType monsterType;
     public string speciesDescription;
 
     [Range(0, 23)]
@@ -20,8 +21,8 @@ public class SO_Monster : ScriptableObject
     [Range(0, 23)]
     public int activityHourMax;
 
-    public SO_Monster[] neighboorLike;
-    public SO_Monster[] neighboorDislike;
+    public MonsterType[] neighboorLike;
+    public MonsterType[] neighboorDislike;
 
     public RoomPlacement[] roomPlacementsLike;
     public RoomPlacement[] roomPlacementsDislike;
@@ -29,9 +30,11 @@ public class SO_Monster : ScriptableObject
     public FoodType[] foodLike;
     public FoodType[] foodDislike;
 
-    public SO_Activity[] activityLike;
+    public ActivityType[] activityLike;
 
     public float patienceMax;
+
+    public SO_NameList monsterNameList;
 
 }
 

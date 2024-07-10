@@ -12,17 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c70442fdb2a414494ac98b8fc7ecd6, type: 3}
   m_Name: Vampire
   m_EditorClassIdentifier: 
-  speciesName: Vampire
-  speciesDescription: ???
-  eatingHourMin: 0
-  eatingHourMax: 0
-  activityHourMin: 0
-  activityHourMax: 0
-  neighboorLike: []
-  neighboorDislike: []
-  roomPlacementsLike: 
-  roomPlacementsDislike: 
-  foodLike: 
-  foodDislike: 
-  activityLike: []
-  patienceMax: 0
+  monsterType: 0
+  speciesDescription: A vampire is a mythical creature that subsists by feeding on
+    the vital essence (generally in the form of blood) of the living
+  eatingHourMin: 22
+  eatingHourMax: 1
+  activityHourMin: 1
+  activityHourMax: 6
+  neighboorLike: 0000000006000000
+  neighboorDislike: 02000000
+  roomPlacementsLike: 00000000
+  roomPlacementsDislike: 02000000
+  foodLike: 0300000000000000
+  foodDislike: 02000000
+  activityLike: 0000000005000000
+  patienceMax: 30
+  monsterNameList: {fileID: 11400000, guid: 01f7b8d7792fd144da64fbd323a6c215, type: 2}
