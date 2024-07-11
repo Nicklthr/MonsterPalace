@@ -24,3 +24,4 @@ MonoBehaviour:
     currentUsers: 0
     cost: 0
     roomObject: {fileID: 0}
+    targets: []

@@ -40,6 +40,10 @@ public class MonsterController : MonoBehaviour
     private Vector3 roomPositionVector;
 
     public bool controlDone = false;
+    private bool roomFind = false;
+
+    private Room currentRoom;
+    private TargetInRoom currentTarget;
 
     //Beahviour tree variables
     #region Beahviour tree variables
@@ -163,22 +167,89 @@ public class MonsterController : MonoBehaviour
 
     public bool searchEating()
     {
-        foreach (ActivityType activity in monsterDatas.activityLike)
+        foreach (Room room in hotelDatas.rooms)
         {
-            foreach(Room room in hotelDatas.rooms)
+            if (room.type == RoomType.DINING && room.currentUsers < room.maxUsers)
             {
-                if(activity == room.activityType)
+                foreach (TargetInRoom target in room.targets)
                 {
-
+                    if (!target.isOccupied)
+                    {
+                        target.SetIsOccupied(true);
+                        currentRoom = room;
+                        currentTarget = target;
+                        room.currentUsers++;
+                        agent.SetDestination(currentTarget.target);
+                        break;
+                    }
                 }
+                roomFind = true;
+                break;
             }
         }
-        return true;
+
+
+        if (roomFind)
+        {
+            roomFind = false;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 
     public bool searchActivity()
     {
-        return true;
+        foreach (ActivityType activity in monsterDatas.activityLike)
+        {
+            foreach (Room room in hotelDatas.rooms)
+            {
+                if (activity == room.activityType && room.type == RoomType.ACTIVITY && room.currentUsers < room.maxUsers)
+                {
+                    foreach (TargetInRoom target in room.targets)
+                    {
+                        if (!target.isOccupied)
+                        {
+                            target.SetIsOccupied(true);
+                            currentRoom = room;
+                            currentTarget = target;
+                            room.currentUsers++;
+                            agent.SetDestination(currentTarget.target);
+                            break;
+                        }
+                    }
+                    roomFind = true;
+                    break;
+                }
+            }
+
+            if (roomFind)
+            {
+                break;
+            }
+
+        }
+
+        if (roomFind)
+        {
+            roomFind = false;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void freeRoom()
+    {
+        currentRoom.currentUsers--;
+        currentTarget.SetIsOccupied(false);
+        currentRoom = null;
+        currentTarget = null;
     }
 
 

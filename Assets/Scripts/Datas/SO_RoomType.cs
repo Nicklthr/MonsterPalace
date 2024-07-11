@@ -63,7 +63,7 @@ public class Room
         {
             if ( child.CompareTag( "Target" ) )
             {
-                this.targets.Add( new TargetInRoom( child, false ) );
+                this.targets.Add( new TargetInRoom( child.position, false ) );
             }
         }
 
@@ -76,11 +76,11 @@ public class Room
 public class TargetInRoom
 {
     [field: SerializeField]
-    public Transform target { get; private set; }
+    public Vector3 target { get; private set; }
     [field: SerializeField]
     public bool isOccupied { get; private set; }
 
-    public TargetInRoom(Transform target, bool isOccupied)
+    public TargetInRoom(Vector3 target, bool isOccupied)
     {
         this.target = target;
         this.isOccupied = isOccupied;
