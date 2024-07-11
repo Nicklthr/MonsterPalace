@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16dd45f2910a7e940b208100b2d8b53c, type: 3}
-  m_Name: Base Bedroom
+  m_Name: Torture Chamber
   m_EditorClassIdentifier: 
-  roomName: Classique Bedroom
-  roomSize: {x: 4, y: 2, z: 3}
-  roomType: 0
-  activityType: 0
+  roomName: 
+  roomSize: {x: 0, y: 0, z: 0}
+  roomType: 2
+  activityType: 3
   cost: 0
   prefab: {fileID: 0}
-  isUnlocked: 1
+  isUnlocked: 0

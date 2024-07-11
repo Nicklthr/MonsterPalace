@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16dd45f2910a7e940b208100b2d8b53c, type: 3}
-  m_Name: Base Bedroom
+  m_Script: {fileID: 11500000, guid: b28ee795b38e4114d81ac14229c2a1e6, type: 3}
+  m_Name: Hotel
   m_EditorClassIdentifier: 
-  roomName: Classique Bedroom
-  roomSize: {x: 4, y: 2, z: 3}
-  roomType: 0
-  activityType: 0
-  cost: 0
-  prefab: {fileID: 0}
-  isUnlocked: 1
+  rooms: []
