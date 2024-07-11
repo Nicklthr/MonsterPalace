@@ -273,7 +273,7 @@ public class MonsterController : MonoBehaviour
 
     public void foodControl()
     {
-
+        
     }
 
     public void roomControl()

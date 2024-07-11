@@ -34,7 +34,8 @@ public class Room
 
     public ActivityType activityType;
     public RoomType type;
-    public RoomPlacement roomPlacement;
+    public RoomPlacement[] roomPlacement;
+    public SO_Food foodAssigned;
 
     public int maxUsers;
     public int currentUsers;
