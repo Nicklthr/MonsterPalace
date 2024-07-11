@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewRoomType", menuName = "MonsterPalace/Room Type")]
@@ -13,11 +14,15 @@ public class SO_RoomType : ScriptableObject
     public ActivityType activityType;
 
     [Space(10)]
+    public int maxUsers;
+
+    [Space(10)]
     public int cost;
     public GameObject prefab;
     public bool isUnlocked = false;
 }
 
+[Serializable]
 public class Room
 {
     public SO_RoomType roomType;
@@ -30,6 +35,9 @@ public class Room
     public RoomType type;
     public RoomPlacement roomPlacement;
 
+    public int maxUsers;
+    public int currentUsers;
+
     public int cost;
 
     public GameObject roomObject;
@@ -41,6 +49,7 @@ public class Room
         this.roomSize = roomType.roomSize;
         this.roomName = roomType.roomName;
         this.type = roomType.roomType;
+        this.maxUsers = roomType.maxUsers;
         
         if ( roomType.roomType == RoomType.ACTIVITY )
         {
