@@ -21,3 +21,8 @@ public enum MonsterType
 {
     VAMPIRE, WITCH, WEREWOLF, DEMON, BUTCHER, GIMP, GHOUL, YOKAI
 }
+
+public enum RoomType
+{
+    BEDROOM, BASE, ACTIVITY, DINING
+}
