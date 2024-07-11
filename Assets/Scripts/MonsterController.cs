@@ -5,45 +5,62 @@ using UnityEngine.AI;
 
 public class MonsterController : MonoBehaviour
 {
+    [Header("Datas")]
     [SerializeField] private SO_Monster monsterDatas;
-
+    [SerializeField] private SO_Hotel hotelDatas;
+    [SerializeField] private NavMeshAgent agent;
     public string monsterName;
+    private float patienceMax;
+    [Range(0, 100)]
+    public int satisfaction = 50;
 
+
+    [Header("Planning")]
     public int eatingHour;
     public int activityHour;
-
     public int arrivalHour;
 
-    public int stayDuration;
+    [Header("Time of the Day")]
+    [Range(0, 23)]
+    [SerializeField] private int currentHour;
+ 
+
+    [Header("Stay Duration")]
     [SerializeField] private int stayDurationMin;
     [SerializeField] private int stayDurationMax;
+    public int stayDuration;
+    [SerializeField] private int currentStayDuration = 0;
 
+    [Header("Positions")]
     [SerializeField] private Transform startPosition;
     [SerializeField] private Transform receptionPosition;
     [SerializeField] public Transform roomPosition;
-
     private Vector3 startPositionVector;
-    public Vector3 MystartPositionVector { get { return startPositionVector; } set { startPositionVector = value; } }
-
-
     private Vector3 receptionPositionVector;
-    public Vector3 MyreceptionPosition { get { return receptionPositionVector; } set { receptionPositionVector = value; } }
-
     private Vector3 roomPositionVector;
-    public Vector3 MyroomPosition { get { return roomPositionVector; } set { roomPositionVector = value; } }
 
-    [SerializeField] private NavMeshAgent agent;
+    public bool controlDone = false;
 
-    public int currentTime;
-
-    private float patienceMax;
+    //Beahviour tree variables
+    #region Beahviour tree variables
     public float MyPatienceMax { get { return patienceMax; } set { patienceMax = value; } }
+    public int MycurrentHour { get { return currentHour; } set { currentHour = value; } }
+    public int MystayDuration { get { return stayDuration; } set { stayDuration = value; } }
+    public int MycurrentStayDuration { get { return currentStayDuration; } set { currentStayDuration = value; } }
+    public Vector3 MystartPositionVector { get { return startPositionVector; } set { startPositionVector = value; } }
+    public Vector3 MyreceptionPosition { get { return receptionPositionVector; } set { receptionPositionVector = value; } }
+    public Vector3 MyroomPosition { get { return roomPositionVector; } set { roomPositionVector = value; } }
+    #endregion
+
 
     private void OnEnable()
     {
         //On récupère les informations du monstre par rapport à celles de son espèce
 
         patienceMax = monsterDatas.patienceMax;
+        currentStayDuration = 0;
+        roomPosition = null;
+        satisfaction = 50;
 
         //Name
         monsterName = monsterDatas.monsterNameList.Name[Random.Range(0, monsterDatas.monsterNameList.Name.Length)];
@@ -130,6 +147,79 @@ public class MonsterController : MonoBehaviour
     private void OnDisable()
     {
         transform.position = startPosition.position;
+        GiveEvaluation();
+    }
+
+    public void changeHour(int hour)
+    {
+        currentHour = hour;
+        controlDone = false;
+
+        if ( currentHour == arrivalHour)
+        {
+            currentStayDuration++;
+        }
+    }
+
+    public bool searchEating()
+    {
+        foreach (ActivityType activity in monsterDatas.activityLike)
+        {
+            foreach(Room room in hotelDatas.rooms)
+            {
+                if(activity == room.activityType)
+                {
+
+                }
+            }
+        }
+        return true;
+    }
+
+    public bool searchActivity()
+    {
+        return true;
+    }
+
+
+    public void Happy(int value)
+    {
+        satisfaction += value;
+        if (satisfaction > 100)
+        {
+            satisfaction = 100;
+        }
+    }
+
+    public void notHappy(int value)
+    {
+        satisfaction -= value;
+        if(satisfaction < 0)
+        {
+            satisfaction = 0;
+        }
+    }
+
+    public void foodControl()
+    {
+
+    }
+
+    public void roomControl()
+    {
+
+    }
+
+    public void Pay()
+    {
+
+    }
+
+    public void GiveEvaluation()
+    {
+
     }
 
 }
+
+
