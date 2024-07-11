@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewRoomType", menuName = "MonsterPalace/Room Type")]
@@ -41,6 +42,7 @@ public class Room
     public int cost;
 
     public GameObject roomObject;
+    public List<TargetInRoom> targets;
 
     public Room( SO_RoomType roomType, Vector3Int positionInGrid )
     {
@@ -56,8 +58,36 @@ public class Room
             this.activityType = roomType.activityType;
         }
 
+        this.targets = new List<TargetInRoom>();
+        foreach ( Transform child in roomType.prefab.transform )
+        {
+            if ( child.CompareTag( "Target" ) )
+            {
+                this.targets.Add( new TargetInRoom( child, false ) );
+            }
+        }
+
         this.cost = roomType.cost;
         this.roomObject = roomType.prefab;
     }
+}
 
+[Serializable]
+public class TargetInRoom
+{
+    [field: SerializeField]
+    public Transform target { get; private set; }
+    [field: SerializeField]
+    public bool isOccupied { get; private set; }
+
+    public TargetInRoom(Transform target, bool isOccupied)
+    {
+        this.target = target;
+        this.isOccupied = isOccupied;
+    }
+
+    public void SetIsOccupied(bool isOccupied)
+    {
+        this.isOccupied = isOccupied;
+    }
 }

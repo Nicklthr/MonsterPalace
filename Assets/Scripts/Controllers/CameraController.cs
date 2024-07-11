@@ -7,23 +7,6 @@ public class CameraController : MonoBehaviour
     public float moveSpeed = 10f;
     public float zoomSpeed = 10f;
 
-    public CinemachineVirtualCamera virtualCamera;
-
-    public InputAction moveAction;
-    public InputAction zoomAction;
-
-    private void OnEnable()
-    {
-        moveAction.Enable();
-        zoomAction.Enable();
-    }
-
-    private void OnDisable()
-    {
-        moveAction.Disable();
-        zoomAction.Disable();
-    }
-
     private void Update()
     {
         HandleMove();
