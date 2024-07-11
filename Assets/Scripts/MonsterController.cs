@@ -20,18 +20,30 @@ public class MonsterController : MonoBehaviour
 
     [SerializeField] private Transform startPosition;
     [SerializeField] private Transform receptionPosition;
+    [SerializeField] public Transform roomPosition;
+
+    private Vector3 startPositionVector;
+    public Vector3 MystartPositionVector { get { return startPositionVector; } set { startPositionVector = value; } }
+
+
+    private Vector3 receptionPositionVector;
+    public Vector3 MyreceptionPosition { get { return receptionPositionVector; } set { receptionPositionVector = value; } }
+
+    private Vector3 roomPositionVector;
+    public Vector3 MyroomPosition { get { return roomPositionVector; } set { roomPositionVector = value; } }
 
     [SerializeField] private NavMeshAgent agent;
 
-    public enum MonsterState
-    {
-        ARRIVAL, STAYCYCLE, DEPARTURE
-    } 
+    public int currentTime;
 
+    private float patienceMax;
+    public float MyPatienceMax { get { return patienceMax; } set { patienceMax = value; } }
 
     private void OnEnable()
     {
         //On récupère les informations du monstre par rapport à celles de son espèce
+
+        patienceMax = monsterDatas.patienceMax;
 
         //Name
         monsterName = monsterDatas.monsterNameList.Name[Random.Range(0, monsterDatas.monsterNameList.Name.Length)];
@@ -91,7 +103,9 @@ public class MonsterController : MonoBehaviour
         stayDuration = Random.Range(stayDurationMin, stayDurationMax);
 
         //ReceptionPosition
-        agent.destination = receptionPosition.position;
+        //agent.destination = receptionPosition.position;
+        receptionPositionVector = receptionPosition.position;
+        startPositionVector = startPosition.position;
 
     }
 
@@ -105,6 +119,10 @@ public class MonsterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (roomPosition != null)
+        {
+            roomPositionVector = roomPosition.position;
+        }
         
     }
 
