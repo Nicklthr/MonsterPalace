@@ -15,7 +15,6 @@ MonoBehaviour:
   rooms:
   - <rooms>k__BackingField:
     - {fileID: 11400000, guid: 5344b84a0cf2b2446be5c00261dca6ca, type: 2}
-    - {fileID: 11400000, guid: 2ac0572db925ac34db4632b75e04bd2e, type: 2}
     <RoomType>k__BackingField: 1
   - <rooms>k__BackingField:
     - {fileID: 11400000, guid: a5bf73b5e70d2494ba552db6b3563c00, type: 2}

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16dd45f2910a7e940b208100b2d8b53c, type: 3}
   m_Name: Souvenir Shop
   m_EditorClassIdentifier: 
-  roomName: 
+  roomName: Souvenir Shop
   roomSize: {x: 0, y: 0, z: 0}
   roomType: 2
   activityType: 6
+  maxUsers: 0
   cost: 0
   prefab: {fileID: 0}
   isUnlocked: 0

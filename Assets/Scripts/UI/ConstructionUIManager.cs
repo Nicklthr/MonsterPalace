@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,22 +8,29 @@ public class ConstructionUIManager : MonoBehaviour
 {
     public SO_RoomsDB data;
 
+    [Space(10)]
+    [Header("UI Btn Prefabs")]
     public GameObject builderButtonPrefab;
     public GameObject roomCategoryButtonPrefab;
 
     [Space (10)]
+    [Header("UI Panels")]
     public GameObject roomConstructionPanel;
     public GameObject categoryPanel;
 
-    [Space(10)]
-    public Transform roomButtonContainer;
-    public Transform categoryButtonContainer;
+    private PlacementSystem _placementSystem;
+
+    private void Awake()
+    {
+        roomConstructionPanel.SetActive(false);
+        PopulateCategories();
+    }
 
     private void Start()
     {
+        _placementSystem = FindObjectOfType<PlacementSystem>();
         //VerifyReferences();
-        roomConstructionPanel.SetActive(false);
-        builderButtonPrefab.GetComponent<Button>().onClick.AddListener(OpenConstructionPanel);
+        builderButtonPrefab.GetComponent<Button>().onClick.AddListener( OpenConstructionPanel );
     }
 
     private void VerifyReferences()
@@ -35,25 +44,60 @@ public class ConstructionUIManager : MonoBehaviour
 
     public void OpenConstructionPanel()
     {
-        roomConstructionPanel.SetActive(true);
-        PopulateCategories();
+        builderButtonPrefab.SetActive( false );
+        roomConstructionPanel.SetActive( true );
     }
 
     private void PopulateCategories()
     {
-        foreach ( var category in data.rooms.Select(r => r.RoomType).Distinct() )
+        foreach ( var category in data.rooms )
         {
-            if (category == RoomType.BASE) continue;
-            var button = Instantiate(roomCategoryButtonPrefab, categoryButtonContainer);
-            button.GetComponentInChildren<Text>().text = category.ToString();
-            button.GetComponent<Button>().onClick.AddListener(() => OpenCategoryRooms(category));
+            if ( category.RoomType == RoomType.BASE ) continue;
+
+            var button = Instantiate(roomCategoryButtonPrefab, roomConstructionPanel.transform);
+            button.GetComponentInChildren<TextMeshProUGUI>().text = category.RoomType.ToString();
+            button.GetComponent<Button>().onClick.AddListener(() => OpenCategoryRooms( category ));
+        }
+
+        var backButton = Instantiate(roomCategoryButtonPrefab, roomConstructionPanel.transform);
+        backButton.GetComponentInChildren<TextMeshProUGUI>().text = "Retour";
+        backButton.GetComponent<Button>().onClick.AddListener(() => roomConstructionPanel.SetActive( false ) );
+        backButton.GetComponent<Button>().onClick.AddListener(() => builderButtonPrefab.SetActive( true ) );
+    }
+
+    private void OpenCategoryRooms( RoomDB category )
+    {
+        roomConstructionPanel.SetActive( false );
+        categoryPanel.SetActive( true );
+        ClearCategoriesPanel();
+        PopulateSubCategorie( category );
+    }
+
+    private void PopulateSubCategorie( RoomDB category )
+    {
+        foreach ( var room in category.rooms )
+        {
+            var button = Instantiate(roomCategoryButtonPrefab, categoryPanel.transform);
+            button.GetComponentInChildren<TextMeshProUGUI>().text = room.roomName.ToString();
+            button.GetComponent<Button>().onClick.AddListener( () => CreateNewRoom( room ) );
+        }
+
+        var backButton = Instantiate(roomCategoryButtonPrefab, categoryPanel.transform);
+        backButton.GetComponentInChildren<TextMeshProUGUI>().text = "Retour";
+        backButton.GetComponent<Button>().onClick.AddListener(() => categoryPanel.SetActive( false ));
+        backButton.GetComponent<Button>().onClick.AddListener(() => roomConstructionPanel.SetActive( true ));
+    }
+
+    private void CreateNewRoom( SO_RoomType room )
+    {
+        _placementSystem.StartPlacement( room );
+    }
+
+    private void ClearCategoriesPanel()
+    {
+        foreach ( Transform child in categoryPanel.transform )
+        {
+            Destroy(child.gameObject);
         }
     }
-
-    private void OpenCategoryRooms(RoomType category)
-    {
-        
-    }
-
-    // Ajouter ici d'autres méthodes utiles pour la gestion UI
 }
