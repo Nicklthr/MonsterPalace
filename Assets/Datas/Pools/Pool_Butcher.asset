@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d920914da831fa44faf250024a0fb05f, type: 3}
+  m_Name: Pool_Butcher
+  m_EditorClassIdentifier: 
+  poolName: Butcher
+  prefab: {fileID: 1304384264073408293, guid: f9430cf530034c643a80c4c8ae768ff9, type: 3}
+  initialSize: 30
+  objectsActive: 0
+  objectsInactive: 30
