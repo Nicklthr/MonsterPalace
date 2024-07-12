@@ -29,12 +29,14 @@ public class Room
     public SO_RoomType roomType;
     public Vector3Int positionInGrid;
 
+    public string roomID;
+
     public Vector3Int roomSize;
     public string roomName;
 
     public ActivityType activityType;
     public RoomType type;
-    public RoomPlacement[] roomPlacement;
+    public RoomPlacement[] roomPlacement = new RoomPlacement[0];
     public SO_Food foodAssigned;
     public string monsterID;
 
@@ -46,7 +48,7 @@ public class Room
     public GameObject roomObject;
     public List<TargetInRoom> targets;
 
-    public Room( SO_RoomType roomType, Vector3Int positionInGrid )
+    public Room( SO_RoomType roomType, Vector3Int positionInGrid, string roomId )
     {
         this.roomType = roomType;
         this.positionInGrid = positionInGrid;
@@ -54,6 +56,7 @@ public class Room
         this.roomName = roomType.roomName;
         this.type = roomType.roomType;
         this.maxUsers = roomType.maxUsers;
+        this.roomID = roomId;
         
         if ( roomType.roomType == RoomType.ACTIVITY )
         {
@@ -61,6 +64,7 @@ public class Room
         }
 
         this.targets = new List<TargetInRoom>();
+
         foreach ( Transform child in roomType.prefab.transform )
         {
             if ( child.CompareTag( "Target" ) )
@@ -71,6 +75,44 @@ public class Room
 
         this.cost = roomType.cost;
         this.roomObject = roomType.prefab;
+    }
+
+    public void AddRoomPlacement( RoomPlacement newPlacement )
+    {
+        // Créer un nouveau tableau avec une taille augmentée de 1
+        RoomPlacement[] newPlacements = new RoomPlacement[roomPlacement.Length + 1];
+
+        // Copier les éléments existants
+        for (int i = 0; i < roomPlacement.Length; i++)
+        {
+            newPlacements[i] = roomPlacement[i];
+        }
+
+        // Ajouter le nouvel élément
+        newPlacements[roomPlacement.Length] = newPlacement;
+
+        // Assigner le nouveau tableau
+        roomPlacement = newPlacements;
+    }
+
+    public void RemoveRoomPlacement( RoomPlacement placementToRemove )
+    {
+        // Trouver l'index de l'élément à supprimer
+        int index = Array.IndexOf( roomPlacement, placementToRemove );
+        if (index < 0) return; // Si l'élément n'est pas trouvé, ne rien faire
+
+        // Créer un nouveau tableau avec une taille réduite de 1
+        RoomPlacement[] newPlacements = new RoomPlacement[roomPlacement.Length - 1];
+
+        // Copier les éléments en omettant l'élément à supprimer
+        for (int i = 0, j = 0; i < roomPlacement.Length; i++)
+        {
+            if (i == index) continue;
+            newPlacements[j++] = roomPlacement[i];
+        }
+
+        // Assigner le nouveau tableau
+        roomPlacement = newPlacements;
     }
 }
 

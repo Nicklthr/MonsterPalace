@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16dd45f2910a7e940b208100b2d8b53c, type: 3}
   m_Name: Base
   m_EditorClassIdentifier: 
-  roomName: 
-  roomSize: {x: 0, y: 0, z: 0}
+  roomName: Base Room
+  roomSize: {x: 8, y: 3, z: 6}
   roomType: 1
   activityType: 0
+  maxUsers: 100
   cost: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 3223598220998969764, guid: d243c98183c100f4e9953e19ac7c2963, type: 3}
   isUnlocked: 1
