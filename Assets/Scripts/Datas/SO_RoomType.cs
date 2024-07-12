@@ -36,6 +36,7 @@ public class Room
     public RoomType type;
     public RoomPlacement[] roomPlacement;
     public SO_Food foodAssigned;
+    public string monsterID;
 
     public int maxUsers;
     public int currentUsers;
