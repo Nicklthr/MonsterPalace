@@ -7,16 +7,12 @@ using BehaviorDesigner.Runtime.Tasks;
 namespace BehaviorDesigner.Runtime.Tasks.MonsterTask
 {
     [TaskCategory("Monster")]
-    [TaskDescription("lower Satisfaction")]
-    public class Happy : Action
+    [TaskDescription("Control neighboors")]
+    public class placementControl : Action
     {
         [Tooltip("The GameObject that the task operates on. If null the task GameObject is used.")]
         public SharedGameObject targetGameObject;
 
-        [Tooltip("The satisfaction value to gain.")]
-        public SharedInt saisfactionValue;
-        [Tooltip("The reason the monster is happy.")]
-        public SharedString message;
 
         // cache the navmeshagent component
         private MonsterController controller;
@@ -30,7 +26,7 @@ namespace BehaviorDesigner.Runtime.Tasks.MonsterTask
         {
 
 
-            controller.Happy(saisfactionValue.Value, message.Value);
+            controller.placementControl();
 
             return TaskStatus.Success;
 

@@ -15,6 +15,8 @@ namespace BehaviorDesigner.Runtime.Tasks.MonsterTask
 
         [Tooltip("The satisfaction value to lose.")]
         public SharedInt saisfactionValue;
+        [Tooltip("The reason the monster is unhappy.")]
+        public SharedString message;
 
         // cache the navmeshagent component
         private MonsterController controller;
@@ -28,7 +30,7 @@ namespace BehaviorDesigner.Runtime.Tasks.MonsterTask
         {
 
 
-            controller.notHappy(saisfactionValue.Value);
+            controller.notHappy(saisfactionValue.Value, message.Value);
 
             return TaskStatus.Success;
 

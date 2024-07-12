@@ -22,6 +22,8 @@ public class DayNightCycle : MonoBehaviour
 
     public UnityEvent OnNextDay = new UnityEvent();
 
+    
+
     void Start()
     {
         // Calcul de la vitesse de rotation en degrés par seconde

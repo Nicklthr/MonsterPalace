@@ -15,11 +15,14 @@ MonoBehaviour:
   rooms:
   - roomType: {fileID: 11400000, guid: c00c1501c4e94304ba5e1842b90e1222, type: 2}
     positionInGrid: {x: 0, y: 0, z: 0}
+    roomID: 
     roomSize: {x: 0, y: 0, z: 0}
     roomName: 
     activityType: 0
     type: 3
-    roomPlacement: 0
+    roomPlacement: 
+    foodAssigned: {fileID: 0}
+    monsterID: 
     maxUsers: 2
     currentUsers: 0
     cost: 0
@@ -29,13 +32,33 @@ MonoBehaviour:
       <isOccupied>k__BackingField: 0
     - <target>k__BackingField: {x: 12.63, y: -1.869, z: 2.44}
       <isOccupied>k__BackingField: 0
-  - roomType: {fileID: 11400000, guid: c00c1501c4e94304ba5e1842b90e1222, type: 2}
+  - roomType: {fileID: 11400000, guid: ff96943133c847b4db1799644e2176f5, type: 2}
     positionInGrid: {x: 0, y: 0, z: 0}
+    roomID: 
     roomSize: {x: 0, y: 0, z: 0}
     roomName: 
     activityType: 0
     type: 2
-    roomPlacement: 0
+    roomPlacement: 
+    foodAssigned: {fileID: 0}
+    monsterID: 
+    maxUsers: 1
+    currentUsers: 0
+    cost: 0
+    roomObject: {fileID: 0}
+    targets:
+    - <target>k__BackingField: {x: 12.63, y: -1.869, z: -6.73}
+      <isOccupied>k__BackingField: 0
+  - roomType: {fileID: 11400000, guid: c00c1501c4e94304ba5e1842b90e1222, type: 2}
+    positionInGrid: {x: 0, y: 0, z: 0}
+    roomID: 
+    roomSize: {x: 0, y: 0, z: 0}
+    roomName: 
+    activityType: 0
+    type: 0
+    roomPlacement: 00000000
+    foodAssigned: {fileID: 11400000, guid: efef3074f2c51a4468d8c110f3a08992, type: 2}
+    monsterID: 1
     maxUsers: 1
     currentUsers: 0
     cost: 0
