@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pool_WereWolf
   m_EditorClassIdentifier: 
   poolName: WereWolf
-  prefab: {fileID: 8993906213898684128, guid: 043c5582e243265469119b1ec5d561c7, type: 3}
+  prefab: {fileID: 6147979150155304908, guid: 59fa80889659fae40b6d3fe8e74060b1, type: 3}
   initialSize: 30
-  objectsActive: 3
-  objectsInactive: 27
+  objectsActive: 0
+  objectsInactive: 0

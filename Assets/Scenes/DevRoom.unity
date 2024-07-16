@@ -899,7 +899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901bd046fa54eff44943f1372393ad09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastPosition: {x: 1.7803702, y: 15.634089, z: 0.0000018637285}
+  lastPosition: {x: 1.8795583, y: 15.653926, z: 0.0000018660932}
   placementLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1664,7 +1664,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e393e9fae63eb5418aa70cb70020082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monsterPrefabs: []
+  _monsterPrefabs:
+  - {fileID: 11400000, guid: 6d163158cfd9d40419a8386410b39f29, type: 2}
+  - {fileID: 11400000, guid: 4b3899e65484b3948920c03883d231d1, type: 2}
   cycle: {fileID: 135970015}
   poolManager: {fileID: 1645072163}
   level: 2
@@ -1724,6 +1726,21 @@ MonoBehaviour:
   _hotel: {fileID: 11400000, guid: ac4712e4fd465c245a602f4d45d56f09, type: 2}
   _dataBase: {fileID: 11400000, guid: 5344b84a0cf2b2446be5c00261dca6ca, type: 2}
   _grid: {fileID: 1938976613}
+  OnHotelCreated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1540381290}
+        m_TargetAssemblyTypeName: Unity.AI.Navigation.NavMeshSurface, Unity.AI.Navigation
+        m_MethodName: BuildNavMesh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1540381289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,9 +1836,7 @@ MonoBehaviour:
   pools:
   - SO_pool: {fileID: 11400000, guid: 6d163158cfd9d40419a8386410b39f29, type: 2}
     poolObjects: []
-  - SO_pool: {fileID: 11400000, guid: 6d163158cfd9d40419a8386410b39f29, type: 2}
-    poolObjects: []
-  - SO_pool: {fileID: 11400000, guid: 6d163158cfd9d40419a8386410b39f29, type: 2}
+  - SO_pool: {fileID: 11400000, guid: 4b3899e65484b3948920c03883d231d1, type: 2}
     poolObjects: []
   debugMode: 0
 --- !u!4 &1645072164

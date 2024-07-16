@@ -2,6 +2,7 @@ using BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HotelController : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class HotelController : MonoBehaviour
     private Grid _grid;
     [SerializeField]
 
-    private void Awake()
+    public UnityEvent OnHotelCreated = new UnityEvent();
+
+    private void Start()
     {
         if ( _hotel.rooms.Count != 0 )
         {
@@ -47,8 +50,13 @@ public class HotelController : MonoBehaviour
         roomInstance.transform.SetParent(transform);
 
         GameObject recpetion = GameObject.FindGameObjectWithTag("ReceptionPosition");
-        recpetion.SetActive(true);
+
+        if (recpetion != null)
+        {
+            recpetion.SetActive(true);
+        }
 
         _hotel.rooms.Add(new Room(baseRoom, _grid.WorldToCell(Vector3Int.zero), baseRoom.GetInstanceID().ToString(), 0));
+        OnHotelCreated.Invoke();
     }
 }
