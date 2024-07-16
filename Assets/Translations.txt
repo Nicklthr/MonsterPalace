@@ -1,0 +1,42 @@
+ID	1. English	2. French
+foodnotlike	I don't like {0} food!	Je n'aime pas la nourriture {0} !
+foodlike	I like {0} food!	J'aime la nourriture {0} !
+foodlove	The meal was great!	J'ai adoré le repas !
+foodhate	I hated the food!	J'ai detesté le repas !
+nofood	What do you mean no meal planned!	Comment ça pas de repas prévu !
+nocanteen	There is no place to eat!	Il n'y pas d'endroit pour manger !
+nocanteenplace	All dining places are occupied!	Toutes les places pour manger sont occupées !
+roomnotlike	I don't like {0} locations!	Je n'aime pas les emplacements {0} !
+roomlike	I like {0} locations!	J'aime les emplacements {0} !
+roomlove	I love the location of the room!	J'adore l'emplacement de la chambre !
+roomhate	I hate the location of the room!	Je déteste l'emplacement de la chambre !
+noroom	Since no one takes care of me, I'm leaving!	Puisqu'on ne s'occupe pas de moi, je m'en vais !
+activitylike	I had fun !	Je me suis bien amusé !
+noactivity	There is no activity for me in this hotel	Il n'y a pas d'activité pour moi dans cet hôtel
+noactivityplace	There was no more room in the {0}	Il n'y avait plus de place dans {0}
+vampire	vampire	un vampire
+witch	witch	une sorcière
+werewolf	werewolf	un loup-garou
+demon	demon	un démon
+butcher	butcher	un boucher
+gimp	gimp	un gimp
+ghoul	ghoul	une goule
+yokai	yokai	un yokai
+library	library	la bibliothèque
+musichall	music hall	la salle de musique
+gym	gym	la salle de sport
+hothouse	hothouse	la serre
+tortureroom	torture room	la salle de torture
+bathroom	bathroom	la salle de bain
+souvenirshop	souvenir shop	la boutique de souvenirs
+pool	pool	la piscine
+carn	carnivor	carnivore
+vegan	vegan	vegetarienne
+liquid	liquid	liquide
+solid	solid	solide
+raw	raw	crue
+cooked	cooked	cuite
+underground	underground	souterrains
+overground	overground	au dessus du sol
+light	bright	lumineux
+dark	dark	sombres

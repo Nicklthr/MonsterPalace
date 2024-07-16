@@ -57,6 +57,10 @@ public class MonsterController : MonoBehaviour
     public bool timeToMove = false;
     public bool timeToEat = false;
     public bool timeToActivity = false;
+    public bool canAssignRoom = false;
+
+    //Monster commentary
+    public List<string> commentaries = new List<string>();
 
     //Beahviour tree variables
     #region Beahviour tree variables
@@ -75,6 +79,8 @@ public class MonsterController : MonoBehaviour
         //On récupère les informations du monstre par rapport à celles de son espèce
 
         timer = GameObject.FindGameObjectWithTag("Time").GetComponent<DayNightCycle>();
+        startPosition = GameObject.FindGameObjectWithTag("StartPosition").transform;
+        receptionPosition = GameObject.FindGameObjectWithTag("ReceptionPosition").transform;
         patienceMax = monsterDatas.patienceMax;
         currentStayDuration = 0;
         roomPosition = null;
@@ -83,6 +89,8 @@ public class MonsterController : MonoBehaviour
         timeToMove = false;
         timeToEat = false;
         timeToActivity = false;
+        commentaries.Clear();
+        canAssignRoom = false;
 
         //Name
         monsterName = monsterDatas.monsterNameList.Name[Random.Range(0, monsterDatas.monsterNameList.Name.Length)];
@@ -241,7 +249,7 @@ public class MonsterController : MonoBehaviour
                 }
                 else
                 {
-                    message = "Toutes les places pour manger sont occupées !";
+                    message = LanguageHandler.Instance.GetTranslation("nocanteenplace");
                 }
 
             }
@@ -257,7 +265,7 @@ public class MonsterController : MonoBehaviour
         {
             if (message == "")
             {
-                message = "Il n'y pas d'endroit pour manger !";
+                message = LanguageHandler.Instance.GetTranslation("nocanteen");
             }
             notHappy(10, message);
             return false;
@@ -268,6 +276,7 @@ public class MonsterController : MonoBehaviour
     public bool searchActivity()
     {
         string message = "";
+        string typeString = "";
         foreach (ActivityType activity in monsterDatas.activityLike)
         {
             foreach (Room room in hotelDatas.rooms)
@@ -293,7 +302,8 @@ public class MonsterController : MonoBehaviour
                     }
                     else
                     {
-                        message = $"Il n'y avait plus de place dans la {activity}";
+                        typeString = LanguageHandler.Instance.GetTranslation(activity.ToString());
+                        message = string.Format(LanguageHandler.Instance.GetTranslation("noactivityplace"), typeString);
                     }
  
                 }
@@ -315,7 +325,7 @@ public class MonsterController : MonoBehaviour
         {
             if (message == "")
             {
-                message = "Il n'y a pas d'activité pour moi dans cet hôtel";
+                message = LanguageHandler.Instance.GetTranslation("noactivity");
             }
             notHappy(10, message);
             return false;
@@ -331,7 +341,7 @@ public class MonsterController : MonoBehaviour
     }
 
 
-    public void Happy(int value, string message)
+    public void Happy(int value, string message, bool id = false)
     {
         satisfaction += value;
         if (satisfaction > 100)
@@ -341,10 +351,17 @@ public class MonsterController : MonoBehaviour
         animator.SetTrigger("isHappy");
         audiosource.clip = happySound;
         audiosource.Play();
-        Debug.Log(message);
+
+        if (id)
+        {
+            message = LanguageHandler.Instance.GetTranslation(message);
+        }
+
+        commentaries.Add(message);
+        //Debug.Log(message);
     }
 
-    public void notHappy(int value, string message)
+    public void notHappy(int value, string message, bool id = false)
     {
         satisfaction -= value;
         if(satisfaction < 0)
@@ -354,7 +371,14 @@ public class MonsterController : MonoBehaviour
         animator.SetTrigger("isAngry");
         audiosource.clip = angrySound;
         audiosource.Play();
-        Debug.Log(message);
+
+        if (id)
+        {
+            message = LanguageHandler.Instance.GetTranslation(message);
+        }
+
+        commentaries.Add(message);
+        //Debug.Log(message);
     }
 
     public void foodControl()
@@ -364,6 +388,7 @@ public class MonsterController : MonoBehaviour
         int numberlike = 0;
         int numberdislike = 0;
         string message = "";
+        string typeString = "";
         //On récupère la room assignée au monstre
         foreach (Room room in hotelDatas.rooms)
         {
@@ -382,13 +407,15 @@ public class MonsterController : MonoBehaviour
                             {
                                 satisfood-= 10;
                                 numberdislike++;
-                                message = $"Je n'aime pas la nourriture {type} !";
+                                typeString = LanguageHandler.Instance.GetTranslation(type.ToString());
+                                message = string.Format(LanguageHandler.Instance.GetTranslation("foodnotlike"), typeString);
+                                //message = $"Je n'aime pas la nourriture {type} !";
                             }
                         }
 
                         if (numberdislike == monsterDatas.foodDislike.Length && numberdislike > 1)
                         {
-                            message = $"J'ai détesté le repas !";
+                            message = LanguageHandler.Instance.GetTranslation("foodhate");
                         }
 
                     }
@@ -405,13 +432,14 @@ public class MonsterController : MonoBehaviour
                                 {
                                     satisfood += 10;
                                     numberlike++;
-                                    message = $"J'aime la nourriture {type} !";
+                                    typeString = LanguageHandler.Instance.GetTranslation(type.ToString());
+                                    message = string.Format(LanguageHandler.Instance.GetTranslation("foodlike"), typeString);
                                 }
                             }
 
                             if (numberlike == monsterDatas.foodLike.Length)
                             {
-                                message = $"J'ai adoré le repas !";
+                                message = LanguageHandler.Instance.GetTranslation("foodlove");
                             }
 
                         }
@@ -429,7 +457,7 @@ public class MonsterController : MonoBehaviour
                 }
                 else
                 {
-                    message = "Comment ça pas de repas prévu !";
+                    message = LanguageHandler.Instance.GetTranslation("nofood");
                     notHappy(30, message);
                 }
                 
@@ -450,6 +478,7 @@ public class MonsterController : MonoBehaviour
         int numberlike = 0;
         int numberdislike = 0;
         string message = "";
+        string typeString = "";
         //On récupère la room assignée au monstre
         foreach (Room room in hotelDatas.rooms)
         {
@@ -466,13 +495,14 @@ public class MonsterController : MonoBehaviour
                             {
                                 satisplac -= 10;
                                 numberdislike++;
-                                message = $"Je n'aime pas les emplacements {type} !";
+                            typeString = LanguageHandler.Instance.GetTranslation(type.ToString());
+                            message = string.Format(LanguageHandler.Instance.GetTranslation("roomnotlike"), typeString);
                             }
                         }
 
                         if (numberdislike == monsterDatas.foodDislike.Length && numberdislike > 1)
                         {
-                            message = $"Je déteste l'emplacement de la chambre !";
+                            message = LanguageHandler.Instance.GetTranslation("roomhate");
                         }
 
                     }
@@ -489,13 +519,14 @@ public class MonsterController : MonoBehaviour
                                 {
                                     satisplac += 10;
                                     numberlike++;
-                                    message = $"J'aime les emplacements {type} !";
+                                    typeString = LanguageHandler.Instance.GetTranslation(type.ToString());
+                                    message = string.Format(LanguageHandler.Instance.GetTranslation("roomlike"), typeString);
                                 }
                             }
 
                             if (numberlike == monsterDatas.foodLike.Length)
                             {
-                                message = $"J'adore l'emplacement de la chambre !";
+                                message = LanguageHandler.Instance.GetTranslation("roomlove");
                             }
 
                         }
