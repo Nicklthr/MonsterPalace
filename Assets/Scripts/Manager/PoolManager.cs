@@ -26,7 +26,7 @@ public class PoolManager : MonoBehaviour
     #endregion
 
     #region Unity Lifecycle
-    void Awake()
+    void Start()
     {
         poolDictionary = new Dictionary<string, Pool>();
         InitializePools();

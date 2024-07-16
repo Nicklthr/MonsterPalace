@@ -48,7 +48,9 @@ public class Room
     public GameObject roomObject;
     public List<TargetInRoom> targets;
 
-    public Room( SO_RoomType roomType, Vector3Int positionInGrid, string roomId )
+    public int level = 0;
+
+    public Room( SO_RoomType roomType, Vector3Int positionInGrid, string roomId, int level = 0 )
     {
         this.roomType = roomType;
         this.positionInGrid = positionInGrid;
@@ -57,6 +59,7 @@ public class Room
         this.type = roomType.roomType;
         this.maxUsers = roomType.maxUsers;
         this.roomID = roomId;
+        this.level = level;
         
         if ( roomType.roomType == RoomType.ACTIVITY )
         {

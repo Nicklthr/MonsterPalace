@@ -2458,7 +2458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7449723694563451807
 Transform:
   m_ObjectHideFlags: 0
@@ -2519,7 +2519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterDatas: {fileID: 11400000, guid: 3597d46b7e42df342b0b84a8d53df401, type: 2}
-  hotelDatas: {fileID: 11400000, guid: 8e051b0006fb53446a1d203ac5d70f53, type: 2}
+  hotelDatas: {fileID: 11400000, guid: ac4712e4fd465c245a602f4d45d56f09, type: 2}
   agent: {fileID: 6629318576496824644}
   animator: {fileID: 2037609945781193368}
   audiosource: {fileID: 4369257349262732856}
