@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pool_Vampire
   m_EditorClassIdentifier: 
   poolName: Vampire
-  prefab: {fileID: 4349798341927238901, guid: a9290b08d464bf440911d3e9ad00ee60, type: 3}
+  prefab: {fileID: 6147979150155304908, guid: 59fa80889659fae40b6d3fe8e74060b1, type: 3}
   initialSize: 30
   objectsActive: 0
   objectsInactive: 0
