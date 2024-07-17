@@ -561,6 +561,19 @@ public class MonsterController : MonoBehaviour
 
     }
 
+    public void CheckOut()
+    {
+        foreach (Room room in hotelDatas.rooms)
+        {
+            if (room.type == RoomType.BEDROOM && room.monsterID == monsterID)
+            {
+                room.monsterID = "";
+                break;
+            }
+
+        }
+    }
+
 }
 
 
