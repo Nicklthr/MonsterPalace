@@ -37,7 +37,10 @@ public class HotelController : MonoBehaviour
             GameObject roomInstance = Instantiate(prefab, room.positionInGrid, Quaternion.identity);
             roomInstance.name = room.roomID.ToString();
             roomInstance.transform.SetParent(transform);
+
         }
+
+        OnHotelCreated.Invoke();
     }
 
     private void AddBaseRoom()
@@ -51,9 +54,9 @@ public class HotelController : MonoBehaviour
 
         GameObject recpetion = GameObject.FindGameObjectWithTag("ReceptionPosition");
 
-        if (recpetion != null)
+        if ( recpetion != null )
         {
-            recpetion.SetActive(true);
+            recpetion.SetActive( true );
         }
 
         _hotel.rooms.Add(new Room(baseRoom, _grid.WorldToCell(Vector3Int.zero), baseRoom.GetInstanceID().ToString(), 0));
