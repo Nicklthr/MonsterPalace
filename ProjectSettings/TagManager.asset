@@ -9,6 +9,7 @@ TagManager:
   - ReceptionPosition
   - StartPosition
   - Monster
+  - HotelController
   layers:
   - Default
   - TransparentFX
