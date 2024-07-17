@@ -62,6 +62,7 @@ public class MonsterController : MonoBehaviour
     public bool timeToActivity = false;
     public bool canAssignRoom = false;
     public bool waitingQ = false;
+    public bool endLine = false;
 
     //Monster commentary
     public List<string> commentaries = new List<string>();
@@ -93,6 +94,7 @@ public class MonsterController : MonoBehaviour
         canAssignRoom = false;
         waitingQ = true;
         defaultSpeed = agent.speed;
+        endLine = false;
 
 
         //Name
@@ -594,6 +596,7 @@ public class MonsterController : MonoBehaviour
             if (room.type == RoomType.BEDROOM && room.monsterID == monsterID)
             {
                 room.monsterID = "";
+                room.currentUsers--;
                 roomPosition = null;
                 roomPositionVector = new Vector3(0,0,0);
                 break;
@@ -607,7 +610,7 @@ public class MonsterController : MonoBehaviour
         WaitingQ.instance.Quit(gameObject);
     }
 
-    public void MoveInQueue(Transform nextPosition, bool reception)
+    public void MoveInQueue(Transform nextPosition, bool reception, bool boolEndLine)
     {
 
         agent.SetDestination(nextPosition.position);
@@ -617,6 +620,10 @@ public class MonsterController : MonoBehaviour
         {
             waitingQ = false;
            
+        }
+        else if(boolEndLine)
+        {
+            endLine = true;
         }
     }
 

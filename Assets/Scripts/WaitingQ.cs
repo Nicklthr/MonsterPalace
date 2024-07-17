@@ -9,12 +9,13 @@ public class WaitSpot
     public Transform position;
     public GameObject monster;
     public bool reception;
+    public bool lineEnd;
 }
 
 public class WaitingQ : MonoBehaviour
 {
 
-    //public List<System.Action> myEvent = new();
+    public List<System.Action> myEvent = new();
 
     public List<WaitSpot> waiting = new();
 
@@ -36,23 +37,18 @@ public class WaitingQ : MonoBehaviour
         
     }
 
-    /*public void Toto()
-    {
-        Debug.Log( "Bjr" );
-    }
-
     public void Register( System.Action callback )
     {
         myEvent.Add( callback );
     }
 
-    public void Raise()
+    public void NoPlace()
     {
         foreach ( System.Action action in myEvent )
         {
             action.Invoke();
         }
-    }*/
+    }
 
     public void Sub( GameObject monster )
     {
@@ -60,8 +56,15 @@ public class WaitingQ : MonoBehaviour
         {
             if( spot.monster == null )
             {
-                spot.monster = monster;
-                monster.GetComponent<MonsterController>().MoveInQueue(spot.position, spot.reception);
+
+                monster.GetComponent<MonsterController>().MoveInQueue(spot.position, spot.reception, spot.lineEnd);
+
+
+                if (!spot.lineEnd)
+                {
+                    spot.monster = monster;     
+                }
+
                 break;
             }
         }
@@ -81,7 +84,7 @@ public class WaitingQ : MonoBehaviour
 
                 if (waiting[i].monster != null)
                 {
-                    waiting[i].monster.GetComponent<MonsterController>().MoveInQueue(waiting[i].position, waiting[i].reception);
+                    waiting[i].monster.GetComponent<MonsterController>().MoveInQueue(waiting[i].position, waiting[i].reception, waiting[i].lineEnd);
                 }
                     
         }
