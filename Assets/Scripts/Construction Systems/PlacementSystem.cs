@@ -1,4 +1,3 @@
-using BehaviorDesigner.Runtime.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +26,7 @@ public class PlacementSystem : MonoBehaviour
     private GameObject _roomIndicator;
     private PreviewRoom _previewRoom;
 
-    public UnityEvent OnRoomPlaced;
+    public event Action OnRoomPlaced;
 
     private void Start()
     {
@@ -86,7 +85,7 @@ public class PlacementSystem : MonoBehaviour
                 }
 
                 _hotel.AddRoom(room);
-                OnRoomPlaced.Invoke();
+                OnRoomPlaced?.Invoke();
 
             } else
             {

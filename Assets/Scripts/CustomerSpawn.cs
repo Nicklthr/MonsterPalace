@@ -42,7 +42,7 @@ public class CustomerSpawn : MonoBehaviour
         _gameObject = poolManager.GetObjectFromPool(selectedMonster.poolName);
         _gameObject.transform.position = position;
 
-        Debug.Log("Spawning " + selectedMonster);
+        //Debug.Log("Spawning " + selectedMonster);
     }
 
     public void Generate()

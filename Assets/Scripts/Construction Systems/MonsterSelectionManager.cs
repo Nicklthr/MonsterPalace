@@ -34,8 +34,6 @@ public class MonsterSelectionManager : MonoBehaviour
 
         if ( Physics.Raycast(ray, out hit, Mathf.Infinity, selectibleMask ) )
         {
-            Debug.Log(hit.transform.name);
-
             if ( hit.transform.CompareTag("Monster") )
             {
 
@@ -93,15 +91,8 @@ public class MonsterSelectionManager : MonoBehaviour
 
     private void SelectMonster()
     {
-        Debug.Log("Selecting Monster");
-
-        Debug.Log(_selectionMonster.WasPerformedThisFrame());
-        Debug.Log(_hoverMonster);
-
        if ( _selectionMonster.WasPerformedThisFrame() && _hoverMonster != null )
         {
-            Debug.Log("Selecting Monster");
-
             DeselectMonster();
 
             Outline outline = _hoverMonster.GetComponent<Outline>();

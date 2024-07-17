@@ -50,6 +50,15 @@ public class PoolManager : MonoBehaviour
             {
                 GameObject obj = Instantiate(pool.SO_pool.prefab);
                 obj.SetActive(false);
+                
+                MonsterController monstreController = obj.GetComponent<MonsterController>();
+
+                if (monstreController != null)
+                {
+                    int idObj = obj.GetInstanceID();
+                    monstreController.monsterID = idObj.ToString() + "_" + i.ToString();
+                }
+
                 obj.transform.parent = poolParent.transform;
                 pool.poolObjects.Add(obj);
                 pool.SO_pool.objectsInactive++;
