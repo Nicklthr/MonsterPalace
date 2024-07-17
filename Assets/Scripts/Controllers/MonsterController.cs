@@ -15,6 +15,8 @@ public class MonsterController : MonoBehaviour
     [SerializeField] private AudioClip happySound;
     [SerializeField] private AudioClip angrySound;
 
+    private float defaultSpeed;
+
     public string monsterName;
     public string monsterID;
     private float patienceMax;
@@ -41,11 +43,12 @@ public class MonsterController : MonoBehaviour
 
     [Header("Positions")]
     [SerializeField] private Transform startPosition;
-    [SerializeField] private Transform receptionPosition;
+   // [SerializeField] private Transform receptionPosition;
     [SerializeField] public Transform roomPosition;
     private Vector3 startPositionVector;
-    private Vector3 receptionPositionVector;
+    //private Vector3 receptionPositionVector;
     private Vector3 roomPositionVector;
+    private Vector3 lookDirection;
 
     public bool controlDone = false;
     private bool roomFind = false;
@@ -58,6 +61,7 @@ public class MonsterController : MonoBehaviour
     public bool timeToEat = false;
     public bool timeToActivity = false;
     public bool canAssignRoom = false;
+    public bool waitingQ = false;
 
     //Monster commentary
     public List<string> commentaries = new List<string>();
@@ -69,7 +73,7 @@ public class MonsterController : MonoBehaviour
     public int MystayDuration { get { return stayDuration; } set { stayDuration = value; } }
     public int MycurrentStayDuration { get { return currentStayDuration; } set { currentStayDuration = value; } }
     public Vector3 MystartPositionVector { get { return startPositionVector; } set { startPositionVector = value; } }
-    public Vector3 MyreceptionPosition { get { return receptionPositionVector; } set { receptionPositionVector = value; } }
+    //public Vector3 MyreceptionPosition { get { return receptionPositionVector; } set { receptionPositionVector = value; } }
     public Vector3 MyroomPosition { get { return roomPositionVector; } set { roomPositionVector = value; } }
     #endregion
 
@@ -77,10 +81,6 @@ public class MonsterController : MonoBehaviour
     private void OnEnable()
     {
         //On récupère les informations du monstre par rapport à celles de son espèce
-
-        timer = GameObject.FindGameObjectWithTag("Time").GetComponent<DayNightCycle>();
-        startPosition = GameObject.FindGameObjectWithTag("StartPosition").transform;
-        receptionPosition = GameObject.FindGameObjectWithTag("ReceptionPosition").transform;
         patienceMax = monsterDatas.patienceMax;
         currentStayDuration = 0;
         roomPosition = null;
@@ -91,6 +91,9 @@ public class MonsterController : MonoBehaviour
         timeToActivity = false;
         commentaries.Clear();
         canAssignRoom = false;
+        waitingQ = true;
+        defaultSpeed = agent.speed;
+
 
         //Name
         monsterName = monsterDatas.monsterNameList.Name[Random.Range(0, monsterDatas.monsterNameList.Name.Length)];
@@ -151,11 +154,21 @@ public class MonsterController : MonoBehaviour
 
         //ReceptionPosition
         //agent.destination = receptionPosition.position;
-        receptionPositionVector = receptionPosition.position;
+        //receptionPositionVector = receptionPosition.position;
         startPositionVector = startPosition.position;
+
+        WaitingQ.instance.Sub(gameObject);
 
     }
 
+    private void Awake()
+    {
+        timer = GameObject.FindGameObjectWithTag("Time").GetComponent<DayNightCycle>();
+        startPosition = GameObject.FindGameObjectWithTag("StartPosition").transform;
+        //receptionPosition = GameObject.FindGameObjectWithTag("ReceptionPosition").transform;
+        agent.updateRotation = false;
+        lookDirection = new Vector3(0, 0, -90);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -190,6 +203,19 @@ public class MonsterController : MonoBehaviour
             canLeave = true;
         }
 
+
+    }
+
+    private void LateUpdate()
+    {
+        if (agent.velocity.sqrMagnitude > Mathf.Epsilon)
+        {
+            transform.rotation = Quaternion.LookRotation(agent.velocity.normalized);
+        }
+        else
+        {
+            transform.LookAt(lookDirection);
+        }
 
     }
 
@@ -568,9 +594,29 @@ public class MonsterController : MonoBehaviour
             if (room.type == RoomType.BEDROOM && room.monsterID == monsterID)
             {
                 room.monsterID = "";
+                roomPosition = null;
+                roomPositionVector = new Vector3(0,0,0);
                 break;
             }
 
+        }
+    }
+
+    public void QuitWaitingQueue()
+    {
+        WaitingQ.instance.Quit(gameObject);
+    }
+
+    public void MoveInQueue(Transform nextPosition, bool reception)
+    {
+
+        agent.SetDestination(nextPosition.position);
+        
+
+        if (reception)
+        {
+            waitingQ = false;
+           
         }
     }
 
