@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
-using static Cinemachine.DocumentationSortingAttribute;
-using UnityEditor;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -40,6 +38,7 @@ public class PlacementSystem : MonoBehaviour
     public void StartPlacement(SO_RoomType room)
     {
         StopPlacement();
+
         _selectedRoom = room;
         gridVisualization.SetActive(true);
 
@@ -98,6 +97,11 @@ public class PlacementSystem : MonoBehaviour
         {
             Debug.Log("Position is not free");
         }
+    }
+
+    public void CancelPlacement()
+    {
+       StopPlacement();
     }
 
     private void StopPlacement()
@@ -220,8 +224,6 @@ public class PlacementSystem : MonoBehaviour
                 }
             }
         }
-
-        Debug.Log(mask);
         
         if ( GetSubStage(y) == "GROUND" && !negatif )
         {
