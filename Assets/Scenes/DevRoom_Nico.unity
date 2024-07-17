@@ -1530,6 +1530,9 @@ MonoBehaviour:
   _hotel: {fileID: 11400000, guid: ac4712e4fd465c245a602f4d45d56f09, type: 2}
   _dataBase: {fileID: 11400000, guid: 5344b84a0cf2b2446be5c00261dca6ca, type: 2}
   _grid: {fileID: 1938976613}
+  OnHotelCreated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1540381289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,7 +1577,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.083333336
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0

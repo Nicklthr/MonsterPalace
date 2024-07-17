@@ -36,7 +36,6 @@ public class ConstructionUIManager : MonoBehaviour
     private void Start()
     {
         _placementSystem = FindObjectOfType<PlacementSystem>();
-        //VerifyReferences();
         builderBtn.GetComponent<Button>().onClick.AddListener( OpenConstructionPanel );
     }
 
@@ -100,6 +99,7 @@ public class ConstructionUIManager : MonoBehaviour
         backButton.GetComponentInChildren<TextMeshProUGUI>().text = "Retour";
         backButton.GetComponent<Button>().onClick.AddListener(() => categoryPanel.SetActive( false ));
         backButton.GetComponent<Button>().onClick.AddListener(() => roomConstructionPanel.SetActive( true ));
+        backButton.GetComponent<Button>().onClick.AddListener(() => _placementSystem.CancelPlacement());
     }
 
     private void CreateNewRoom( SO_RoomType room )
