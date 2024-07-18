@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Base Bedroom
   m_EditorClassIdentifier: 
   roomName: Classic Bedroom
-  roomSize: {x: 5, y: 3, z: 4}
+  roomSize: {x: 8, y: 5, z: 8}
   roomType: 0
   activityType: 8
   monsterTypeOfRoom: 8
   maxUsers: 1
   cost: 200
-  prefab: {fileID: 3758906270789927320, guid: b6913217f74efac4caf5acb9709a9e0e, type: 3}
+  prefab: {fileID: 7979408197378562090, guid: 89b4473d6e7c4184c9f530a6ce3e98e9, type: 3}
   isUnlocked: 1

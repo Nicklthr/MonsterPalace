@@ -13,6 +13,7 @@ public class MonsterPanelUI : MonoBehaviour
     [SerializeField] private GameObject _noRoomPanel;
     [SerializeField] private GameObject _roomPanel;
     [SerializeField] private GameObject _availableRooms;
+    [SerializeField] private GameObject _canAssignRoomYet;
 
     [Header("References")]
     [Space(10)]
@@ -24,6 +25,7 @@ public class MonsterPanelUI : MonoBehaviour
     [SerializeField] private SO_Hotel _hotel;
 
     [SerializeField] private TextMeshProUGUI _monsterName;
+    [SerializeField] private TextMeshProUGUI _monsterStayDay;
     [SerializeField] private MonsterController _monsterController;
 
 
@@ -51,20 +53,45 @@ public class MonsterPanelUI : MonoBehaviour
 
         _monsterController = _monsterSelectionManager._selectedMonster.GetComponent<MonsterController>();
         _monsterName.text = _monsterController.monsterName;
+        _monsterStayDay.text = _monsterController.stayDuration.ToString() + " Jours";
 
-        if ( !HasBedroom( _monsterController.monsterID ) )
+        if (!_monsterController.canAssignRoom)
         {
-            _roomPanel.SetActive(false);
-            _noRoomPanel.SetActive(true);
-            _availableRooms.SetActive( true );
+            if( HasBedroom(_monsterController.monsterID))
+            {
+                _noRoomPanel.SetActive(false);
+                _roomPanel.SetActive(true);
+                _roomPanel.GetComponentInChildren<TextMeshProUGUI>().text = _hotel.rooms.Find(room => room.monsterID == _monsterController.monsterID).roomName;
 
-        }else
+                _availableRooms.SetActive(false);
+                _canAssignRoomYet.SetActive(false);
+            }
+            else
+            {
+                _canAssignRoomYet.SetActive(true);
+                _availableRooms.SetActive(false);
+                _noRoomPanel.SetActive(false);
+                _roomPanel.SetActive(false);
+            }
+        }
+        else
         {
-            _noRoomPanel.SetActive( false );
-            _roomPanel.SetActive( true );
-            _roomPanel.GetComponentInChildren<TextMeshProUGUI>().text = _hotel.rooms.Find(room => room.monsterID == _monsterController.monsterID).roomName;
+            if (!HasBedroom(_monsterController.monsterID))
+            {
+                _roomPanel.SetActive(false);
+                _noRoomPanel.SetActive(true);
+                _availableRooms.SetActive(true);
+                _canAssignRoomYet.SetActive(false);
+            }
+            else
+            {
+                _noRoomPanel.SetActive(false);
+                _canAssignRoomYet.SetActive(false);
+                _roomPanel.SetActive(true);
+                _roomPanel.GetComponentInChildren<TextMeshProUGUI>().text = _hotel.rooms.Find(room => room.monsterID == _monsterController.monsterID).roomName;
 
-            _availableRooms.SetActive( false );
+                _availableRooms.SetActive(false);
+            }
         }
 
         _monsterPanel.SetActive( true );
@@ -102,8 +129,18 @@ public class MonsterPanelUI : MonoBehaviour
 
                 TargetInRoom targetInRoom = room.targets.FindLast(target => target.isOccupied == false);
 
-                _monsterController.roomPosition = targetInRoom.target;
+                if (targetInRoom != null)
+                {
+                    _monsterController.roomPosition = targetInRoom.target;
+                }else
+                {
+                    Debug.LogError( "MonsterPanelUI: No target available" );
+                }
+
                 _monsterController.roomAssigned = true;
+
+                GameObject _roomObject = GameObject.Find( room.roomID );
+                _roomObject.GetComponent<RoomController>().ToggleLights();
 
                 HideMonsterPanel();
                 _availableRoomsPanelUI.UpdateRoomsList();

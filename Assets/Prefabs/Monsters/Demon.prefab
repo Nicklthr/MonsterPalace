@@ -510,9 +510,9 @@ GameObject:
   - component: {fileID: 1301194538820036410}
   - component: {fileID: 5450604100983517609}
   - component: {fileID: 5093108148453852984}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Demon
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

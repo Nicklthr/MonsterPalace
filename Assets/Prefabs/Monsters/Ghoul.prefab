@@ -2012,9 +2012,9 @@ GameObject:
   - component: {fileID: 6732402432728547968}
   - component: {fileID: 2077796278524453683}
   - component: {fileID: 508637950188663431}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ghoul
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

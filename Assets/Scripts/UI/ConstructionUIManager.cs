@@ -88,11 +88,14 @@ public class ConstructionUIManager : MonoBehaviour
         foreach ( var room in category.rooms )
         {
             var button = Instantiate( roomCategoryBtnPrefab, categoryPanel.transform );
-            button.GetComponent<RoomBtnUI>().SetPrice( room.cost );
-            button.GetComponent<RoomBtnUI>().SetName( room.roomName.ToString() );
+
+            button.GetComponent<RoomBtnUI>().SetPrice(room.cost);
+            button.GetComponent<RoomBtnUI>().SetName(room.roomName.ToString());
 
             button.GetComponent<Button>().onClick.AddListener( () => CreateNewRoom( room ) );
+            button.GetComponent<Button>().onClick.AddListener( () => _argent.playerMoney -= room.cost );
             button.name = room.roomName.ToString();
+            button.GetComponent<RoomBtnUI>().SetPriceColor(Color.red);
         }
 
         var backButton = Instantiate(categoryBtnPrefb, categoryPanel.transform);

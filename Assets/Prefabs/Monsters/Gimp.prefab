@@ -1220,9 +1220,9 @@ GameObject:
   - component: {fileID: 4817181980564361936}
   - component: {fileID: 2618754510783041798}
   - component: {fileID: -1269678454224252709}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gimp
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

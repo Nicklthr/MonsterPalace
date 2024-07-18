@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pool_Ghoul
   m_EditorClassIdentifier: 
   poolName: Ghoul
-  prefab: {fileID: 1673101000987204565, guid: 9a4f56558f92307429392b31a1d172cb, type: 3}
+  prefab: {fileID: 6550168595413751752, guid: 9d67681d7dd3f764cb0b6c0639c677d0, type: 3}
   initialSize: 30
-  objectsActive: 1
-  objectsInactive: 29
+  objectsActive: 7
+  objectsInactive: 23

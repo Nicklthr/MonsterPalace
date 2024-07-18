@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pool_Witch
   m_EditorClassIdentifier: 
   poolName: Witch
-  prefab: {fileID: 6021602018247689987, guid: 7a40914158328a045be079b39bbcfb5b, type: 3}
+  prefab: {fileID: 1656491361919836933, guid: 0afc7d904a3a3a246a5768873bd70d29, type: 3}
   initialSize: 30
-  objectsActive: 0
-  objectsInactive: 30
+  objectsActive: 8
+  objectsInactive: 22

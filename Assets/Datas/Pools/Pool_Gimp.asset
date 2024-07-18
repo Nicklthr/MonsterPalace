@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pool_Gimp
   m_EditorClassIdentifier: 
   poolName: Gimp
-  prefab: {fileID: 1171881062260460817, guid: fd812c315608e5542a64c2e45b6e5bc3, type: 3}
+  prefab: {fileID: 3998362084370960823, guid: 3e00b0cbd87e0f64382bd638f28e34c8, type: 3}
   initialSize: 30
-  objectsActive: 1
-  objectsInactive: 29
+  objectsActive: 4
+  objectsInactive: 26

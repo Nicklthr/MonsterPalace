@@ -2562,9 +2562,9 @@ GameObject:
   - component: {fileID: 36327803895187017}
   - component: {fileID: 3764756734317865563}
   - component: {fileID: -5246084895580193136}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Butcher
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Recetption Hall
   m_EditorClassIdentifier: 
   roomName: "R\xE9c\xE9ption Hall"
-  roomSize: {x: 8, y: 3, z: 6}
+  roomSize: {x: 24, y: 5, z: 8}
   roomType: 1
   activityType: 8
   monsterTypeOfRoom: 8
   maxUsers: 100
   cost: 0
-  prefab: {fileID: 3223598220998969764, guid: e205970a416855a4a989d983e836566e, type: 3}
+  prefab: {fileID: 8482878269632218640, guid: 983700d96a61f694fa6d05c42c5272d4, type: 3}
   isUnlocked: 1

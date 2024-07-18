@@ -19,4 +19,9 @@ public class RoomBtnUI : MonoBehaviour
     {
         _price.text = price.ToString();
     }
+
+    public void SetPriceColor(Color color)
+    {
+        _price.color = color;
+    }
 }

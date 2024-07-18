@@ -12,23 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28ee795b38e4114d81ac14229c2a1e6, type: 3}
   m_Name: Hotel
   m_EditorClassIdentifier: 
-  rooms:
-  - roomType: {fileID: 11400000, guid: 93c75af1ba84aa9439a58afc0bf20771, type: 2}
-    positionInGrid: {x: 0, y: 0, z: 0}
-    roomID: 30218
-    roomSize: {x: 8, y: 3, z: 6}
-    roomName: "R\xE9c\xE9ption Hall"
-    activityType: 0
-    type: 1
-    monsterTypeOfRoom: 0
-    roomPlacement: 
-    foodAssigned: {fileID: 0}
-    monsterID: 
-    monsterDataCurrentCustomer: {fileID: 0}
-    maxUsers: 100
-    currentUsers: 0
-    cost: 0
-    roomObject: {fileID: 3223598220998969764, guid: e205970a416855a4a989d983e836566e,
-      type: 3}
-    targets: []
-    level: 0
+  rooms: []
