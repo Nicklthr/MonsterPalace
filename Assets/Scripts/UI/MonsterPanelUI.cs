@@ -97,6 +97,7 @@ public class MonsterPanelUI : MonoBehaviour
             if( room.currentUsers < room.roomType.maxUsers )
             {
                 room.monsterID = _monsterController.monsterID;
+                room.monsterDataCurrentCustomer = _monsterController.monsterDatas;
                 room.currentUsers++;
 
                 TargetInRoom targetInRoom = room.targets.FindLast(target => target.isOccupied == false);

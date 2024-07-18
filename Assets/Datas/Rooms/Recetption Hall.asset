@@ -15,7 +15,8 @@ MonoBehaviour:
   roomName: "R\xE9c\xE9ption Hall"
   roomSize: {x: 8, y: 3, z: 6}
   roomType: 1
-  activityType: 0
+  activityType: 8
+  monsterTypeOfRoom: 8
   maxUsers: 100
   cost: 0
   prefab: {fileID: 3223598220998969764, guid: e205970a416855a4a989d983e836566e, type: 3}
