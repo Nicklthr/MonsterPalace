@@ -20,7 +20,7 @@ TagManager:
   - Grid
   - Ground
   - Monster
-  - 
+  - navMeshIgnor
   - 
   - 
   - 

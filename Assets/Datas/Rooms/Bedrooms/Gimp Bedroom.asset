@@ -16,7 +16,8 @@ MonoBehaviour:
   roomSize: {x: 8, y: 5, z: 8}
   roomType: 0
   activityType: 0
+  monsterTypeOfRoom: 0
   maxUsers: 1
-  cost: 0
+  cost: 350
   prefab: {fileID: 1661363503429869533, guid: 161d867436aaf1e42988fe8e571baaf4, type: 3}
   isUnlocked: 1

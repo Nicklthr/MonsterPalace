@@ -69,6 +69,14 @@ public class PlacementSystem : MonoBehaviour
 
                 Room room = new Room(_selectedRoom, gridPosition, newRoom.GetInstanceID().ToString());
 
+                foreach (Transform child in newRoom.transform)
+                {
+                    if (child.CompareTag("Target"))
+                    {
+                        room.targets.Add(new TargetInRoom(child.position, false));
+                    }
+                }
+
                 room.AddRoomPlacement(gridPosition.y < 0 ? RoomPlacement.UNDERGROUND : RoomPlacement.OVERGROUND);
 
                 if (dir == "right" || dir == "left" && gridPosition.y > 0)
@@ -84,6 +92,8 @@ public class PlacementSystem : MonoBehaviour
                 {
                     room.AddRoomPlacement(RoomPlacement.DARK);
                 }
+
+                newRoom.GetComponent<RoomController>().ToggleLights();
 
                 _hotel.AddRoom(room);
                 OnRoomPlaced?.Invoke();
@@ -171,7 +181,7 @@ public class PlacementSystem : MonoBehaviour
 
         if ( negatif == true )
         {
-            if ((y / 3) < FindStageLevel(negatif))
+            if ((y / 5) < FindStageLevel(negatif))
             {
                 direction = "";
                 return false;
@@ -179,7 +189,7 @@ public class PlacementSystem : MonoBehaviour
         }
         else
         {
-            if ((y / 3) > FindStageLevel(negatif))
+            if ((y / 5) > FindStageLevel(negatif))
             {
                 direction = "";
                 return false;
@@ -299,7 +309,7 @@ public class PlacementSystem : MonoBehaviour
 
     private string GetSubStage(int y)
     {
-        if (y < 1 && y > -3)
+        if (y < 1 && y > -4)
             return "GROUND";
         else
         {

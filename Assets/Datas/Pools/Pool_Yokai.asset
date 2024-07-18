@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pool_Yokai
   m_EditorClassIdentifier: 
   poolName: Yokai
-  prefab: {fileID: 6991562501858470033, guid: bdfbd9fd4029bc14b83312fbdc238935, type: 3}
+  prefab: {fileID: 8435646610725575785, guid: c12a4ba73625f6441af7c9710d96bf66, type: 3}
   initialSize: 30
-  objectsActive: 0
-  objectsInactive: 30
+  objectsActive: 8
+  objectsInactive: 22

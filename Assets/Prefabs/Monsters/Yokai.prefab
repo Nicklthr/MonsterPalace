@@ -3070,9 +3070,9 @@ GameObject:
   - component: {fileID: 8454049028560150352}
   - component: {fileID: 708780320800999178}
   - component: {fileID: 8058787248977737340}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Yokai
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

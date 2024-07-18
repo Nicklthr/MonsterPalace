@@ -72,14 +72,6 @@ public class Room
 
         this.targets = new List<TargetInRoom>();
 
-        foreach ( Transform child in roomType.prefab.transform )
-        {
-            if ( child.CompareTag( "Target" ) )
-            {
-                this.targets.Add( new TargetInRoom( child.position, false ) );
-            }
-        }
-
         this.cost = roomType.cost;
         this.roomObject = roomType.prefab;
     }
