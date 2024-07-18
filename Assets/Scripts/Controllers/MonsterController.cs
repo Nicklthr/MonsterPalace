@@ -598,8 +598,9 @@ public class MonsterController : MonoBehaviour
         {
             if (room.type == RoomType.BEDROOM && room.monsterID == monsterID)
             {
-                room.monsterID = "";
+                room.monsterID = null;
                 room.currentUsers--;
+                room.monsterDataCurrentCustomer = null;
                 //roomPosition = null;
                 roomAssigned = false;
                 roomPosition = new Vector3(0,0,0);
