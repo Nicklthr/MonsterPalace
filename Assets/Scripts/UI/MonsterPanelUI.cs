@@ -92,14 +92,18 @@ public class MonsterPanelUI : MonoBehaviour
             return;
         }
 
-        if (_monsterController.canAssignRoom)
+        if ( _monsterController.canAssignRoom )
         {
-            room.monsterID = _monsterController.monsterID;
             if( room.currentUsers < room.roomType.maxUsers )
             {
+                room.monsterID = _monsterController.monsterID;
                 room.currentUsers++;
 
-                //_monsterController.roomPosition = GameObject.Find(room.roomID).transform;
+                TargetInRoom targetInRoom = room.targets.FindLast(target => target.isOccupied == false);
+
+                _monsterController.roomPosition = targetInRoom.target;
+                _monsterController.roomAssigned = true;
+
                 HideMonsterPanel();
                 _availableRoomsPanelUI.UpdateRoomsList();
                 ShowMonsterPanel();

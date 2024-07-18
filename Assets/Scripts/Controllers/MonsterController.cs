@@ -43,7 +43,7 @@ public class MonsterController : MonoBehaviour
 
     [Header("Positions")]
     [SerializeField] private Transform startPosition;
-    private Vector3 roomPosition;
+    public Vector3 roomPosition;
     // [SerializeField] private Transform receptionPosition;
     // [SerializeField] public Transform roomPosition;
     private Vector3 startPositionVector;
