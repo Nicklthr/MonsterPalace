@@ -43,11 +43,12 @@ public class MonsterController : MonoBehaviour
 
     [Header("Positions")]
     [SerializeField] private Transform startPosition;
-   // [SerializeField] private Transform receptionPosition;
-    [SerializeField] public Transform roomPosition;
+    private Vector3 roomPosition;
+    // [SerializeField] private Transform receptionPosition;
+    // [SerializeField] public Transform roomPosition;
     private Vector3 startPositionVector;
     //private Vector3 receptionPositionVector;
-    private Vector3 roomPositionVector;
+    
     private Vector3 lookDirection;
 
     public bool controlDone = false;
@@ -63,6 +64,7 @@ public class MonsterController : MonoBehaviour
     public bool canAssignRoom = false;
     public bool waitingQ = false;
     public bool endLine = false;
+    public bool roomAssigned = false;
 
     //Monster commentary
     public List<string> commentaries = new List<string>();
@@ -75,7 +77,7 @@ public class MonsterController : MonoBehaviour
     public int MycurrentStayDuration { get { return currentStayDuration; } set { currentStayDuration = value; } }
     public Vector3 MystartPositionVector { get { return startPositionVector; } set { startPositionVector = value; } }
     //public Vector3 MyreceptionPosition { get { return receptionPositionVector; } set { receptionPositionVector = value; } }
-    public Vector3 MyroomPosition { get { return roomPositionVector; } set { roomPositionVector = value; } }
+    public Vector3 MyroomPosition { get { return roomPosition; } set { roomPosition = value; } }
     #endregion
 
 
@@ -84,7 +86,7 @@ public class MonsterController : MonoBehaviour
         //On récupère les informations du monstre par rapport à celles de son espèce
         patienceMax = monsterDatas.patienceMax;
         currentStayDuration = 0;
-        roomPosition = null;
+        //roomPosition = null;
         satisfaction = 50;
         canLeave = false;
         timeToMove = false;
@@ -95,6 +97,7 @@ public class MonsterController : MonoBehaviour
         waitingQ = true;
         defaultSpeed = agent.speed;
         endLine = false;
+        
 
 
         //Name
@@ -181,10 +184,10 @@ public class MonsterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (roomPosition != null)
+        /*if (roomPosition != null)
         {
             roomPositionVector = roomPosition.position;
-        }
+        }*/
 
         if (agent.remainingDistance > 0)
         {
@@ -597,8 +600,9 @@ public class MonsterController : MonoBehaviour
             {
                 room.monsterID = "";
                 room.currentUsers--;
-                roomPosition = null;
-                roomPositionVector = new Vector3(0,0,0);
+                //roomPosition = null;
+                roomAssigned = false;
+                roomPosition = new Vector3(0,0,0);
                 break;
             }
 

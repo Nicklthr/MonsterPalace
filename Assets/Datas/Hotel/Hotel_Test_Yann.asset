@@ -62,7 +62,7 @@ MonoBehaviour:
     foodAssigned: {fileID: 11400000, guid: efef3074f2c51a4468d8c110f3a08992, type: 2}
     monsterID: 1
     maxUsers: 1
-    currentUsers: 0
+    currentUsers: 1
     cost: 0
     roomObject: {fileID: 0}
     targets:

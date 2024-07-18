@@ -99,7 +99,7 @@ public class MonsterPanelUI : MonoBehaviour
             {
                 room.currentUsers++;
 
-                _monsterController.roomPosition = GameObject.Find(room.roomID).transform;
+                //_monsterController.roomPosition = GameObject.Find(room.roomID).transform;
                 HideMonsterPanel();
                 _availableRoomsPanelUI.UpdateRoomsList();
                 ShowMonsterPanel();
