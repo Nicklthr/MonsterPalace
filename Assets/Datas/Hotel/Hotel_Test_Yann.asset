@@ -20,9 +20,11 @@ MonoBehaviour:
     roomName: 
     activityType: 0
     type: 3
+    monsterTypeOfRoom: 0
     roomPlacement: 
     foodAssigned: {fileID: 0}
     monsterID: 
+    monsterDataCurrentCustomer: {fileID: 0}
     maxUsers: 2
     currentUsers: 1
     cost: 0
@@ -40,9 +42,11 @@ MonoBehaviour:
     roomName: 
     activityType: 0
     type: 2
+    monsterTypeOfRoom: 0
     roomPlacement: 
     foodAssigned: {fileID: 0}
     monsterID: 
+    monsterDataCurrentCustomer: {fileID: 0}
     maxUsers: 1
     currentUsers: 0
     cost: 0
@@ -52,15 +56,57 @@ MonoBehaviour:
       <isOccupied>k__BackingField: 0
     level: 0
   - roomType: {fileID: 11400000, guid: c00c1501c4e94304ba5e1842b90e1222, type: 2}
-    positionInGrid: {x: 0, y: 0, z: 0}
+    positionInGrid: {x: -5, y: 0, z: 0}
     roomID: 
     roomSize: {x: 0, y: 0, z: 0}
     roomName: 
-    activityType: 0
+    activityType: 8
     type: 0
+    monsterTypeOfRoom: 0
     roomPlacement: 00000000
     foodAssigned: {fileID: 11400000, guid: efef3074f2c51a4468d8c110f3a08992, type: 2}
     monsterID: 1
+    monsterDataCurrentCustomer: {fileID: 0}
+    maxUsers: 1
+    currentUsers: 1
+    cost: 0
+    roomObject: {fileID: 0}
+    targets:
+    - <target>k__BackingField: {x: 12.63, y: -1.869, z: -6.73}
+      <isOccupied>k__BackingField: 0
+    level: 0
+  - roomType: {fileID: 11400000, guid: c00c1501c4e94304ba5e1842b90e1222, type: 2}
+    positionInGrid: {x: 0, y: 0, z: 0}
+    roomID: 
+    roomSize: {x: 5, y: 0, z: 0}
+    roomName: 
+    activityType: 8
+    type: 0
+    monsterTypeOfRoom: 0
+    roomPlacement: 00000000
+    foodAssigned: {fileID: 11400000, guid: efef3074f2c51a4468d8c110f3a08992, type: 2}
+    monsterID: 2
+    monsterDataCurrentCustomer: {fileID: 0}
+    maxUsers: 1
+    currentUsers: 1
+    cost: 0
+    roomObject: {fileID: 0}
+    targets:
+    - <target>k__BackingField: {x: 12.63, y: -1.869, z: -6.73}
+      <isOccupied>k__BackingField: 0
+    level: 0
+  - roomType: {fileID: 11400000, guid: c00c1501c4e94304ba5e1842b90e1222, type: 2}
+    positionInGrid: {x: 5, y: 0, z: 0}
+    roomID: 
+    roomSize: {x: 0, y: 0, z: 0}
+    roomName: 
+    activityType: 8
+    type: 0
+    monsterTypeOfRoom: 0
+    roomPlacement: 00000000
+    foodAssigned: {fileID: 11400000, guid: efef3074f2c51a4468d8c110f3a08992, type: 2}
+    monsterID: 3
+    monsterDataCurrentCustomer: {fileID: 0}
     maxUsers: 1
     currentUsers: 1
     cost: 0

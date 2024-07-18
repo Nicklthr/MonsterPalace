@@ -44,11 +44,8 @@ public class MonsterController : MonoBehaviour
     [Header("Positions")]
     [SerializeField] private Transform startPosition;
     public Vector3 roomPosition;
-    // [SerializeField] private Transform receptionPosition;
-    // [SerializeField] public Transform roomPosition;
     private Vector3 startPositionVector;
-    //private Vector3 receptionPositionVector;
-    
+
     private Vector3 lookDirection;
 
     public bool controlDone = false;
@@ -444,7 +441,7 @@ public class MonsterController : MonoBehaviour
                             }
                         }
 
-                        if (numberdislike == monsterDatas.foodDislike.Length && numberdislike > 1)
+                        if (numberdislike == room.foodAssigned.typeList.Length && numberdislike > 1)
                         {
                             message = LanguageHandler.Instance.GetTranslation("foodhate");
                         }
@@ -468,7 +465,7 @@ public class MonsterController : MonoBehaviour
                                 }
                             }
 
-                            if (numberlike == monsterDatas.foodLike.Length)
+                            if (numberlike == monsterDatas.foodLike.Length && numberlike > 1)
                             {
                                 message = LanguageHandler.Instance.GetTranslation("foodlove");
                             }
@@ -500,6 +497,29 @@ public class MonsterController : MonoBehaviour
     public void roomControl()
     {
         arrivalHour = currentHour;
+
+        string message = "";
+        foreach (Room room in hotelDatas.rooms)
+        {
+            if (room.type == RoomType.BEDROOM && room.monsterID == monsterID)
+            {
+
+                if (room.monsterTypeOfRoom == monsterDatas.monsterType)
+                {
+                    message = LanguageHandler.Instance.GetTranslation("roomTypeLike");
+                    Happy(30, message);
+                }
+                else if(room.monsterTypeOfRoom != MonsterType.NONE)
+                {
+                    message = LanguageHandler.Instance.GetTranslation("roomTypeDislike");
+                    notHappy(30, message);
+                }
+
+                break;
+            }
+
+        }
+
     }
 
     public void placementControl()
@@ -531,7 +551,7 @@ public class MonsterController : MonoBehaviour
                             }
                         }
 
-                        if (numberdislike == monsterDatas.foodDislike.Length && numberdislike > 1)
+                        if (numberdislike == monsterDatas.roomPlacementsDislike.Length && numberdislike > 1)
                         {
                             message = LanguageHandler.Instance.GetTranslation("roomhate");
                         }
@@ -555,7 +575,7 @@ public class MonsterController : MonoBehaviour
                                 }
                             }
 
-                            if (numberlike == monsterDatas.foodLike.Length)
+                            if (numberlike == monsterDatas.foodLike.Length && numberlike > 1)
                             {
                                 message = LanguageHandler.Instance.GetTranslation("roomlove");
                             }
@@ -580,6 +600,102 @@ public class MonsterController : MonoBehaviour
     public void neighbourControl()
     {
 
+        int satisneighboor = 0;
+        int numberlike = 0;
+        int numberdislike = 0;
+        string message = "";
+        string typeString = "";
+
+        //On récupère les infos de la chambre
+        foreach (Room room in hotelDatas.rooms)
+        {
+            if (room.type == RoomType.BEDROOM && room.monsterID == monsterID)
+            {
+
+                //On récupère les pièces voisines
+                foreach (Room neighbourRoom in hotelDatas.rooms)
+                {
+                    if (neighbourRoom.type == RoomType.BEDROOM && neighbourRoom.monsterID != null && neighbourRoom.positionInGrid.y == room.positionInGrid.y && (neighbourRoom.positionInGrid.x == room.positionInGrid.x +5 || neighbourRoom.positionInGrid.x == room.positionInGrid.x - 5) )
+                    {
+
+
+                        //On parcours les voisins que le monstre n'aime pas
+                        foreach (MonsterType dislike in monsterDatas.neighboorDislike)
+                        {
+  
+                            if (dislike == neighbourRoom.monsterDataCurrentCustomer.monsterType)
+                                {
+                                    if(satisneighboor > 0)
+                                    {
+                                        satisneighboor = 0;
+                                    }
+                                    satisneighboor -= 10;
+                                    numberdislike++;
+                                    typeString = LanguageHandler.Instance.GetTranslation(dislike.ToString());
+                                    message = string.Format(LanguageHandler.Instance.GetTranslation("neighbourDislike"), typeString);
+                                //message = $"Je n'aime pas la nourriture {type} !";
+
+                                if (numberdislike == monsterDatas.neighboorDislike.Length && numberdislike > 1)
+                                {
+                                    message = LanguageHandler.Instance.GetTranslation("neighbourHate");
+                                }
+
+                                break;
+
+                            }
+
+
+                        }
+
+                        if (satisneighboor >= 0)
+                        {
+                            //On parcours les voisins que le monstre aime
+                            foreach (MonsterType like in monsterDatas.neighboorLike)
+                            {
+
+
+
+                                if (like == neighbourRoom.monsterDataCurrentCustomer.monsterType)
+                                {
+                                        satisneighboor += 10;
+                                        numberlike++;
+                                        typeString = LanguageHandler.Instance.GetTranslation(like.ToString());
+                                        message = string.Format(LanguageHandler.Instance.GetTranslation("neighbourLike"), typeString);
+                                }
+                                
+
+                                if (numberlike == monsterDatas.neighboorLike.Length && numberlike > 1)
+                                {
+                                    message = LanguageHandler.Instance.GetTranslation("neighbourLove");
+                                }
+
+                            }
+                        }
+
+
+
+
+                        //Debug.Log("You Have neighbours");
+
+                    }
+
+                }
+
+                break;
+            }
+
+        }
+
+
+
+        if (satisneighboor > 0)
+        {
+            Happy(satisneighboor, message);
+        }
+        else if (satisneighboor < 0)
+        {
+            notHappy(-satisneighboor, message);
+        }
     }
 
     public void Pay()

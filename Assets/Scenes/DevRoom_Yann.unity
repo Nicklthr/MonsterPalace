@@ -217,6 +217,37 @@ Transform:
   - {fileID: 528070442}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &344059610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 344059611}
+  m_Layer: 0
+  m_Name: RoomPosition (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &344059611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344059610}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.47, y: -1.869, z: 3.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &355471568
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,6 +615,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &600828122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600828123}
+  m_Layer: 0
+  m_Name: RoomPosition (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &600828123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600828122}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.49, y: -1.869, z: 3.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &892291678
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,6 +761,11 @@ PrefabInstance:
         Success","Instant":true,"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,130)"},"ID":123,"Name":"Sequence","Instant":true,"AbortTypeabortType":"Self","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent.HasArrived","NodeData":{"Offset":"(-80.00006,140)"},"ID":124,"Name":"Has
         Arrived","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null},"SharedBoolhasArrived":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}},{"Type":"BehaviorDesigner.Runtime.Tasks.Idle","NodeData":{"Offset":"(80,140)"},"ID":125,"Name":"Idle","Instant":true}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject.SetActive","NodeData":{"Offset":"(178.6807,209.141)"},"ID":126,"Name":"Set
         Active","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null},"SharedBoolactive":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false}}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"ReceptionPosition","IsShared":true,"PropertyMapping":"MonsterController/MyreceptionPosition","Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"PatienceMax","IsShared":true,"PropertyMapping":"MonsterController/MyPatienceMax","SinglemValue":8.45},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"RoomPosition","IsShared":true,"PropertyMapping":"MonsterController/MyroomPosition","Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"StartPosition","IsShared":true,"PropertyMapping":"MonsterController/MystartPositionVector","Vector3mValue":"(0,0,0)"},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"currentStayDuration","IsShared":true,"PropertyMapping":"MonsterController/MycurrentStayDuration","Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"stayDuration","IsShared":true,"PropertyMapping":"MonsterController/MystayDuration","Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"currentHour","IsShared":true,"PropertyMapping":"MonsterController/MycurrentHour","Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"free","IsShared":true,"PropertyMapping":"MonsterController/Myfree","PropertyMappingOwner":0,"BooleanmValue":false}]}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856749482273931012, guid: 59fa80889659fae40b6d3fe8e74060b1,
+        type: 3}
+      propertyPath: monsterID
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4856749482273931012, guid: 59fa80889659fae40b6d3fe8e74060b1,
         type: 3}
@@ -1605,6 +1672,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yokai
       objectReference: {fileID: 0}
+    - target: {fileID: 9162772862024491658, guid: c12a4ba73625f6441af7c9710d96bf66,
+        type: 3}
+      propertyPath: monsterID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162772862024491658, guid: c12a4ba73625f6441af7c9710d96bf66,
+        type: 3}
+      propertyPath: hotelDatas
+      value: 
+      objectReference: {fileID: 11400000, guid: 8e051b0006fb53446a1d203ac5d70f53,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1647,6 +1725,8 @@ SceneRoots:
   - {fileID: 1914657410}
   - {fileID: 226487545}
   - {fileID: 1130873254}
+  - {fileID: 600828123}
+  - {fileID: 344059611}
   - {fileID: 282596224}
   - {fileID: 6586577862967885771}
   - {fileID: 1009118724}

@@ -10,6 +10,12 @@ roomnotlike	I don't like {0} locations!	Je n'aime pas les emplacements {0} !
 roomlike	I like {0} locations!	J'aime les emplacements {0} !
 roomlove	I love the location of the room!	J'adore l'emplacement de la chambre !
 roomhate	I hate the location of the room!	Je déteste l'emplacement de la chambre !
+roomTypeLike	Perfect ! A room made for me!	Parfait ! Une chambre faite pour moi !
+roomTypeDislike	This room is made for another monster.	Cette chambre est faite pour un autre monstre.
+neighbourLike	As a neighbor, there is no better than {0}!	Comme voisin, il n'y a pas mieux qu'{0} !
+neighbourDislike	I don't want to be next to {0}.	Je n'ai pas envie d'être à côté d'{0}.
+neighbourLove	The neighborhood is perfect!	Le voisinage est parfait !
+neighbourHate	There is no worse neighborhood!	Il n'y a pas pire voisinage !
 noroom	Since no one takes care of me, I'm leaving!	Puisqu'on ne s'occupe pas de moi, je m'en vais !
 activitylike	I had fun !	Je me suis bien amusé !
 noactivity	There is no activity for me in this hotel	Il n'y a pas d'activité pour moi dans cet hôtel
