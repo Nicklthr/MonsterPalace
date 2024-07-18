@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c70442fdb2a414494ac98b8fc7ecd6, type: 3}
   m_Name: Witch
   m_EditorClassIdentifier: 
-  monsterType: 0
+  monsterType: 1
   speciesDescription: 
-  eatingHourMin: 0
-  eatingHourMax: 0
-  activityHourMin: 0
-  activityHourMax: 0
-  neighboorLike: 
-  neighboorDislike: 
-  roomPlacementsLike: 
-  roomPlacementsDislike: 
-  foodLike: 
-  foodDislike: 
-  activityLike: 
-  patienceMax: 0
-  monsterNameList: {fileID: 0}
+  eatingHourMin: 14
+  eatingHourMax: 17
+  activityHourMin: 6
+  activityHourMax: 11
+  neighboorLike: 03000000
+  neighboorDislike: 0000000004000000
+  roomPlacementsLike: 02000000
+  roomPlacementsDislike: 00000000
+  foodLike: 02000000
+  foodDislike: 03000000
+  activityLike: 0000000002000000
+  patienceMax: 40
+  monsterNameList: {fileID: 11400000, guid: d54987aa38fc5074a8088f0541b0a2f2, type: 2}

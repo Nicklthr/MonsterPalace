@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c70442fdb2a414494ac98b8fc7ecd6, type: 3}
   m_Name: Butcher
   m_EditorClassIdentifier: 
-  monsterType: 0
+  monsterType: 4
   speciesDescription: 
-  eatingHourMin: 0
-  eatingHourMax: 0
-  activityHourMin: 0
-  activityHourMax: 0
-  neighboorLike: 
-  neighboorDislike: 
-  roomPlacementsLike: 
+  eatingHourMin: 19
+  eatingHourMax: 22
+  activityHourMin: 13
+  activityHourMax: 18
+  neighboorLike: 02000000
+  neighboorDislike: 0500000006000000
+  roomPlacementsLike: 02000000
   roomPlacementsDislike: 
-  foodLike: 
+  foodLike: 03000000020000000500000000000000
   foodDislike: 
-  activityLike: 
-  patienceMax: 0
-  monsterNameList: {fileID: 0}
+  activityLike: 0600000004000000
+  patienceMax: 30
+  monsterNameList: {fileID: 11400000, guid: db5a2dd904b1e334a82aa88101e07166, type: 2}

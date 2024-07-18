@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c70442fdb2a414494ac98b8fc7ecd6, type: 3}
   m_Name: Demon
   m_EditorClassIdentifier: 
-  monsterType: 0
+  monsterType: 3
   speciesDescription: 
-  eatingHourMin: 0
-  eatingHourMax: 0
-  activityHourMin: 0
-  activityHourMax: 0
-  neighboorLike: 
-  neighboorDislike: 
+  eatingHourMin: 23
+  eatingHourMax: 2
+  activityHourMin: 10
+  activityHourMax: 15
+  neighboorLike: 01000000
+  neighboorDislike: 0700000002000000
   roomPlacementsLike: 
-  roomPlacementsDislike: 
-  foodLike: 
-  foodDislike: 
-  activityLike: 
-  patienceMax: 0
-  monsterNameList: {fileID: 0}
+  roomPlacementsDislike: 02000000
+  foodLike: 0300000005000000
+  foodDislike: 02000000
+  activityLike: 0500000003000000
+  patienceMax: 25
+  monsterNameList: {fileID: 11400000, guid: b471dd035f0358841ae502142b268ddf, type: 2}
