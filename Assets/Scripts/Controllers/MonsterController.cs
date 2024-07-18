@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class MonsterController : MonoBehaviour
 {
     [Header("Datas")]
-    [SerializeField] private SO_Monster monsterDatas;
+    public SO_Monster monsterDatas;
     [SerializeField] private SO_Hotel hotelDatas;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Animator animator;

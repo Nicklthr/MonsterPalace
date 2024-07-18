@@ -13,6 +13,7 @@ public class SO_RoomType : ScriptableObject
 
     public RoomType roomType;
     public ActivityType activityType;
+    public MonsterType monsterTypeOfRoom;
 
     [Space(10)]
     public int maxUsers;
@@ -36,9 +37,12 @@ public class Room
 
     public ActivityType activityType;
     public RoomType type;
+    public MonsterType monsterTypeOfRoom;
     public RoomPlacement[] roomPlacement = new RoomPlacement[0];
     public SO_Food foodAssigned;
     public string monsterID;
+
+    public SO_Monster monsterDataCurrentCustomer;
 
     public int maxUsers;
     public int currentUsers;

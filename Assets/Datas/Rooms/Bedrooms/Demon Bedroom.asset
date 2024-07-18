@@ -15,7 +15,8 @@ MonoBehaviour:
   roomName: Demon Bedroom
   roomSize: {x: 8, y: 5, z: 8}
   roomType: 0
-  activityType: 0
+  activityType: 8
+  monsterTypeOfRoom: 3
   maxUsers: 1
   cost: 0
   prefab: {fileID: 5659533843038071792, guid: 41e7fb78ea885df4aabd889380868fa7, type: 3}

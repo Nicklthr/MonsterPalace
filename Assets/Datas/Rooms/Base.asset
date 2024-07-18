@@ -15,7 +15,8 @@ MonoBehaviour:
   roomName: Base Room
   roomSize: {x: 8, y: 3, z: 6}
   roomType: 1
-  activityType: 0
+  activityType: 8
+  monsterTypeOfRoom: 8
   maxUsers: 100
   cost: 0
   prefab: {fileID: 3223598220998969764, guid: d243c98183c100f4e9953e19ac7c2963, type: 3}

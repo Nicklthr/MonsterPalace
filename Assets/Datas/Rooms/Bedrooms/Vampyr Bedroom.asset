@@ -15,7 +15,8 @@ MonoBehaviour:
   roomName: Vampyr Bedroom
   roomSize: {x: 5, y: 3, z: 4}
   roomType: 0
-  activityType: 0
+  activityType: 8
+  monsterTypeOfRoom: 0
   maxUsers: 1
   cost: 500
   prefab: {fileID: 1492033204555844230, guid: f9240e430ecb9f247a3622a985d963e3, type: 3}

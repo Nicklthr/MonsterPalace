@@ -637,6 +637,21 @@ MonoBehaviour:
   _hotel: {fileID: 11400000, guid: ac4712e4fd465c245a602f4d45d56f09, type: 2}
   _dataBase: {fileID: 11400000, guid: 5344b84a0cf2b2446be5c00261dca6ca, type: 2}
   gridVisualization: {fileID: 888960994}
+  OnRoomBuild:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1540381290}
+        m_TargetAssemblyTypeName: Unity.AI.Navigation.NavMeshSurface, Unity.AI.Navigation
+        m_MethodName: BuildNavMesh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &190883375
 Transform:
   m_ObjectHideFlags: 0

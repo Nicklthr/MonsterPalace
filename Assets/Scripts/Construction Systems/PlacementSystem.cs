@@ -27,6 +27,7 @@ public class PlacementSystem : MonoBehaviour
     private PreviewRoom _previewRoom;
 
     public event Action OnRoomPlaced;
+    public UnityEvent OnRoomBuild = new UnityEvent();
 
     private void Start()
     {
@@ -86,7 +87,7 @@ public class PlacementSystem : MonoBehaviour
 
                 _hotel.AddRoom(room);
                 OnRoomPlaced?.Invoke();
-
+                OnRoomBuild.Invoke();
             } else
             {
                 Debug.Log("Room is too far from other rooms");
