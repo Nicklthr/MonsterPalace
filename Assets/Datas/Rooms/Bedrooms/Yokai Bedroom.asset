@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16dd45f2910a7e940b208100b2d8b53c, type: 3}
-  m_Name: Greenhouse
+  m_Name: Yokai Bedroom
   m_EditorClassIdentifier: 
-  roomName: Greenhouse
-  roomSize: {x: 0, y: 0, z: 0}
-  roomType: 2
+  roomName: Yokai
+  roomSize: {x: 8, y: 5, z: 8}
+  roomType: 0
   activityType: 0
-  maxUsers: 0
+  maxUsers: 1
   cost: 0
-  prefab: {fileID: 0}
-  isUnlocked: 0
+  prefab: {fileID: 6934411818351280992, guid: c83b035c315b4f14dbe3e5787d8178d9, type: 3}
+  isUnlocked: 1

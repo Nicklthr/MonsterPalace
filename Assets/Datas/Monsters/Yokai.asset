@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterType: 7
   speciesDescription: 
-  eatingHourMin: 0
-  eatingHourMax: 0
+  eatingHourMin: 6
+  eatingHourMax: 9
   activityHourMin: 0
-  activityHourMax: 0
+  activityHourMax: 5
   neighboorLike: 
-  neighboorDislike: 
+  neighboorDislike: 010000000300000005000000
   roomPlacementsLike: 
-  roomPlacementsDislike: 
+  roomPlacementsDislike: 02000000
   foodLike: 
-  foodDislike: 
-  activityLike: 
-  patienceMax: 0
-  monsterNameList: {fileID: 0}
+  foodDislike: 0200000003000000
+  activityLike: 0400000007000000
+  patienceMax: 25
+  monsterNameList: {fileID: 11400000, guid: 1a69954befff3924582f8ec5abee753a, type: 2}

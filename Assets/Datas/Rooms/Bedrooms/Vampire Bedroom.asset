@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16dd45f2910a7e940b208100b2d8b53c, type: 3}
-  m_Name: Greenhouse
+  m_Name: Vampire Bedroom
   m_EditorClassIdentifier: 
-  roomName: Greenhouse
-  roomSize: {x: 0, y: 0, z: 0}
-  roomType: 2
+  roomName: Vampire Bedroom
+  roomSize: {x: 5, y: 3, z: 4}
+  roomType: 0
   activityType: 0
-  maxUsers: 0
-  cost: 0
-  prefab: {fileID: 0}
-  isUnlocked: 0
+  maxUsers: 1
+  cost: 500
+  prefab: {fileID: 6991953852801744058, guid: cdf12c0f460bff743ab122b590f45e51, type: 3}
+  isUnlocked: 1

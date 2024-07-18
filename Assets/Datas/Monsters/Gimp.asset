@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c70442fdb2a414494ac98b8fc7ecd6, type: 3}
   m_Name: Gimp
   m_EditorClassIdentifier: 
-  monsterType: 0
+  monsterType: 5
   speciesDescription: 
-  eatingHourMin: 0
-  eatingHourMax: 0
-  activityHourMin: 0
-  activityHourMax: 0
-  neighboorLike: 
+  eatingHourMin: 11
+  eatingHourMax: 14
+  activityHourMin: 18
+  activityHourMax: 23
+  neighboorLike: 040000000000000002000000
   neighboorDislike: 
   roomPlacementsLike: 
-  roomPlacementsDislike: 
-  foodLike: 
-  foodDislike: 
-  activityLike: 
-  patienceMax: 0
-  monsterNameList: {fileID: 0}
+  roomPlacementsDislike: 02000000
+  foodLike: 0200000000000000
+  foodDislike: 0300000001000000
+  activityLike: 0600000003000000
+  patienceMax: 35
+  monsterNameList: {fileID: 11400000, guid: 6a9c7599e7ceaba458807e2d62582138, type: 2}
