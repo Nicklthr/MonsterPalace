@@ -26,6 +26,9 @@ public class ConstructionUIManager : MonoBehaviour
     public GameObject categoryPanel;
     public GameObject stagePanel;
 
+    [Space(10)]
+    [Header("Placement System Ref")]
+    [SerializeField]
     private PlacementSystem _placementSystem;
 
     private void Awake()
@@ -143,11 +146,11 @@ public class ConstructionUIManager : MonoBehaviour
     private void PopulateStagePanel()
     {
         var addStageButton = Instantiate(StageBtnPrefab, stagePanel.transform);
-        addStageButton.GetComponentInChildren<TextMeshProUGUI>().text = "Ajouter un étage";
+        addStageButton.GetComponentInChildren<TextMeshProUGUI>().text = "Etage";
         addStageButton.GetComponent<Button>().onClick.AddListener(() => AddStage());
 
         var addBasementButton = Instantiate(StageBtnPrefab, stagePanel.transform);
-        addBasementButton.GetComponentInChildren<TextMeshProUGUI>().text = "Ajouter un sous-sol";
+        addBasementButton.GetComponentInChildren<TextMeshProUGUI>().text = "Sous-sol";
         addBasementButton.GetComponent<Button>().onClick.AddListener(() => AddBasement());
 
         var backButton = Instantiate(categoryBtnPrefb, stagePanel.transform);
@@ -159,11 +162,13 @@ public class ConstructionUIManager : MonoBehaviour
 
     private void AddStage()
     {
-        _placementSystem.AddStage(false);
+        Debug.Log("Add stage");
+        _placementSystem.AddUpperStaire();
     }
 
     private void AddBasement()
     {
-        _placementSystem.AddStage(true);
+        Debug.Log("Add basement");
+        _placementSystem.AddUnderStaire();
     }
 }

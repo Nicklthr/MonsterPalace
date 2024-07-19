@@ -1247,7 +1247,7 @@ MonoBehaviour:
   _grid: {fileID: 1938976613}
   _hotel: {fileID: 11400000, guid: ac4712e4fd465c245a602f4d45d56f09, type: 2}
   _dataBase: {fileID: 11400000, guid: 5344b84a0cf2b2446be5c00261dca6ca, type: 2}
-  _stairRoom: {fileID: 0}
+  _stairRoom: {fileID: 11400000, guid: 67b45ec7ac96155418ec93e2309e362d, type: 2}
   gridVisualization: {fileID: 888960994}
   OnRoomBuild:
     m_PersistentCalls:
@@ -1259,6 +1259,35 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 245731322}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: e0a303dc60650424ea3dde7e1dc19999,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnStairBuild:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 245731322}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 3ab51f4ef67b9a2418483c31e99523fc,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1314,7 +1343,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 247.27873, y: 57.587196}
+  m_SizeDelta: {x: 176.4162, y: 57.587}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &205519155
 MonoBehaviour:
@@ -1599,7 +1628,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 261.82446, y: 57.587196}
+  m_SizeDelta: {x: 187.2323, y: 57.5872}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &241936833
 MonoBehaviour:
@@ -1712,6 +1741,7 @@ GameObject:
   - component: {fileID: 245731317}
   - component: {fileID: 245731320}
   - component: {fileID: 245731321}
+  - component: {fileID: 245731322}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1851,6 +1881,102 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   _dataHotel: {fileID: 11400000, guid: ac4712e4fd465c245a602f4d45d56f09, type: 2}
+--- !u!82 &245731322
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245731316}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &249015226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6765,7 +6891,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0cbbdf2f1ee13c844a3eb0b50873777c, type: 2}
   cycle: {fileID: 135970015}
   poolManager: {fileID: 1645072163}
-  level: 4
+  hotelRating: {fileID: 11400000, guid: 7d88aa522e463244ca800073981e1958, type: 2}
   spawnMinMax:
   - {x: 0, y: 1}
   - {x: 1, y: 2}
@@ -7300,9 +7426,9 @@ MonoBehaviour:
     m_Right: 50
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
@@ -7357,6 +7483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1533273889}
   - component: {fileID: 1533273890}
+  - component: {fileID: 1533273891}
   m_Layer: 0
   m_Name: Hotel
   m_TagString: HotelController
@@ -7412,6 +7539,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1533273891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533273887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d254886173604cd498ef6d249c45fa9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listReviews: []
+  averageCurrentRating: 0
+  hotelRating: {fileID: 11400000, guid: 7d88aa522e463244ca800073981e1958, type: 2}
 --- !u!1 &1540381289
 GameObject:
   m_ObjectHideFlags: 0
@@ -7569,13 +7711,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 50
+    m_Left: 100
     m_Right: 100
     m_Top: 10
     m_Bottom: 10
   m_ChildAlignment: 0
-  m_Spacing: 10
-  m_ChildForceExpandWidth: 1
+  m_Spacing: 30
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
@@ -8174,6 +8316,7 @@ MonoBehaviour:
   roomConstructionPanel: {fileID: 1891399158}
   categoryPanel: {fileID: 1990015068}
   stagePanel: {fileID: 48172367}
+  _placementSystem: {fileID: 0}
 --- !u!114 &1712647557
 MonoBehaviour:
   m_ObjectHideFlags: 0

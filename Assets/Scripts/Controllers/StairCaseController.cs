@@ -8,26 +8,33 @@ public class StairCaseController : MonoBehaviour
     [SerializeField] private GameObject _stairWall;
     [SerializeField] private GameObject _ground;
 
-    public void CreateStairUp()
-    {
-        _stairWall.SetActive(false);
-        _stair.SetActive( true );
-    }
-
-    public void CreateStairDown()
-    {
-        _stairWall.SetActive( false );
-        _ground.SetActive( true );
-        _stair.SetActive( false );
-    }
-
     public void DesactivateGround()
     {
        _ground.SetActive( false );
     }
 
+    public void ActivateGround()
+    {
+       _ground.SetActive( true );
+    }
+
     public void ActivateStair()
     {
        _stair.SetActive( true );
+    }
+
+    public void DesactivateStair()
+    {
+       _stair.SetActive( false );
+    }
+
+    public void ActivateStairWall()
+    {
+       _stairWall.SetActive( true );
+    }
+
+    public void DesactivateStairWall()
+    {
+       _stairWall.SetActive( false );
     }
 }

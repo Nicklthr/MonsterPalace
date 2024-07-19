@@ -30,6 +30,7 @@ public class PlacementSystem : MonoBehaviour
 
     public event Action OnRoomPlaced;
     public UnityEvent OnRoomBuild = new UnityEvent();
+    public UnityEvent OnStairBuild = new UnityEvent();
 
     private void Start()
     {
@@ -342,9 +343,52 @@ public class PlacementSystem : MonoBehaviour
         };
     }
 
-    public void AddStage( bool negatif )
+    public void AddUnderStaire()
     {
+        Debug.Log("Add basement");
 
+        List<Room> baseRooms = _hotel.rooms.FindAll(room => room.roomType.roomType == RoomType.BASE);
+
+        if ( baseRooms.Count == 0 )
+        {
+            Console.WriteLine("Aucune pièce de type BASE trouvée.");
+            return;
+        }
+
+        int newPosY = 0;
+        int level = 0;
+
+        level = baseRooms.Min(x => x.level) + -1;
+        newPosY = -_stairRoom.roomSize.y * Math.Abs(level);
+
+        Vector3Int position = new Vector3Int( 0, newPosY, 0 );
+
+        GameObject roomInstance = Instantiate( _stairRoom.prefab, position, Quaternion.identity );
+        roomInstance.name = roomInstance.GetInstanceID().ToString();
+
+        // On récupère la pièce la plus proche du haut pour ouvire son sol et accéder à l'escalier
+        Room close_room = _hotel.rooms.Find(x => x.level == baseRooms.Min(x => x.level) && x.roomType.roomType == RoomType.BASE);
+        GameObject closeRoom = GameObject.Find(close_room.roomID);
+
+        if ( close_room.level == 0 )
+        {
+            closeRoom.GetComponent<StairCaseController>().DesactivateStairWall();
+            closeRoom.GetComponent<StairCaseController>().DesactivateGround();
+        }
+        else
+        {
+            closeRoom.GetComponent<StairCaseController>().DesactivateGround();
+        }
+
+        roomInstance.GetComponent<StairCaseController>().ActivateStair();
+        roomInstance.GetComponent<StairCaseController>().ActivateGround();
+
+        _hotel.rooms.Add(new Room( _stairRoom, position, roomInstance.name, level ));
+        OnStairBuild.Invoke();
+    }
+
+    public void AddUpperStaire()
+    {
         List<Room> baseRooms = _hotel.rooms.FindAll(room => room.roomType.roomType == RoomType.BASE);
 
         if (baseRooms.Count == 0)
@@ -356,24 +400,29 @@ public class PlacementSystem : MonoBehaviour
         int newPosY = 0;
         int level = 0;
 
-        if (negatif)
-        {
-            level = baseRooms.Min(x => x.level) + -1;
-            newPosY = -_stairRoom.roomSize.y * Math.Abs(level);
+        level = baseRooms.Max(x => x.level) + 1;
+        newPosY = _stairRoom.roomSize.y * level;
 
-        }
-        else
-        {
-            level = baseRooms.Max(x => x.level) + 1;
-            newPosY = _stairRoom.roomSize.y * level;
-        }
+        Vector3Int position = new Vector3Int(0, newPosY, 0);
 
-        Vector3Int position = new Vector3Int( 0, newPosY, 0 );
-
-        GameObject roomInstance = Instantiate( _stairRoom.prefab, position, Quaternion.identity );
+        GameObject roomInstance = Instantiate(_stairRoom.prefab, position, Quaternion.identity);
         roomInstance.name = roomInstance.GetInstanceID().ToString();
 
-        _hotel.rooms.Add(new Room( _stairRoom, position, roomInstance.name, level ));
+        // On récupère la pièce la plus proche du haut pour ouvire son sol et accéder à l'escalier
+        Room close_room = _hotel.rooms.Find(x => x.level == baseRooms.Max(x => x.level) && x.roomType.roomType == RoomType.BASE);
+        GameObject closeRoom = GameObject.Find(close_room.roomID);
+
+        closeRoom.GetComponent<StairCaseController>().ActivateStair();
+
+        if (close_room.level == 0)
+        {
+            closeRoom.GetComponent<StairCaseController>().DesactivateStairWall();
+        }
+
+        roomInstance.GetComponent<StairCaseController>().DesactivateGround();
+
+        _hotel.rooms.Add(new Room(_stairRoom, position, roomInstance.name, level));
+        OnStairBuild.Invoke();
     }
 
     private int FindStageLevel(bool negatif)
