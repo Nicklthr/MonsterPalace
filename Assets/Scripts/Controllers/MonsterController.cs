@@ -618,7 +618,7 @@ public class MonsterController : MonoBehaviour
                 //On récupère les pièces voisines
                 foreach (Room neighbourRoom in hotelDatas.rooms)
                 {
-                    if (neighbourRoom.type == RoomType.BEDROOM && neighbourRoom.monsterID != null && neighbourRoom.positionInGrid.y == room.positionInGrid.y && (neighbourRoom.positionInGrid.x == room.positionInGrid.x +5 || neighbourRoom.positionInGrid.x == room.positionInGrid.x - 5) )
+                    if (neighbourRoom.type == RoomType.BEDROOM && neighbourRoom.monsterID != null && neighbourRoom.positionInGrid.y == room.positionInGrid.y && (neighbourRoom.positionInGrid.x == room.positionInGrid.x + room.roomSize.x || neighbourRoom.positionInGrid.x == room.positionInGrid.x - neighbourRoom.roomSize.x) )
                     {
 
 
