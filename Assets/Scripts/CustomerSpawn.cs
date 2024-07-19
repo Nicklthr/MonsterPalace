@@ -12,7 +12,8 @@ public class CustomerSpawn : MonoBehaviour
     public PoolManager poolManager;
     private GameObject _gameObject;
 
-    public int level = 0;
+    public SO_HotelRating hotelRating;
+
     private List<float> hours = new List<float>();
     public List<Vector2> spawnMinMax;
 
@@ -45,7 +46,7 @@ public class CustomerSpawn : MonoBehaviour
 
     public void Generate()
     {
-        int clientNumberToSpawn = (int)Random.Range(spawnMinMax[level].x, spawnMinMax[level].y);
+        int clientNumberToSpawn = (int)Random.Range(spawnMinMax[hotelRating.currentStartRating].x, spawnMinMax[hotelRating.currentStartRating].y);
 
         hours = new List<float>();
 

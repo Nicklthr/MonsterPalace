@@ -23,6 +23,9 @@ public class MonsterController : MonoBehaviour
     [Range(0, 100)]
     public int satisfaction = 50;
 
+    public float starsRate = 0f;
+    public string review = "";
+
 
     [Header("Planning")]
     public int eatingHour;
@@ -705,7 +708,9 @@ public class MonsterController : MonoBehaviour
 
     public void GiveEvaluation()
     {
-
+        starsRate = satisfaction / 20;
+        HotelRateManager hotelratemanager = FindObjectOfType<HotelRateManager>();
+        hotelratemanager.AddReview(new RateReviews(starsRate, review));
     }
 
     public void CheckOut()
