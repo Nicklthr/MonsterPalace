@@ -1229,6 +1229,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 9138403588637676382}
   - {fileID: 7376875288645931005}
   - {fileID: 1751369113759228600}
   m_Father: {fileID: 0}
@@ -1680,13 +1681,13 @@ Transform:
   m_LocalScale: {x: 1.035, y: 1.078, z: 1.035}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5228096176212831027}
   - {fileID: 6491847812743863181}
   - {fileID: 7500769655751383022}
   - {fileID: 5554218940234856281}
   - {fileID: 92423861397397355}
   - {fileID: 5775888749039454033}
   - {fileID: 8045612723280814390}
-  - {fileID: 5228096176212831027}
   m_Father: {fileID: 1751369113759228600}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &4382484719744954978
@@ -1943,6 +1944,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.4999914, y: 1.5057428, z: 0.225}
   m_Center: {x: -1.2499957, y: 0.7528714, z: 0}
+--- !u!1 &4669879155946895594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9138403588637676382}
+  m_Layer: 0
+  m_Name: Target
+  m_TagString: Target
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9138403588637676382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4669879155946895594}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.58, y: -0.89151704, z: 3.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8567652376007890351}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4896213352663526953
 GameObject:
   m_ObjectHideFlags: 0
@@ -7269,6 +7301,10 @@ PrefabInstance:
     - target: {fileID: 1153343411736626, guid: 6d39cc6d5296f194a83512570f19893d, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Rug_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153343411736626, guid: 6d39cc6d5296f194a83512570f19893d, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4472961399226708, guid: 6d39cc6d5296f194a83512570f19893d, type: 3}
       propertyPath: m_LocalPosition.x

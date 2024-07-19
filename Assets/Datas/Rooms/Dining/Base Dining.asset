@@ -15,8 +15,9 @@ MonoBehaviour:
   roomName: Classic Dining
   roomSize: {x: 8, y: 5, z: 8}
   roomType: 3
-  activityType: 0
+  activityType: 8
+  monsterTypeOfRoom: 8
   maxUsers: 3
-  cost: 0
+  cost: 150
   prefab: {fileID: 7747265682634970280, guid: c68447d8471d22a4885604124dc2ba37, type: 3}
   isUnlocked: 1

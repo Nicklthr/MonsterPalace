@@ -20,4 +20,4 @@ MonoBehaviour:
   maxUsers: 1
   cost: 350
   prefab: {fileID: 5659533843038071792, guid: 41e7fb78ea885df4aabd889380868fa7, type: 3}
-  isUnlocked: 1
+  isUnlocked: 0

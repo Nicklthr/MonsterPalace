@@ -2128,6 +2128,7 @@ Transform:
   m_Children:
   - {fileID: 6518360778609668827}
   - {fileID: 2850151678704416654}
+  - {fileID: 6958885195797552654}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3910135895945257138
@@ -2532,6 +2533,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &5768157069730602580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6958885195797552654}
+  m_Layer: 0
+  m_Name: Target
+  m_TagString: Target
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6958885195797552654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768157069730602580}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.17, y: 0, z: 3.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 758020700831368360}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5874400404625002585
 GameObject:
   m_ObjectHideFlags: 0
@@ -3830,6 +3862,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Candle_02
       objectReference: {fileID: 0}
+    - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4178742036463932, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.1527214
@@ -4018,6 +4054,10 @@ PrefabInstance:
     - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Candle_02 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4178742036463932, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7855,6 +7895,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Candle_02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4178742036463932, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.2465959
@@ -8428,6 +8472,10 @@ PrefabInstance:
     - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Candle_02 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4178742036463932, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9154,6 +9202,10 @@ PrefabInstance:
     - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Candle_02 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4178742036463932, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_LocalPosition.x

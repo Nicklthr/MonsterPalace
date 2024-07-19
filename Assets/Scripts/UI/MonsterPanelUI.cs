@@ -129,6 +129,7 @@ public class MonsterPanelUI : MonoBehaviour
 
                 TargetInRoom targetInRoom = room.targets.FindLast(target => target.isOccupied == false);
 
+
                 if (targetInRoom != null)
                 {
                     _monsterController.roomPosition = targetInRoom.target;
