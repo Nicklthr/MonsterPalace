@@ -17,6 +17,8 @@ public class PlacementSystem : MonoBehaviour
     private SO_Hotel _hotel;
     [SerializeField]
     private SO_RoomType _dataBase;
+    [SerializeField]
+    private SO_RoomType _stageRoom;
 
     private SO_RoomType _selectedRoom;
 
@@ -357,21 +359,21 @@ public class PlacementSystem : MonoBehaviour
         if (negatif)
         {
             level = baseRooms.Min(x => x.level) + -1;
-            newPosY = -_dataBase.roomSize.y * Math.Abs(level);
+            newPosY = -_stageRoom.roomSize.y * Math.Abs(level);
 
         }
         else
         {
             level = baseRooms.Max(x => x.level) + 1;
-            newPosY = _dataBase.roomSize.y * level;
+            newPosY = _stageRoom.roomSize.y * level;
         }
 
         Vector3Int position = new Vector3Int( 0, newPosY, 0 );
 
-        GameObject roomInstance = Instantiate(_dataBase.prefab, position, Quaternion.identity);
+        GameObject roomInstance = Instantiate( _stageRoom.prefab, position, Quaternion.identity );
         roomInstance.name = roomInstance.GetInstanceID().ToString();
 
-        _hotel.rooms.Add(new Room(_dataBase, position, roomInstance.name, level ));
+        _hotel.rooms.Add(new Room( _stageRoom, position, roomInstance.name, level ));
     }
 
     private int FindStageLevel(bool negatif)

@@ -18,19 +18,23 @@ MonoBehaviour:
     <RoomType>k__BackingField: 1
   - <rooms>k__BackingField:
     - {fileID: 11400000, guid: a5bf73b5e70d2494ba552db6b3563c00, type: 2}
-    - {fileID: 11400000, guid: 2ac0572db925ac34db4632b75e04bd2e, type: 2}
+    - {fileID: 11400000, guid: f9a8b6def4006f249a5191d63cc88841, type: 2}
     - {fileID: 11400000, guid: 1aaf8980cc379414891409ebc2f7e204, type: 2}
+    - {fileID: 11400000, guid: ed0595e14f34fcd418d057ad276e3e4e, type: 2}
+    - {fileID: 11400000, guid: cefbef81371736448a7822eda020fe65, type: 2}
+    - {fileID: 11400000, guid: 2ac0572db925ac34db4632b75e04bd2e, type: 2}
+    - {fileID: 11400000, guid: 4169f787976fdf148abacec43440e4a6, type: 2}
+    - {fileID: 11400000, guid: 7e3d2a48be68bc34d9f2f2821fc701a4, type: 2}
+    - {fileID: 11400000, guid: 1acc215914c608e4fa259c6db581d35a, type: 2}
     <RoomType>k__BackingField: 0
   - <rooms>k__BackingField:
     - {fileID: 11400000, guid: c00c1501c4e94304ba5e1842b90e1222, type: 2}
     <RoomType>k__BackingField: 3
   - <rooms>k__BackingField:
     - {fileID: 11400000, guid: 639147d4142726c4f80ae30915f58f1e, type: 2}
-    - {fileID: 11400000, guid: d50781b90b5f7444fbe259b0ea3d3617, type: 2}
     - {fileID: 11400000, guid: 3362b345ce550c5439b700393a8b9573, type: 2}
     - {fileID: 11400000, guid: ff96943133c847b4db1799644e2176f5, type: 2}
     - {fileID: 11400000, guid: aa5bccc57810d574696f76b9e683968f, type: 2}
     - {fileID: 11400000, guid: 99c0520831aaa5b46884e33819d1e0ca, type: 2}
-    - {fileID: 11400000, guid: e5c2784029ce21a42a680309fce888f7, type: 2}
     - {fileID: 11400000, guid: 0e48eb5cf57c825428480d155978de12, type: 2}
     <RoomType>k__BackingField: 2
