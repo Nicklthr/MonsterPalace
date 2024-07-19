@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class CameraController : MonoBehaviour
 {
@@ -27,7 +30,7 @@ public class CameraController : MonoBehaviour
         }
         if  ( pos.y <= 0.1 )
         {
-            if (Camera.main.transform.position.y < 2.2)
+            if (Camera.main.transform.position.y < GetMinY() )
             {
                 return;         
             }
@@ -67,6 +70,17 @@ public class CameraController : MonoBehaviour
         }
 
         return (max * 5) + 5;
+    }
+
+    private int GetMinY()
+    {
+        List<Room> baseRooms = _dataHotel.rooms.FindAll(room => room.roomType.roomType == RoomType.BASE);
+
+        int level = 0;
+
+        level = baseRooms.Min(x => x.level);
+
+        return (level * 5);
     }
 
 }
