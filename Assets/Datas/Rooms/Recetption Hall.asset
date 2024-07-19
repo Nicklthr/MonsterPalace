@@ -19,5 +19,5 @@ MonoBehaviour:
   monsterTypeOfRoom: 8
   maxUsers: 100
   cost: 0
-  prefab: {fileID: 8482878269632218640, guid: 983700d96a61f694fa6d05c42c5272d4, type: 3}
+  prefab: {fileID: 5337759631987397356, guid: 983700d96a61f694fa6d05c42c5272d4, type: 3}
   isUnlocked: 1
