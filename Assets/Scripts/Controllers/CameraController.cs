@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
         }
         if  ( pos.y <= 0.1 )
         {
-            if (Camera.main.transform.position.y < 2.5)
+            if (Camera.main.transform.position.y < 2.2)
             {
                 return;         
             }
@@ -37,6 +37,11 @@ public class CameraController : MonoBehaviour
         }
         else if ( pos.y >= 0.98 )
         {
+            if( Camera.main.transform.position.y > GetMaxY() )
+            {
+                return;
+            }
+
             Camera.main.transform.Translate( Vector3.up * moveSpeed * Time.deltaTime );
         }
     }
@@ -52,7 +57,6 @@ public class CameraController : MonoBehaviour
     {
         List<Room> baseroom = _dataHotel.rooms.FindAll(room => room.roomType.roomType == RoomType.BASE);
 
-        // récupére le niveau le plus haut
         int max = 0;
         foreach (Room room in baseroom)
         {
@@ -62,7 +66,7 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        return max * 5;
+        return (max * 5) + 5;
     }
 
 }
