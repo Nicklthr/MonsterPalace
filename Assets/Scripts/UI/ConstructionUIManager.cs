@@ -19,8 +19,9 @@ public class ConstructionUIManager : MonoBehaviour
     public GameObject categoryBtnPrefb;
     public GameObject StageBtnPrefab;
 
-    [Space (10)]
+    [Space(10)]
     [Header("UI Panels")]
+    public GameObject mainPanel;
     public GameObject roomConstructionPanel;
     public GameObject categoryPanel;
     public GameObject stagePanel;
@@ -51,6 +52,7 @@ public class ConstructionUIManager : MonoBehaviour
     public void OpenConstructionPanel()
     {
         builderBtn.SetActive( false );
+        mainPanel.SetActive( false );
         roomConstructionPanel.SetActive( true );
     }
 
@@ -73,6 +75,7 @@ public class ConstructionUIManager : MonoBehaviour
         backButton.GetComponentInChildren<TextMeshProUGUI>().text = "Retour";
         backButton.GetComponent<Button>().onClick.AddListener(() => roomConstructionPanel.SetActive( false ) );
         backButton.GetComponent<Button>().onClick.AddListener(() => builderBtn.SetActive( true ) );
+        backButton.GetComponent<Button>().onClick.AddListener(() => mainPanel.SetActive( true ) );
     }
 
     private void OpenCategoryRooms( RoomDB category )
@@ -86,7 +89,10 @@ public class ConstructionUIManager : MonoBehaviour
     private void PopulateSubCategorie( RoomDB category )
     {
         foreach ( var room in category.rooms )
-        {
+        { 
+            
+            if( room.isUnlocked == false ) continue;
+
             var button = Instantiate( roomCategoryBtnPrefab, categoryPanel.transform );
 
             button.GetComponent<RoomBtnUI>().SetPrice(room.cost);
