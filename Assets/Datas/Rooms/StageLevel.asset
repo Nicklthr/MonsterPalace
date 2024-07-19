@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16dd45f2910a7e940b208100b2d8b53c, type: 3}
-  m_Name: Vampyr Bedroom
+  m_Name: StageLevel
   m_EditorClassIdentifier: 
-  roomName: Vampyr Bedroom
-  roomSize: {x: 5, y: 3, z: 4}
-  roomType: 0
+  roomName: Pallier
+  roomSize: {x: 8, y: 5, z: 8}
+  roomType: 1
   activityType: 8
-  monsterTypeOfRoom: 0
-  maxUsers: 1
-  cost: 500
-  prefab: {fileID: 1492033204555844230, guid: f9240e430ecb9f247a3622a985d963e3, type: 3}
+  monsterTypeOfRoom: 8
+  maxUsers: 100
+  cost: 200
+  prefab: {fileID: 7549425288920749039, guid: 4896ac8788a6e2b4fa44fa8e8d317bed, type: 3}
   isUnlocked: 1
