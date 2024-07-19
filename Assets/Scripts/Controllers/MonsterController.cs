@@ -242,12 +242,12 @@ public class MonsterController : MonoBehaviour
             neighbourControl();
         }
 
-        if (currentHour == eatingHour ) 
+        if (currentHour == eatingHour && roomAssigned) 
         {
             timeToMove = true;
             timeToEat = true;
             
-        }else if (currentHour == activityHour)
+        }else if (currentHour == activityHour && roomAssigned)
         {
             timeToMove = true;
             timeToActivity = true;
