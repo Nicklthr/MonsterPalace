@@ -33,6 +33,9 @@ namespace BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent
 
         public override TaskStatus OnUpdate()
         {
+
+            //Debug.Log(navMeshAgent.remainingDistance);
+
             if (navMeshAgent == null)
             {
                 Debug.LogWarning("NavMeshAgent is null");
@@ -41,11 +44,11 @@ namespace BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent
 
             if (hasArrived.Value)
             {
-                return navMeshAgent.remainingDistance == 0 ? TaskStatus.Success : TaskStatus.Failure;
+                return navMeshAgent.remainingDistance == 0 && !navMeshAgent.pathPending ? TaskStatus.Success : TaskStatus.Failure;
             }
             else
             {
-                return navMeshAgent.remainingDistance == 0 ? TaskStatus.Failure : TaskStatus.Success;
+                return navMeshAgent.remainingDistance == 0 && !navMeshAgent.pathPending? TaskStatus.Failure : TaskStatus.Success;
             }
            
         }
