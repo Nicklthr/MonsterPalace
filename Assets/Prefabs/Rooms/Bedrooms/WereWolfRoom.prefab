@@ -1209,9 +1209,10 @@ GameObject:
   - component: {fileID: 6518514893701022472}
   - component: {fileID: 5539884934429526013}
   - component: {fileID: 1436424060880544876}
-  m_Layer: 0
+  - component: {fileID: -4411067103310951690}
+  m_Layer: 10
   m_Name: WereWolfRoom
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1283,6 +1284,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 8, y: 4, z: 8}
   m_Center: {x: 4, y: 2.5, z: 4}
+--- !u!114 &-4411067103310951690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2207123485454971952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.15686275, b: 0.21568628, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &2561810470424855537
 GameObject:
   m_ObjectHideFlags: 0

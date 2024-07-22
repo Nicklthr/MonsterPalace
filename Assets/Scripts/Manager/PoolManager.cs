@@ -57,6 +57,8 @@ public class PoolManager : MonoBehaviour
                 {
                     int idObj = obj.GetInstanceID();
                     monstreController.monsterID = idObj.ToString() + "_" + i.ToString();
+
+                    obj.name = monstreController.monsterID;
                 }
 
                 obj.transform.parent = poolParent.transform;

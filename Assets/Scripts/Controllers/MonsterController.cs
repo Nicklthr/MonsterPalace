@@ -724,9 +724,14 @@ public class MonsterController : MonoBehaviour
                 room.monsterID = null;
                 room.currentUsers--;
                 room.monsterDataCurrentCustomer = null;
+                room.foodAssigned = null;
                 //roomPosition = null;
                 roomAssigned = false;
                 roomPosition = new Vector3(0,0,0);
+
+                RoomController roomController = GameObject.Find(room.roomID).GetComponent<RoomController>();
+                roomController.ToggleLights();
+
                 break;
             }
 

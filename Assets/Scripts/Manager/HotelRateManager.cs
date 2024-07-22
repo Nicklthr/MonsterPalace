@@ -39,10 +39,10 @@ public class HotelRateManager : MonoBehaviour
         }
 
         averageCurrentRating = averageCurrentRating / listReviews.Count;
-        Debug.Log(averageCurrentRating);
+        //Debug.Log(averageCurrentRating);
 
         hotelRating.currentStartRating = (int)averageCurrentRating;
-        Debug.Log(hotelRating.currentStartRating);
+        //Debug.Log(hotelRating.currentStartRating);
 
         totalReviews = listReviews.Count;
     }
