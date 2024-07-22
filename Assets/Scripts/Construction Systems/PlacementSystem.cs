@@ -28,7 +28,7 @@ public class PlacementSystem : MonoBehaviour
     private GameObject _roomIndicator;
     private PreviewRoom _previewRoom;
 
-    public event Action OnRoomPlaced;
+    public event Action OnRoomPlaced, OnStairPlaced;
     public UnityEvent OnRoomBuild = new UnityEvent();
     public UnityEvent OnStairBuild = new UnityEvent();
 
@@ -385,6 +385,7 @@ public class PlacementSystem : MonoBehaviour
 
         _hotel.rooms.Add(new Room( _stairRoom, position, roomInstance.name, level ));
         OnStairBuild.Invoke();
+        OnStairPlaced?.Invoke();
     }
 
     public void AddUpperStaire()
@@ -423,6 +424,7 @@ public class PlacementSystem : MonoBehaviour
 
         _hotel.rooms.Add(new Room(_stairRoom, position, roomInstance.name, level));
         OnStairBuild.Invoke();
+        OnStairPlaced?.Invoke();
     }
 
     private int FindStageLevel(bool negatif)

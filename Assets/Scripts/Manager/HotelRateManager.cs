@@ -21,13 +21,12 @@ public class RateReviews
 
 public class HotelRateManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<RateReviews> listReviews = new List<RateReviews>();
+    public List<RateReviews> listReviews = new List<RateReviews>();
 
     public float averageCurrentRating;
+    public int totalReviews;
 
     public event Action OnReviewAdd;
-
     public SO_HotelRating hotelRating;
 
     public void RateUpdate()
@@ -44,6 +43,8 @@ public class HotelRateManager : MonoBehaviour
 
         hotelRating.currentStartRating = (int)averageCurrentRating;
         Debug.Log(hotelRating.currentStartRating);
+
+        totalReviews = listReviews.Count;
     }
 
     public void AddReview(RateReviews reviews)

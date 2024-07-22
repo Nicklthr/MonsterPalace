@@ -7,8 +7,9 @@ using UnityEngine.Events;
 public class MoneyManager : MonoBehaviour
 {
     public SO_HotelRating hotelRating;
+    [SerializeField] private ArgentSO _argentSO;
 
-    public float rentalPrice = 0f;
+    private float rentalPrice = 0f;
     public float[] dailyCosts = { 55f, 65f, 80f, 110f, 155f };
 
     public UnityEvent OnPayementDone = new UnityEvent();
@@ -16,7 +17,7 @@ public class MoneyManager : MonoBehaviour
 
     public void Payment(int stayDuration)
     {
-        switch (hotelRating.currentStartRating)
+        switch ( hotelRating.currentStartRating )
         {
             case 0:
                 rentalPrice = dailyCosts[0] * stayDuration;
@@ -36,6 +37,8 @@ public class MoneyManager : MonoBehaviour
             default:
                 break;
         }
+
+        _argentSO.playerMoney += rentalPrice;
 
         OnPayement?.Invoke();
         OnPayementDone.Invoke();
