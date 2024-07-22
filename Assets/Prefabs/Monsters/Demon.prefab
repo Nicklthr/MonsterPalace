@@ -553,7 +553,7 @@ Animator:
   m_GameObject: {fileID: 1910203949988778540}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5572a64bd7a852043ad459aa87aa5d10, type: 3}
-  m_Controller: {fileID: 9100000, guid: a38d7c41f44e6bb40b429925671e5c98, type: 2}
+  m_Controller: {fileID: 9100000, guid: 62cfd961f43e0b3479fc08f24897510a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -588,6 +588,7 @@ MonoBehaviour:
   satisfaction: 50
   starsRate: 0
   review: 
+  moneyManager: {fileID: 0}
   eatingHour: 0
   activityHour: 0
   arrivalHour: 0

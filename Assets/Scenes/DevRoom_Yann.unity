@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  zoomSpeed: 3
+  _dataHotel: {fileID: 0}
 --- !u!114 &355471571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,6 +1270,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Demon
       objectReference: {fileID: 0}
+    - target: {fileID: 1910203949988778540, guid: 5889f44ae2b111643ac128b3026b1b7b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8026329619413157537, guid: 5889f44ae2b111643ac128b3026b1b7b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1278,7 +1283,7 @@ PrefabInstance:
     - target: {fileID: 8026329619413157537, guid: 5889f44ae2b111643ac128b3026b1b7b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.61
       objectReference: {fileID: 0}
     - target: {fileID: 8026329619413157537, guid: 5889f44ae2b111643ac128b3026b1b7b,
         type: 3}
@@ -1325,7 +1330,8 @@ PrefabInstance:
       propertyPath: mBehaviorSource.mTaskData.fieldSerializationData.unityObjects.Array.data[0]
       value: 
       objectReference: {fileID: 7210586834994948991}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8061644282909688235, guid: 5889f44ae2b111643ac128b3026b1b7b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
