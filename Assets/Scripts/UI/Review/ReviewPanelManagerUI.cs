@@ -38,11 +38,9 @@ public class ReviewPanelManagerUI : MonoBehaviour
             ToggleReviewsListPanel();
         });
 
-        UpdateGlobalReview();
+        UpdateGlobalReviewAtStart();
 
-        Debug.Log("ReviewPanelManagerUI: Start");
         _hotelRateManager.OnReviewAdd += UpdateGlobalReview;
-        Debug.Log("ReviewPanelManagerUI: OnReviewAdd");
     }
 
     public void Update()
@@ -97,14 +95,33 @@ public class ReviewPanelManagerUI : MonoBehaviour
         {
             GameObject reviewRow = Instantiate( _reviewPrefab, _reviewListContent);
 
-            Debug.Log("Ajout d'un avis");
-
             reviewRow.GetComponent<RatingBarStarUI>().UpdateBar( review.note );
             reviewRow.GetComponentInChildren<TextMeshProUGUI>().text = review.review;
-
-
-            Debug.Log("Note : " + review.note);
-
         }
+    }
+
+    private void UpdateGlobalReviewAtStart()
+    {
+        _ratingBarStar.UpdateBar(_hotelRateManager.averageCurrentRating);
+
+        float _noteGlobale;
+        _noteGlobale = Mathf.Round(_hotelRateManager.averageCurrentRating * 10) / 10;
+
+        _globalReview.text = "Note globale " + _noteGlobale.ToString() + "/5";
+
+        string reviewBtnText = "";
+
+        if (_hotelRateManager.totalReviews == 0)
+        {
+            reviewBtnText = "0 avis";
+        }
+        else
+        {
+            reviewBtnText = _hotelRateManager.totalReviews + " avis";
+        }
+        _reveiwsBtn.GetComponentInChildren<TextMeshProUGUI>().text = reviewBtnText;
+
+        UpdateReviewList();
+
     }
 }
