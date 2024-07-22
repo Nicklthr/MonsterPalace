@@ -26,6 +26,7 @@ public class MonsterController : MonoBehaviour
     public float starsRate = 0f;
     public string review = "";
 
+    public MoneyManager moneyManager;
 
     [Header("Planning")]
     public int eatingHour;
@@ -703,7 +704,7 @@ public class MonsterController : MonoBehaviour
 
     public void Pay()
     {
-
+        moneyManager.Payment(stayDuration);
     }
 
     public void GiveEvaluation()
