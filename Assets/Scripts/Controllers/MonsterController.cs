@@ -174,6 +174,7 @@ public class MonsterController : MonoBehaviour
         //receptionPosition = GameObject.FindGameObjectWithTag("ReceptionPosition").transform;
         agent.updateRotation = false;
         lookDirection = new Vector3(0, 0, -90);
+        moneyManager = FindObjectOfType<MoneyManager>();
     }
 
     // Start is called before the first frame update
@@ -711,7 +712,7 @@ public class MonsterController : MonoBehaviour
     {
         starsRate = satisfaction / 20;
         HotelRateManager hotelratemanager = FindObjectOfType<HotelRateManager>();
-        hotelratemanager.AddReview(new RateReviews(starsRate, review));
+        hotelratemanager.AddReview(new RateReviews(starsRate, "Test"));
     }
 
     public void CheckOut()

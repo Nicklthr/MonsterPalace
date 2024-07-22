@@ -7,7 +7,15 @@ using UnityEngine.UI;
 public class ConstructionUIManager : MonoBehaviour
 {
     public SO_RoomsDB data;
+    [SerializeField]
     private ArgentSO _argent;
+
+    [Space(10)]
+    [Header("Color Btns")]
+    [SerializeField]
+    private Color _colorMoneyCan;
+    [SerializeField]
+    private Color _colorMoneyCant;
 
     [Space(10)]
     [Header("UI Btns")]
@@ -104,7 +112,9 @@ public class ConstructionUIManager : MonoBehaviour
             button.GetComponent<Button>().onClick.AddListener( () => CreateNewRoom( room ) );
             button.GetComponent<Button>().onClick.AddListener( () => _argent.playerMoney -= room.cost );
             button.name = room.roomName.ToString();
-            button.GetComponent<RoomBtnUI>().SetPriceColor(Color.red);
+
+            //button.GetComponent<RoomBtnUI>().SetPriceColor(_colorMoneyCan);
+            //button.GetComponent<Button>().interactable = true;
         }
 
         var backButton = Instantiate(categoryBtnPrefb, categoryPanel.transform);

@@ -16,4 +16,9 @@ public class SO_Hotel : ScriptableObject
     {
         rooms.Remove( room );
     }
+
+    private void OnEnable()
+    {
+        rooms = new List<Room>();
+    }
 }
