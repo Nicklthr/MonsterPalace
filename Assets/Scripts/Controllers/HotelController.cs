@@ -18,14 +18,14 @@ public class HotelController : MonoBehaviour
 
     private void Start()
     {
-        if ( _hotel.rooms.Count != 0 )
-        {
-            AddRooms();
-        }
-        else
-        {
-            AddBaseRoom();
-        }
+        InitializeHotel();
+    }
+
+    public void InitializeHotel()
+    {
+        // Initialize the hotel
+        _hotel.rooms.Clear();
+        AddBaseRoom();
     }
 
     private void AddRooms()

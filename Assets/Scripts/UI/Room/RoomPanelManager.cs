@@ -53,6 +53,10 @@ public class RoomPanelManager : MonoBehaviour
                 break;
         }
 
+        _roomInformations.SetActive(true);
+
+        _roomInformations.GetComponent<RoomInformationsPanelUI>().SetRoomInformations( _room.maxUsers, _room.currentUsers );
+
         _roomPanel.SetActive(true);
     }
 
@@ -115,7 +119,6 @@ public class RoomPanelManager : MonoBehaviour
     {
         _freeRoom.SetActive(false);
         _customerRow.SetActive(false);
-        _roomInformations.SetActive(true);
         _foodRow.SetActive(false);
     }
 

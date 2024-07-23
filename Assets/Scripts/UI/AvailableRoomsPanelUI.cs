@@ -20,15 +20,21 @@ public class AvailableRoomsPanelUI : MonoBehaviour
 
     [Space(10)]
     [Header("References")]
-    [SerializeField] private PlacementSystem _placementSystem;
     [SerializeField] private MonsterPanelUI _monsterPanelUI;
+    [SerializeField] private PlacementSystem _placementSystem;
     
     public string monsterID;
 
+    public bool canUpdateRoomsList = false;
+
     private void Start()
     {
+        _monsterPanelUI = GetComponent<MonsterPanelUI>();
+        _placementSystem = FindObjectOfType<PlacementSystem>();
+
+        _monsterPanelUI.OnMonsterPanelOpen += UpdateRoomsList;
+        _monsterPanelUI.OnMonsterPanelClose += UpdateRoomsList;
         _placementSystem.OnRoomPlaced += UpdateRoomsList;
-        _monsterPanelUI.OnOpen += UpdateRoomsList;
     }
 
     public bool HasBuildedRoomsInHotel()
