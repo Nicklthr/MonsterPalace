@@ -43,7 +43,7 @@ public class MonsterController : MonoBehaviour
     [SerializeField] private int stayDurationMin;
     [SerializeField] private int stayDurationMax;
     public int stayDuration;
-    [SerializeField] private int currentStayDuration = 0;
+    public int currentStayDuration = 0;
 
     [Header("Positions")]
     [SerializeField] private Transform startPosition;
@@ -712,7 +712,7 @@ public class MonsterController : MonoBehaviour
     {
         starsRate = satisfaction / 20;
         HotelRateManager hotelratemanager = FindObjectOfType<HotelRateManager>();
-        hotelratemanager.AddReview(new RateReviews(starsRate, "Test"));
+        hotelratemanager.AddReview(new RateReviews(starsRate, "Test", monsterName, monsterDatas.monsterType));
     }
 
     public void CheckOut()

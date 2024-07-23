@@ -31,6 +31,7 @@ public class PlacementSystem : MonoBehaviour
     public event Action OnRoomPlaced, OnStairPlaced;
     public UnityEvent OnRoomBuild = new UnityEvent();
     public UnityEvent OnStairBuild = new UnityEvent();
+    public bool IsPlacingRoom => _selectedRoom != null;
 
     private void Start()
     {

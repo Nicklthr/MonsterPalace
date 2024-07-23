@@ -16,3 +16,4 @@ MonoBehaviour:
   sprite: {fileID: 0}
   description: description
   typeList: 020000000300000004000000
+  isUnlocked: 1

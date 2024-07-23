@@ -12,10 +12,18 @@ public class RateReviews
     [field: SerializeField]
     public string review { get; private set; }
 
-    public RateReviews(float note, string review) 
+    [field: SerializeField]
+    public string monsterName { get; private set; }
+
+    [field: SerializeField]
+    public MonsterType type { get; private set; }
+
+    public RateReviews(float note, string review, string monsterName, MonsterType type) 
     { 
         this.note = note;
-        this.review = review;
+        this.review = "- "+ review + " -";
+        this.monsterName = monsterName;
+        this.type = type;
     }
 }
 

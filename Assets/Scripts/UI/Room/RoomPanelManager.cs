@@ -60,6 +60,8 @@ public class RoomPanelManager : MonoBehaviour
     {
         _room = null;
         _roomPanel.SetActive(false);
+        _foodRow.SetActive(false);
+        _NofoodRow.SetActive(false);
     }
 
     private void FindRoomInHotel()
@@ -91,18 +93,18 @@ public class RoomPanelManager : MonoBehaviour
 
             if( monster != null )
             {
-                _customerRow.GetComponentInChildren<TextMeshProUGUI>().text = monster.monsterName;
+                _customerRow.GetComponent<CustomerRowUI>().SetCustomerData( monster.monsterName, monster.monsterDatas.monsterSprite );
             }
 
-            if(_room.foodAssigned == null)
+            if( _room.foodAssigned == null )
             {
-                _NofoodRow.SetActive(true);
-                _foodRow.SetActive(false);
+                _NofoodRow.SetActive( true );
+                _foodRow.SetActive( false );
             }
             else
             {
-                _NofoodRow.SetActive(false);
-                _foodRow.SetActive(true);
+                _NofoodRow.SetActive( false );
+                _foodRow.SetActive( true );
 
                 _foodRow.GetComponentInChildren<TextMeshProUGUI>().text = "Repas : " + _room.foodAssigned.foodName;
             }
@@ -114,6 +116,7 @@ public class RoomPanelManager : MonoBehaviour
         _freeRoom.SetActive(false);
         _customerRow.SetActive(false);
         _roomInformations.SetActive(true);
+        _foodRow.SetActive(false);
     }
 
     public void MenuPanel()
@@ -128,6 +131,8 @@ public class RoomPanelManager : MonoBehaviour
 
         foreach ( SO_Food food in _foods )
         {
+            if ( food.isUnlocked == false ) continue;
+
             GameObject card = Instantiate(_cardPrefab, _foodGrid);
 
             card.GetComponent<CardFoodUI>().SetFood( food );

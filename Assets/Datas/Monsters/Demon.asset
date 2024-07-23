@@ -27,3 +27,4 @@ MonoBehaviour:
   activityLike: 0500000003000000
   patienceMax: 25
   monsterNameList: {fileID: 11400000, guid: b471dd035f0358841ae502142b268ddf, type: 2}
+  monsterSprite: {fileID: 21300000, guid: 06cb6bea1f43fd047b688702fdab2e7c, type: 3}
