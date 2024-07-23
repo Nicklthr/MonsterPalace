@@ -749,7 +749,7 @@ public class MonsterController : MonoBehaviour
         agent.SetDestination(nextPosition.position);
         
 
-        if (reception)
+        if ( reception )
         {
             waitingQ = false;
            

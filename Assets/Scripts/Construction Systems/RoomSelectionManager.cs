@@ -69,7 +69,7 @@ public class RoomSelectionManager : MonoBehaviour
 
                     _hoverRoom = hit.transform;
 
-                    Outline outline = _hoverRoom.GetComponent<Outline>();
+                    OutlineRoom outline = _hoverRoom.GetComponent<OutlineRoom>();
                     if (outline != null)
                     {
                         outline.enabled = true;
@@ -103,7 +103,7 @@ public class RoomSelectionManager : MonoBehaviour
     {
         if (_hoverRoom != null)
         {
-            Outline outline = _hoverRoom.GetComponent<Outline>();
+            OutlineRoom outline = _hoverRoom.GetComponent<OutlineRoom>();
             if (outline != null)
             {
                 if ( _hoverRoom != _selectedRoom )
@@ -118,11 +118,11 @@ public class RoomSelectionManager : MonoBehaviour
 
     private void SelectRoom()
     {
-        if (_selectionRoom.WasPerformedThisFrame() && _hoverRoom != null)
+        if ( _selectionRoom.WasPerformedThisFrame() && _hoverRoom != null )
         {
             DeselectRoom();
 
-            Outline outline = _hoverRoom.GetComponent<Outline>();
+            OutlineRoom outline = _hoverRoom.GetComponent<OutlineRoom>();
             if (outline != null)
             {
                 outline.enabled = true;
@@ -138,7 +138,7 @@ public class RoomSelectionManager : MonoBehaviour
         if ( _selectionRoom.WasPerformedThisFrame() && _selectedRoom != null )
         {
             OnDeSelectedRoom?.Invoke();
-            Outline outline = _selectedRoom.GetComponent<Outline>();
+            OutlineRoom outline = _selectedRoom.GetComponent<OutlineRoom>();
             if (outline != null)
             {
                 outline.enabled = false;
