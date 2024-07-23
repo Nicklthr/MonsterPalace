@@ -2,18 +2,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using static Cinemachine.DocumentationSortingAttribute;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private SO_Hotel _dataHotel;
 
+    public InputAction zoom;
+    [SerializeField] private float zoomSpeed = 10f;
+    [SerializeField] private float zoomMin = 40f;
+    [SerializeField] private float zoomMax = 140f;
+
 
     private void Update()
     {
         HandleMove();
+        HandleZoom();
+    }
+
+    private void OnEnable()
+    {
+        zoom.Enable();
     }
 
     private void HandleMove()
@@ -82,5 +93,21 @@ public class CameraController : MonoBehaviour
 
         return (level * 5);
     }
+
+    private void HandleZoom()
+    {
+
+        if ( IsPointerOverUI() )
+        {
+            return;
+        }
+
+        float zoomValue = zoom.ReadValue<float>();
+
+        Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView - zoomValue * zoomSpeed * Time.deltaTime, zoomMin, zoomMax);
+    }
+
+    public bool IsPointerOverUI()
+    => EventSystem.current.IsPointerOverGameObject();
 
 }

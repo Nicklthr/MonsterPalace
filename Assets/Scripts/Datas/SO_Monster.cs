@@ -36,6 +36,8 @@ public class SO_Monster : ScriptableObject
 
     public SO_NameList monsterNameList;
 
+    public Sprite monsterSprite;
+
 }
 
 

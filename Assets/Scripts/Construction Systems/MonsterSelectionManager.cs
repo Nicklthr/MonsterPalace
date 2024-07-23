@@ -11,11 +11,13 @@ public class MonsterSelectionManager : MonoBehaviour
     public InputAction _selectionMonster;
     public Transform _selectedMonster;
     [SerializeField]
-    private Transform _hoverMonster;
+    public Transform _hoverMonster;
     [SerializeField]
     private LayerMask selectibleMask;
 
     public event Action OnSelected, OnDeSelected;
+
+    private PlacementSystem _placementSystem;
 
     private void OnEnable()
     {
@@ -23,8 +25,23 @@ public class MonsterSelectionManager : MonoBehaviour
         _selectionMonster.Enable();
     }
 
+    private void Start()
+    {
+        _placementSystem = FindObjectOfType<PlacementSystem>();
+    }
+
     void Update()
     {
+        if (IsPointerOverUI())
+        {
+            return;
+        }
+
+        if (_placementSystem.IsPlacingRoom)
+        {
+            return;
+        }
+
         Vector2 mousePosition = _mouse.ReadValue<Vector2>();
 
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);

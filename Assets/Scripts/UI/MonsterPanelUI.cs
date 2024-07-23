@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterPanelUI : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class MonsterPanelUI : MonoBehaviour
     [SerializeField] private SO_Hotel _hotel;
 
     [SerializeField] private TextMeshProUGUI _monsterName;
+    [SerializeField] private Image _monsterPic;
     [SerializeField] private TextMeshProUGUI _monsterStayDay;
     [SerializeField] private MonsterController _monsterController;
 
@@ -53,7 +55,10 @@ public class MonsterPanelUI : MonoBehaviour
 
         _monsterController = _monsterSelectionManager._selectedMonster.GetComponent<MonsterController>();
         _monsterName.text = _monsterController.monsterName;
-        _monsterStayDay.text = _monsterController.stayDuration.ToString() + " Jours";
+
+        _monsterPic.sprite = _monsterController.monsterDatas.monsterSprite;
+
+        _monsterStayDay.text = _monsterController.currentStayDuration.ToString() + "/" + _monsterController.stayDuration.ToString() + " Jours";
 
         if (!_monsterController.canAssignRoom)
         {

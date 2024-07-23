@@ -26,6 +26,10 @@ public class ReviewPanelManagerUI : MonoBehaviour
 
     public UnityEvent OnReviewAdd = new UnityEvent();
 
+    [SerializeField] private List<SO_Monster> _monsters = new List<SO_Monster>();
+
+    [SerializeField] private bool _debug = false;
+
     public void Start()
     {
         _hotelRateManager = FindObjectOfType<HotelRateManager>();
@@ -45,10 +49,13 @@ public class ReviewPanelManagerUI : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if ( _debug )
         {
-            UpdateGlobalReview();
-            UpdateReviewList();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                UpdateGlobalReview();
+                UpdateReviewList();
+            }
         }
     }
 
@@ -96,7 +103,7 @@ public class ReviewPanelManagerUI : MonoBehaviour
             GameObject reviewRow = Instantiate( _reviewPrefab, _reviewListContent);
 
             reviewRow.GetComponent<RatingBarStarUI>().UpdateBar( review.note );
-            reviewRow.GetComponentInChildren<TextMeshProUGUI>().text = review.review;
+            reviewRow.GetComponent<SingleReviewMonsterUI>().SetMonsterData( review.monsterName, review.type.ToString(), review.review, GetSpriteMonsterByType(review.type) );
         }
     }
 
@@ -123,5 +130,10 @@ public class ReviewPanelManagerUI : MonoBehaviour
 
         UpdateReviewList();
 
+    }
+
+    private Sprite GetSpriteMonsterByType( MonsterType type )
+    {
+        return _monsters.Find( monster => monster.monsterType == type ).monsterSprite;
     }
 }

@@ -17,14 +17,40 @@ public class RoomSelectionManager : MonoBehaviour
 
     public event Action OnSelectedRoom, OnDeSelectedRoom;
 
+    private PlacementSystem _placementSystem;
+    private MonsterSelectionManager _monsterSelectionManager;
+
     private void OnEnable()
     {
         _mouse.Enable();
         _selectionRoom.Enable();
     }
 
+    private void Start()
+    {
+        _placementSystem = FindObjectOfType<PlacementSystem>();
+        _monsterSelectionManager = FindObjectOfType<MonsterSelectionManager>();
+    }
+
     void Update()
     {
+        if ( IsPointerOverUI() )
+        {
+            return;
+        }
+
+        if ( _placementSystem.IsPlacingRoom )
+        {
+            return;
+        }
+
+        if ( _monsterSelectionManager._hoverMonster != null )
+        {
+            HoverOutRoom();
+            DeselectRoom();
+            return;
+        }
+
         Vector2 mousePosition = _mouse.ReadValue<Vector2>();
 
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
@@ -39,7 +65,7 @@ public class RoomSelectionManager : MonoBehaviour
 
                 if (_hoverRoom != hit.transform)
                 {
-                    HoverOutMonster();
+                    HoverOutRoom();
 
                     _hoverRoom = hit.transform;
 
@@ -52,35 +78,35 @@ public class RoomSelectionManager : MonoBehaviour
             }
             else
             {
-                HoverOutMonster();
+                HoverOutRoom();
             }
         }
         else
         {
-            HoverOutMonster();
+            HoverOutRoom();
         }
 
         if (!IsPointerOverUI())
         {
 
-            DeselectMonster();
+            DeselectRoom();
         }
 
-        SelectMonster();
+        SelectRoom();
     }
 
 
     public bool IsPointerOverUI()
         => EventSystem.current.IsPointerOverGameObject();
 
-    private void HoverOutMonster()
+    private void HoverOutRoom()
     {
         if (_hoverRoom != null)
         {
             Outline outline = _hoverRoom.GetComponent<Outline>();
             if (outline != null)
             {
-                if (_hoverRoom != _selectedRoom)
+                if ( _hoverRoom != _selectedRoom )
                 {
                     outline.enabled = false;
                 }
@@ -90,11 +116,11 @@ public class RoomSelectionManager : MonoBehaviour
         }
     }
 
-    private void SelectMonster()
+    private void SelectRoom()
     {
         if (_selectionRoom.WasPerformedThisFrame() && _hoverRoom != null)
         {
-            DeselectMonster();
+            DeselectRoom();
 
             Outline outline = _hoverRoom.GetComponent<Outline>();
             if (outline != null)
@@ -107,7 +133,7 @@ public class RoomSelectionManager : MonoBehaviour
         }
     }
 
-    private void DeselectMonster()
+    private void DeselectRoom()
     {
         if ( _selectionRoom.WasPerformedThisFrame() && _selectedRoom != null )
         {

@@ -11,5 +11,7 @@ public class SO_Food : ScriptableObject
 
     public FoodType[] typeList;
 
+    public bool isUnlocked = false;
+
 
 }
