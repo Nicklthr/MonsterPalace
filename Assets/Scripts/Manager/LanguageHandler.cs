@@ -12,6 +12,15 @@ public class LanguageHandler : MonoBehaviour
     public static LanguageHandler Instance;
     private Dictionary<string, string> translations = new Dictionary<string, string>();
 
+    public List<TextTraduction> txtList;
+
+
+    public void LanguageHandlerSubscription(TextTraduction txt)
+    {
+        txtList.Add(txt);
+    }
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -50,7 +59,7 @@ public class LanguageHandler : MonoBehaviour
         return translations[fullStringID.ToLower()];
     }
 
-    private void ReloadLanguage(bool needsReloading = false)
+    private void ReloadLanguage()
     {
         if (PlayerPrefs.HasKey(LANGUAGE_KEY))
         {
@@ -61,28 +70,30 @@ public class LanguageHandler : MonoBehaviour
             curSelectedLanguage = LanguageType.English;
         }
 
-        if (needsReloading)
+        foreach(TextTraduction t in txtList)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            t.GetText();
         }
+
     }
 
-    private void SelectNewLanguage(LanguageType languageType, bool needsReloading = false)
+
+    private void SelectNewLanguage(LanguageType languageType)
     {
         curSelectedLanguage = languageType;
         PlayerPrefs.SetInt(LANGUAGE_KEY, (int)languageType);
-        ReloadLanguage(needsReloading);
+        ReloadLanguage();
     }
 
 
     public void ChangeToFrench()
     {
-        SelectNewLanguage(LanguageType.French, false);
+        SelectNewLanguage(LanguageType.French);
     }
 
     public void ChangeToEnglish()
     {
-        SelectNewLanguage(LanguageType.English, false);
+        SelectNewLanguage(LanguageType.English);
     }
 
 }
