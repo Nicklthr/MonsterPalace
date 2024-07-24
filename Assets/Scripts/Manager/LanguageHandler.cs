@@ -20,6 +20,11 @@ public class LanguageHandler : MonoBehaviour
         txtList.Add(txt);
     }
 
+    public void LanguageHandlerRemoval(TextTraduction txt)
+    {
+        txtList.Remove(txt);
+    }
+
 
     private void Awake()
     {

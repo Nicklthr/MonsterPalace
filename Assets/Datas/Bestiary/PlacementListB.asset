@@ -12,3 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d288d1a0c6775bd4687fec17a29a29c3, type: 3}
   m_Name: PlacementListB
   m_EditorClassIdentifier: 
+  placementList:
+  - type: 1
+    sprite: {fileID: 0}
+  - type: 0
+    sprite: {fileID: 0}
+  - type: 2
+    sprite: {fileID: 0}
+  - type: 3
+    sprite: {fileID: 0}

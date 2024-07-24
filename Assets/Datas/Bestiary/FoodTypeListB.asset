@@ -12,3 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef24a5f752c562f4383cfbde0f04b82b, type: 3}
   m_Name: FoodTypeListB
   m_EditorClassIdentifier: 
+  foodTypeList:
+  - type: 3
+    sprite: {fileID: 0}
+  - type: 2
+    sprite: {fileID: 0}
+  - type: 0
+    sprite: {fileID: 0}
+  - type: 1
+    sprite: {fileID: 0}
+  - type: 4
+    sprite: {fileID: 0}
+  - type: 5
+    sprite: {fileID: 0}

@@ -12,3 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64444f90748ddb44faacf8825dc40059, type: 3}
   m_Name: MonsterListB
   m_EditorClassIdentifier: 
+  monsterList:
+  - {fileID: 11400000, guid: 3970ae260c715bb4ea04c60a488b02b4, type: 2}
+  - {fileID: 11400000, guid: 187dbd7ddfb9607499f27a2a0450057c, type: 2}
+  - {fileID: 11400000, guid: 0a083e96f57eb98498e0ef0ba2e72b0f, type: 2}
+  - {fileID: 11400000, guid: 071a35593e647b14cb3f4cbc861827c5, type: 2}
+  - {fileID: 11400000, guid: 3597d46b7e42df342b0b84a8d53df401, type: 2}
+  - {fileID: 11400000, guid: e0a41ef460003b941a80d14b18e87d22, type: 2}
+  - {fileID: 11400000, guid: cddf134735b3c844483553ec7cc5f2ef, type: 2}
+  - {fileID: 11400000, guid: cb3fdf2b2ca928e42b72c9715d00d265, type: 2}

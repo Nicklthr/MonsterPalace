@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Placement List", menuName = "MonsterPalace/Bestiary/PlacementList")]
 public class SO_PlacementList : ScriptableObject
 {
-    List<Placement> placementList;
+    public List<Placement> placementList;
 }
 
 [Serializable]

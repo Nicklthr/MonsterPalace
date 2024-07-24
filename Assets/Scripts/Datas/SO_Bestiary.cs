@@ -10,7 +10,7 @@ public class MonsterEntry
     public MonsterFoodTastes foodTastes;
     public MonsterActivityTastes activityTastes;
     public MonsterPlacementTastes placementTastes;
-    public MonsterNerighbourTastes nerighbourTastes;
+    public MonsterNerighbourTastes neighbourTastes;
 }
 
 [Serializable]

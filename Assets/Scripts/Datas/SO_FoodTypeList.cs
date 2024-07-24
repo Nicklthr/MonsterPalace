@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New FoodType List", menuName = "MonsterPalace/Bestiary/FoodTypeList")]
 public class SO_FoodTypeList : ScriptableObject
 {
-    List<FoodTypeC> foodTypeList;
+    public List<FoodTypeC> foodTypeList;
 }
 
 [Serializable]

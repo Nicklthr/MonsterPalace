@@ -12,4 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9db0aaad4007143a89c69581e57d34, type: 3}
   m_Name: ActivityListB
   m_EditorClassIdentifier: 
-  activityList: []
+  activityList:
+  - type: 1
+    sprite: {fileID: 0}
+  - type: 0
+    sprite: {fileID: 0}
+  - type: 4
+    sprite: {fileID: 0}
+  - type: 2
+    sprite: {fileID: 0}
+  - type: 3
+    sprite: {fileID: 0}
+  - type: 5
+    sprite: {fileID: 0}
+  - type: 6
+    sprite: {fileID: 0}
+  - type: 7
+    sprite: {fileID: 0}

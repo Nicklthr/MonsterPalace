@@ -35,4 +35,9 @@ public class TextTraduction : MonoBehaviour
         GetText();
     }
 
+    public void OnDestroy()
+    {
+        LanguageHandler.Instance.LanguageHandlerRemoval(this);
+    }
+
 }

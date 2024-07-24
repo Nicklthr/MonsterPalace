@@ -11,6 +11,8 @@ TagManager:
   - Monster
   - HotelController
   - Room
+  - Bestiary
+  - doNotDelete
   layers:
   - Default
   - TransparentFX
