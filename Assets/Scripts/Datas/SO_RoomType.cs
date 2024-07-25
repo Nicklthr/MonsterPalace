@@ -20,6 +20,8 @@ public class SO_RoomType : ScriptableObject
 
     [Space(10)]
     public int cost;
+    public int coinCost;
+    public int quantityBuyable = 1;
     public GameObject prefab;
     public bool isUnlocked = false;
 }

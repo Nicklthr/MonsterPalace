@@ -12,44 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28ee795b38e4114d81ac14229c2a1e6, type: 3}
   m_Name: Hotel
   m_EditorClassIdentifier: 
-  rooms:
-  - roomType: {fileID: 11400000, guid: 93c75af1ba84aa9439a58afc0bf20771, type: 2}
-    positionInGrid: {x: 0, y: 0, z: 0}
-    roomID: 32056
-    roomSize: {x: 24, y: 5, z: 8}
-    roomName: "R\xE9c\xE9ption Hall"
-    activityType: 0
-    type: 1
-    monsterTypeOfRoom: 0
-    roomPlacement: 
-    foodAssigned: {fileID: 0}
-    monsterID: 
-    monsterDataCurrentCustomer: {fileID: 0}
-    maxUsers: 100
-    currentUsers: 0
-    cost: 0
-    roomObject: {fileID: 5337759631987397356, guid: 983700d96a61f694fa6d05c42c5272d4,
-      type: 3}
-    targets: []
-    level: 0
-  - roomType: {fileID: 11400000, guid: a5bf73b5e70d2494ba552db6b3563c00, type: 2}
-    positionInGrid: {x: -8, y: 0, z: 0}
-    roomID: -1243656
-    roomSize: {x: 8, y: 5, z: 8}
-    roomName: Classic Bedroom
-    activityType: 0
-    type: 0
-    monsterTypeOfRoom: 0
-    roomPlacement: 0100000002000000
-    foodAssigned: {fileID: 0}
-    monsterID: 
-    monsterDataCurrentCustomer: {fileID: 0}
-    maxUsers: 1
-    currentUsers: 0
-    cost: 200
-    roomObject: {fileID: 7979408197378562090, guid: 89b4473d6e7c4184c9f530a6ce3e98e9,
-      type: 3}
-    targets:
-    - <target>k__BackingField: {x: -3.5100002, y: 0, z: 4.22}
-      <isOccupied>k__BackingField: 0
-    level: 0
+  rooms: []

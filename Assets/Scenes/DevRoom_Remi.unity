@@ -1677,7 +1677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hotelRating: {fileID: 11400000, guid: 7d88aa522e463244ca800073981e1958, type: 2}
-  _argentSO: {fileID: 0}
+  _argentSO: {fileID: 11400000, guid: 0b016898511f3d946acacfb7d94e6b86, type: 2}
   dailyCosts:
   - 55
   - 65
@@ -2069,9 +2069,10 @@ MonoBehaviour:
     type: 3}
   _roomPrefab: {fileID: 2659752755310764401, guid: 020646ed6356bfc4d9123d7735cee3fc,
     type: 3}
-  _placementSystem: {fileID: 1199194077}
   _monsterPanelUI: {fileID: 342024897}
+  _placementSystem: {fileID: 1199194077}
   monsterID: 
+  canUpdateRoomsList: 0
 --- !u!114 &342024897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2089,10 +2090,12 @@ MonoBehaviour:
   _roomPanel: {fileID: 1182677354}
   _availableRooms: {fileID: 1584407080}
   _canAssignRoomYet: {fileID: 1067311201}
+  _commentPanel: {fileID: 0}
   _availableRoomsPanelUI: {fileID: 342024896}
   _monsterSelectionManager: {fileID: 648821552}
   _hotel: {fileID: 11400000, guid: ac4712e4fd465c245a602f4d45d56f09, type: 2}
   _monsterName: {fileID: 454623512}
+  _monsterPic: {fileID: 0}
   _monsterStayDay: {fileID: 412735229}
   _monsterController: {fileID: 0}
 --- !u!114 &342024898
@@ -7346,6 +7349,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   _dataHotel: {fileID: 11400000, guid: ac4712e4fd465c245a602f4d45d56f09, type: 2}
+  zoom:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: fca5d664-0516-4f51-a2e5-df1babc41291
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  zoomSpeed: 10
+  zoomMin: 40
+  zoomMax: 140
 --- !u!114 &1339148805
 MonoBehaviour:
   m_ObjectHideFlags: 0

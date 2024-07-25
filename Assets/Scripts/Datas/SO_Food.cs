@@ -11,6 +11,8 @@ public class SO_Food : ScriptableObject
 
     public FoodType[] typeList;
 
+    public int coinCost;
+    public int quantityBuyable = 1;
     public bool isUnlocked = false;
 
 
