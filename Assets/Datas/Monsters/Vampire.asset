@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Vampire
   m_EditorClassIdentifier: 
   monsterType: 0
-  speciesDescription: A vampire is a mythical creature that subsists by feeding on
-    the vital essence (generally in the form of blood) of the living
+  speciesDescription: vampiredescription
   eatingHourMin: 22
   eatingHourMax: 1
   activityHourMin: 1

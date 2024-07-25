@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Witch
   m_EditorClassIdentifier: 
   monsterType: 1
-  speciesDescription: 
+  speciesDescription: witchdescription
   eatingHourMin: 14
   eatingHourMax: 17
   activityHourMin: 6

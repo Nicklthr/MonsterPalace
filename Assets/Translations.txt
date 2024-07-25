@@ -28,6 +28,22 @@ butcher	butcher	un boucher
 gimp	gimp	un gimp
 ghoul	ghoul	une goule
 yokai	yokai	un yokai
+vampiremenu	Vampire	Vampire
+witchmenu	Witch	Sorcière
+werewolfmenu	Werewolf	Loup-garou
+demonmenu	Demon	Démon
+butchermenu	Butcher	Boucher
+gimpmenu	Gimp	Gimp
+ghoulmenu	Ghoul	Goule
+yokaimenu	Yokai	Yokai
+vampiredescription	A vampire is a mythical creature that subsists by feeding on the vital essence (generally in the form of blood) of the living	Un vampire est une créature mythique qui subsiste en se nourrissant de l'essence vitale (généralement sous forme de sang) des vivants.
+witchdescription	witch description	Description d'une sorcière
+werewolfdescription	werewolf description	Description d'un loup-garou
+demondescription	demon description	Description d'un démon
+butcherdescription	butcher description	Description d'un boucher
+gimpdescription	gimp description	Description d'un gimp
+ghouldescription	ghoul description	Description d'une goule
+yokaidescription	yokai description	Description d'un yokai
 library	library	la bibliothèque
 musichall	music hall	la salle de musique
 gym	gym	la salle de sport
@@ -36,6 +52,20 @@ tortureroom	torture room	la salle de torture
 bathroom	bathroom	la salle de bain
 souvenirshop	souvenir shop	la boutique de souvenirs
 pool	pool	la piscine
+librarymenu	Library	Bibliothèque
+musichallmenu	Music Hall	Salle de Musique
+gymmenu	Gym	Salle de sport
+hothousemenu	Hothouse	Serre
+tortureroommenu	Torture Room	Salle de Torture
+bathroommenu	Bathroom	Salle de Bain
+souvenirshopmenu	Souvenir Shop	Boutique de Souvenirs
+poolmenu	Pool	Piscine
+carnmenu	Carnivor	Carnivore
+veganmenu	Vegan	Vegetarien
+liquidmenu	Liquid	Liquide
+solidmenu	Solid	Solide
+rawmenu	Raw	Cru
+cookedmenu	Cooked	Cuit
 carn	carnivor	carnivore
 vegan	vegan	vegetarienne
 liquid	liquid	liquide
@@ -46,3 +76,13 @@ underground	underground	souterrains
 overground	overground	au dessus du sol
 light	bright	lumineux
 dark	dark	sombres
+undergroundmenu	Underground	Sous-sol
+overgroundmenu	Overground	Sur-sol
+lightmenu	Bright	Lumineux
+darkmenu	Dark	Sombre
+foodbutton	Food	Repas
+placementbutton	Placements	Emplacements
+neighbourbutton	Neighbours	Voisins
+activitybutton	Activities	Activités
+likelabel	Likes	Aime
+dislikelabel	Dislikes	N'aime pas

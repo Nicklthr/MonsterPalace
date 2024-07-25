@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Demon
   m_EditorClassIdentifier: 
   monsterType: 3
-  speciesDescription: 
+  speciesDescription: demondescription
   eatingHourMin: 23
   eatingHourMax: 2
   activityHourMin: 10

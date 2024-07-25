@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gimp
   m_EditorClassIdentifier: 
   monsterType: 5
-  speciesDescription: 
+  speciesDescription: gimpdescription
   eatingHourMin: 11
   eatingHourMax: 14
   activityHourMin: 18

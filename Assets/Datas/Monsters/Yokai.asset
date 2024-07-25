@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Yokai
   m_EditorClassIdentifier: 
   monsterType: 7
-  speciesDescription: 
+  speciesDescription: yokaidescription
   eatingHourMin: 6
   eatingHourMax: 9
   activityHourMin: 0

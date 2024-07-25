@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WereWolf
   m_EditorClassIdentifier: 
   monsterType: 2
-  speciesDescription: 
+  speciesDescription: werewolfdescription
   eatingHourMin: 13
   eatingHourMax: 0
   activityHourMin: 22

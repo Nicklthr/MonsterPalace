@@ -59,28 +59,28 @@ public class BestiaryCard : MonoBehaviour
                 {
                     _image.sprite = _foodType.sprite;
                 }
-                _label.AssignID(_foodType.type.ToString());
+                _label.AssignID(_foodType.type.ToString() + "menu");
                 break;
             case ButtonSelected.NEIGHBOURS:
                 if (_monster.monsterSprite != null)
                 {
                     _image.sprite = _monster.monsterSprite;
                 }
-                _label.AssignID(_monster.monsterType.ToString());
+                _label.AssignID(_monster.monsterType.ToString() + "menu");
                 break;
             case ButtonSelected.PLACEMENT:
                 if (_placement.sprite != null)
                 {
                     _image.sprite = _placement.sprite;
                 }
-                _label.AssignID(_placement.type.ToString());
+                _label.AssignID(_placement.type.ToString() + "menu");
                 break;
             case ButtonSelected.ACTIVITY:
                 if (_activity.sprite != null)
                 {
                     _image.sprite = _activity.sprite;
                 }
-                _label.AssignID(_activity.type.ToString());
+                _label.AssignID(_activity.type.ToString() + "menu");
                 break;
             default:
                 break;

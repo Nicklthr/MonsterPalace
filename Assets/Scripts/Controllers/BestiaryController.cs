@@ -80,8 +80,8 @@ public class BestiaryController : MonoBehaviour
     public void ChargeMonsterDatas(int index)
     {
         _speciesSprite.sprite = _bestiary.monsterEntries[index].monsterDatas.monsterSprite;
-        _speciesName.AssignID(_bestiary.monsterEntries[index].monsterDatas.monsterType.ToString());
-        // _speciesDescription.AssignID(_bestiary.monsterEntries[index].monsterDatas.monsterType.ToString()+"description");
+        _speciesName.AssignID(_bestiary.monsterEntries[index].monsterDatas.monsterType.ToString()+"menu");
+        _speciesDescription.AssignID(_bestiary.monsterEntries[index].monsterDatas.speciesDescription);
         ReloadList(_foodLikesList, ButtonSelected.FOOD, 1);
         ReloadList(_foodDislikesList, ButtonSelected.FOOD, 2);
         ReloadList(_neighbourLikesList, ButtonSelected.NEIGHBOURS, 1);

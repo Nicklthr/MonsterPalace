@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Butcher
   m_EditorClassIdentifier: 
   monsterType: 4
-  speciesDescription: 
+  speciesDescription: butcherdescription
   eatingHourMin: 19
   eatingHourMax: 22
   activityHourMin: 13
