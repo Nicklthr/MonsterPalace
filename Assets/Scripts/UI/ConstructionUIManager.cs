@@ -49,6 +49,7 @@ public class ConstructionUIManager : MonoBehaviour
     {
         _placementSystem = FindObjectOfType<PlacementSystem>();
         builderBtn.GetComponent<Button>().onClick.AddListener( OpenConstructionPanel );
+        builderBtn.GetComponent<Button>().onClick.AddListener( () => _placementSystem.ToggleGridVisualization() );
     }
 
     private void VerifyReferences()
@@ -87,6 +88,7 @@ public class ConstructionUIManager : MonoBehaviour
         backButton.GetComponent<Button>().onClick.AddListener(() => roomConstructionPanel.SetActive( false ) );
         backButton.GetComponent<Button>().onClick.AddListener(() => builderBtn.SetActive( true ) );
         backButton.GetComponent<Button>().onClick.AddListener(() => mainPanel.SetActive( true ) );
+        backButton.GetComponent<Button>().onClick.AddListener(() => _placementSystem.ToggleGridVisualization());
     }
 
     private void OpenCategoryRooms( RoomDB category )

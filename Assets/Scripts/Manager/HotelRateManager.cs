@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [Serializable]
 public class RateReviews
@@ -35,7 +36,30 @@ public class HotelRateManager : MonoBehaviour
     public int totalReviews;
 
     public event Action OnReviewAdd;
+    public event Action OnInitialRating;
     public SO_HotelRating hotelRating;
+
+    public UnityEvent OnRatingBottom = new UnityEvent();
+    public UnityEvent OnRatingPalace = new UnityEvent();
+
+    private void Start()
+    {
+        hotelRating.InitializeRateing();
+        averageCurrentRating = hotelRating.intialStartRating;
+        OnInitialRating?.Invoke();
+    }
+
+    private void Update()
+    {
+        if ( hotelRating.currentStartRating < 1 )
+        {
+            OnRatingBottom.Invoke();
+        }
+        else if ( hotelRating.currentStartRating >= 5 )
+        {
+            OnRatingPalace.Invoke();
+        }
+    }
 
     public void RateUpdate()
     {
@@ -47,10 +71,7 @@ public class HotelRateManager : MonoBehaviour
         }
 
         averageCurrentRating = averageCurrentRating / listReviews.Count;
-        //Debug.Log(averageCurrentRating);
-
         hotelRating.currentStartRating = (int)averageCurrentRating;
-        //Debug.Log(hotelRating.currentStartRating);
 
         totalReviews = listReviews.Count;
     }

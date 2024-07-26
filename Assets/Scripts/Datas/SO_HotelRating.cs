@@ -8,4 +8,10 @@ using UnityEngine;
 public class SO_HotelRating : ScriptableObject
 {
     public int currentStartRating = 0;
+    public int intialStartRating = 2;
+
+    public void InitializeRateing()
+    {
+        currentStartRating = intialStartRating;
+    }
 }

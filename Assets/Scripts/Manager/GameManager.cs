@@ -37,6 +37,10 @@ public class GameManager : MonoBehaviour
     public UnityEvent onRunLost = new UnityEvent();
     public UnityEvent onRunWin = new UnityEvent();
 
+    [Space(10)]
+    [Header("Referances")]
+    [SerializeField] private ArgentSO _argent;
+
     private void Update()
     {
         OnStateUpdate();
@@ -67,7 +71,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.RUNEND:
                 Time.timeScale = 0;
-                if (isRunWin)
+
+                if ( isRunWin )
                 {
                     onRunWin.Invoke();
                 }
@@ -75,7 +80,9 @@ public class GameManager : MonoBehaviour
                 {
                     onRunLost.Invoke();
                 }
+
                 isRunEnd = true;
+                
                 break;
             default:
                 break;
@@ -211,13 +218,24 @@ public class GameManager : MonoBehaviour
         isPlay = true;
     }
 
-    public void RunOver()
+    public void RunOver(bool isWin)
     {
         isRunEnd = true;
+        isRunWin = isWin;
     }
 
     public void RestartGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
+
+    public void BackToMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
+
+    public void StartNewRun()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Run");
     }
 }

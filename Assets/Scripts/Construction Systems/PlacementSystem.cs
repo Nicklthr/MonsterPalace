@@ -129,7 +129,7 @@ public class PlacementSystem : MonoBehaviour
         if (_roomIndicator != null)
             Destroy(_roomIndicator);
 
-        gridVisualization.SetActive(false);
+        //gridVisualization.SetActive(false);
         _inputManager.OnClicked -= PlaceRoom;
         _inputManager.OnExit -= StopPlacement;
 
@@ -442,5 +442,10 @@ public class PlacementSystem : MonoBehaviour
             return baseRooms.Max(x => x.level);
         }
 
+    }
+
+    public void ToggleGridVisualization()
+    {
+        gridVisualization.SetActive(!gridVisualization.activeSelf);
     }
 }
