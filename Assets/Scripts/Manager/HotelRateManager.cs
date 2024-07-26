@@ -45,6 +45,13 @@ public class HotelRateManager : MonoBehaviour
     private void Start()
     {
         hotelRating.InitializeRateing();
+
+        AddReview(new RateReviews(2, "Great hotel", "Dracula", MonsterType.VAMPIRE));
+        AddReview(new RateReviews(2, "Not bad", "Frankenstein", MonsterType.GHOUL));
+        AddReview(new RateReviews(2, "I love it", "Wolfy", MonsterType.WEREWOLF));
+        AddReview(new RateReviews(2, "Good place", "Mother", MonsterType.WITCH));
+        AddReview(new RateReviews(2, "I will come back", "Bhou", MonsterType.YOKAI));
+
         averageCurrentRating = hotelRating.intialStartRating;
         OnInitialRating?.Invoke();
     }
