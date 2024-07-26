@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd008a58e31e944ea8162bafc397f39, type: 3}
   m_Name: HotelRating
   m_EditorClassIdentifier: 
-  currentStartRating: 4
+  currentStartRating: 0
+  intialStartRating: 2

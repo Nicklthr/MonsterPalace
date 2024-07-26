@@ -42,8 +42,7 @@ public class ReviewPanelManagerUI : MonoBehaviour
             ToggleReviewsListPanel();
         });
 
-        UpdateGlobalReviewAtStart();
-
+        _hotelRateManager.OnInitialRating += UpdateGlobalReviewAtStart;
         _hotelRateManager.OnReviewAdd += UpdateGlobalReview;
     }
 

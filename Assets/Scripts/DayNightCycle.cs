@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class DayNightCycle : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class DayNightCycle : MonoBehaviour
     public int startHour = 0;
 
     public UnityEvent OnNextDay = new UnityEvent();
+    public event Action OnNextDayAction;
 
     
 
@@ -50,6 +52,7 @@ public class DayNightCycle : MonoBehaviour
             dayCount++;
             timer = 0;
             OnNextDay.Invoke();
+            OnNextDayAction?.Invoke();
         }
     }
 

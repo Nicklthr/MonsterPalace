@@ -6,8 +6,7 @@ using UnityEngine.Events;
 
 public class HotelController : MonoBehaviour
 {
-    [SerializeField]
-    private SO_Hotel _hotel;
+    public SO_Hotel _hotel;
     [SerializeField]
     private SO_RoomType _dataBase;
     [SerializeField]
@@ -23,7 +22,6 @@ public class HotelController : MonoBehaviour
 
     public void InitializeHotel()
     {
-        // Initialize the hotel
         _hotel.rooms.Clear();
         AddBaseRoom();
     }
