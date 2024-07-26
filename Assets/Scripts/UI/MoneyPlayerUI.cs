@@ -19,6 +19,7 @@ public class MoneyPlayerUI : MonoBehaviour
 
         _moneyManager.OnPayement += UpdateUI;
         _moneyManager.OnMoneyChange += UpdateUI;
+
         _placementSystem.OnRoomPlaced += UpdateUI;
         _placementSystem.OnStairPlaced += UpdateUI;
     }
