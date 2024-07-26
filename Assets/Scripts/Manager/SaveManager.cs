@@ -85,4 +85,17 @@ public class SaveManager : MonoBehaviour
         onEndLoad.Invoke();
 
     }
+
+    public bool checkSaveExist()
+    {
+        if (ES3.FileExists())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }    
+        
+    }
 }
