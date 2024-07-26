@@ -40,6 +40,12 @@ public class GameManager : MonoBehaviour
     [Space(10)]
     [Header("Referances")]
     [SerializeField] private ArgentSO _argent;
+    [SerializeField] private SaveManager _saveManager;
+
+    private void Start()
+    {
+        _saveManager = FindObjectOfType<SaveManager>();
+    }
 
     private void Update()
     {
