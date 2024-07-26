@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DailyTaxes : MonoBehaviour
 {
-    public DayNightCycle cycle;
-    public ArgentSO argent;
+    private DayNightCycle _cycle;
+    private MoneyManager _argent;
+    private HotelController _hotel;
 
     [SerializeField]
     private int taxeHour = 8;
@@ -24,14 +25,21 @@ public class DailyTaxes : MonoBehaviour
     public float specialRoomTaxes = 16f;
     public float activityRoomTaxes = 22f;
 
+    private void Start()
+    {
+        _cycle = FindObjectOfType<DayNightCycle>();
+        _argent = FindObjectOfType<MoneyManager>();
+        _hotel = FindObjectOfType<HotelController>();
+    }
+
     void Update()
     {
-        if (cycle.currentHour == taxeHour && !taxed)
+        if ( _cycle.currentHour == taxeHour && !taxed )
         {
             Taxes();
         }
 
-        if (cycle.currentHour == taxeHour + 1)
+        if ( _cycle.currentHour == taxeHour + 1 )
         {
             taxed = false;
         }
@@ -39,11 +47,28 @@ public class DailyTaxes : MonoBehaviour
 
     public void Taxes()
     {
-        argent.playerMoney -= basicRoomTaxes * basicRoomNumber;
-        argent.playerMoney -= specialRoomTaxes * specialRoomNumber;
-        argent.playerMoney -= activityRoomTaxes * activityRoomNumber;
+
+        _argent.PayTaxe(basicRoomTaxes * FindCountRoomByType(RoomType.BASE));
+        _argent.PayTaxe(specialRoomTaxes * FindCountRoomByType(RoomType.BEDROOM));
+        _argent.PayTaxe(activityRoomTaxes * FindCountRoomByType(RoomType.ACTIVITY));
+
         taxed = true;
+
         Debug.Log("Payement quotidien effectué!");
-        Debug.Log(argent.playerMoney);
+    }
+
+    public int FindCountRoomByType(RoomType type)
+    {
+        int count = _hotel._hotel.rooms.FindAll(room => room.type == type).Count;
+
+        if ( count == 0 )
+        {
+            Debug.LogWarning("Aucune pièce de type " + type + " n'a été trouvée.");
+            return 0;
+        }
+        else
+        {
+            return count;
+        }
     }
 }

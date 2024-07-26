@@ -10,10 +10,12 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private SO_Hotel _dataHotel;
 
+    [Space(10)]
+    [Header("Zoom")]
     public InputAction zoom;
     [SerializeField] private float zoomSpeed = 10f;
-    [SerializeField] private float zoomMin = 40f;
-    [SerializeField] private float zoomMax = 140f;
+    [SerializeField] private float zoomMin = 10.40f;
+    [SerializeField] private float zoomMax = -3f;
 
 
     private void Update()
@@ -104,7 +106,10 @@ public class CameraController : MonoBehaviour
 
         float zoomValue = zoom.ReadValue<float>();
 
-        Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView - zoomValue * zoomSpeed * Time.deltaTime, zoomMin, zoomMax);
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, 
+                                                     Camera.main.transform.position.y, 
+                                                     Mathf.Clamp(Camera.main.transform.position.z + zoomValue * zoomSpeed * Time.deltaTime, zoomMax, zoomMin)
+                                                    );
     }
 
     public bool IsPointerOverUI()

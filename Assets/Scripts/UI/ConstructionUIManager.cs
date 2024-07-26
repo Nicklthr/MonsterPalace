@@ -112,7 +112,6 @@ public class ConstructionUIManager : MonoBehaviour
             button.GetComponent<RoomBtnUI>().SetName(room.roomName.ToString());
 
             button.GetComponent<Button>().onClick.AddListener( () => CreateNewRoom( room ) );
-            button.GetComponent<Button>().onClick.AddListener( () => _argent.playerMoney -= room.cost );
             button.name = room.roomName.ToString();
 
             //button.GetComponent<RoomBtnUI>().SetPriceColor(_colorMoneyCan);

@@ -27,16 +27,19 @@ public class PlacementSystem : MonoBehaviour
 
     private GameObject _roomIndicator;
     private PreviewRoom _previewRoom;
+    private MoneyManager _moneyManager;
 
     public event Action OnRoomPlaced, OnStairPlaced;
     public UnityEvent OnRoomBuild = new UnityEvent();
     public UnityEvent OnStairBuild = new UnityEvent();
+    public UnityEvent OnNoEnoughMoney = new UnityEvent();
     public bool IsPlacingRoom => _selectedRoom != null;
 
     private void Start()
     {
         StopPlacement();
         _mouseIndicator.SetActive(false);
+        _moneyManager = FindObjectOfType<MoneyManager>();
     }
 
     public void StartPlacement(SO_RoomType room)
@@ -58,6 +61,11 @@ public class PlacementSystem : MonoBehaviour
     {
         if (_inputManager.IsPointerOverUI())
             return;
+
+        if (!CheckIfEnoughMoney(_selectedRoom.cost))
+        {
+            return;
+        }
 
         Vector3 mousePosition = _inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = _grid.WorldToCell(mousePosition);
@@ -100,6 +108,8 @@ public class PlacementSystem : MonoBehaviour
                 newRoom.GetComponent<RoomController>().ToggleLights();
 
                 _hotel.AddRoom(room);
+                _moneyManager.PayRoom( _selectedRoom.cost );
+
                 OnRoomPlaced?.Invoke();
                 OnRoomBuild.Invoke();
             } else
@@ -346,6 +356,7 @@ public class PlacementSystem : MonoBehaviour
 
     public void AddUnderStaire()
     {
+
         Debug.Log("Add basement");
 
         List<Room> baseRooms = _hotel.rooms.FindAll(room => room.roomType.roomType == RoomType.BASE);
@@ -353,6 +364,11 @@ public class PlacementSystem : MonoBehaviour
         if ( baseRooms.Count == 0 )
         {
             Console.WriteLine("Aucune pièce de type BASE trouvée.");
+            return;
+        }
+
+        if (!CheckIfEnoughMoney(_stairRoom.cost))
+        {
             return;
         }
 
@@ -385,6 +401,8 @@ public class PlacementSystem : MonoBehaviour
         roomInstance.GetComponent<StairCaseController>().ActivateGround();
 
         _hotel.rooms.Add(new Room( _stairRoom, position, roomInstance.name, level ));
+        _moneyManager.PayRoom(_stairRoom.cost);
+
         OnStairBuild.Invoke();
         OnStairPlaced?.Invoke();
     }
@@ -396,6 +414,11 @@ public class PlacementSystem : MonoBehaviour
         if (baseRooms.Count == 0)
         {
             Console.WriteLine("Aucune pièce de type BASE trouvée.");
+            return;
+        }
+
+        if (!CheckIfEnoughMoney(_stairRoom.cost))
+        {
             return;
         }
 
@@ -424,6 +447,8 @@ public class PlacementSystem : MonoBehaviour
         roomInstance.GetComponent<StairCaseController>().DesactivateGround();
 
         _hotel.rooms.Add(new Room(_stairRoom, position, roomInstance.name, level));
+        _moneyManager.PayRoom(_stairRoom.cost);
+
         OnStairBuild.Invoke();
         OnStairPlaced?.Invoke();
     }
@@ -446,6 +471,20 @@ public class PlacementSystem : MonoBehaviour
 
     public void ToggleGridVisualization()
     {
-        gridVisualization.SetActive(!gridVisualization.activeSelf);
+        gridVisualization.SetActive( !gridVisualization.activeSelf );
+    }
+
+    private bool CheckIfEnoughMoney(float cost)
+    {
+        if ( _moneyManager.playerMoney < cost )
+        {
+            OnNoEnoughMoney.Invoke();
+            Debug.Log("Not enough money");
+            return false ;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

@@ -13,6 +13,7 @@ TagManager:
   - Room
   - Bestiary
   - doNotDelete
+  - ShopEvent
   layers:
   - Default
   - TransparentFX
