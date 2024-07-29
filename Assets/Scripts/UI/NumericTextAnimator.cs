@@ -48,15 +48,19 @@ public class NumericTextAnimator : MonoBehaviour
         /// </summary>
         public float Duration;
 
+        public string Suffix;
+
         /// <summary>
         /// Constructeur pour AnimationInfo.
         /// </summary>
         /// <param name="targetValue">La valeur cible de l'animation.</param>
         /// <param name="duration">La durée de l'animation en secondes.</param>
-        public AnimationInfo(int targetValue, float duration)
+        /// <param name="suffix">Le suffixe à ajouter à la fin de la valeur. Par défaut une chaîne vide.</param>
+        public AnimationInfo(int targetValue, float duration, string suffix = "")
         {
             TargetValue = targetValue;
             Duration = duration;
+            Suffix = suffix;
         }
     }
 
@@ -67,14 +71,14 @@ public class NumericTextAnimator : MonoBehaviour
     /// <param name="textMesh">Le composant TextMeshPro à animer.</param>
     /// <param name="newValue">La nouvelle valeur à atteindre.</param>
     /// <param name="duration">La durée de l'animation en secondes. Par défaut 1 seconde.</param>
-    public void AnimateTextTo(TextMeshProUGUI textMesh, int newValue, float duration = 1f)
+    public void AnimateTextTo(TextMeshProUGUI textMesh, int newValue, float duration = 1f, string suffix = "")
     {
         if (!animationQueues.ContainsKey(textMesh))
         {
             animationQueues[textMesh] = new Queue<AnimationInfo>();
         }
 
-        animationQueues[textMesh].Enqueue(new AnimationInfo(newValue, duration));
+        animationQueues[textMesh].Enqueue(new AnimationInfo(newValue, duration, suffix));
 
         if (animationQueues[textMesh].Count == 1)
         {
@@ -92,7 +96,7 @@ public class NumericTextAnimator : MonoBehaviour
         while (animationQueues[textMesh].Count > 0)
         {
             AnimationInfo info = animationQueues[textMesh].Peek();
-            int startValue = int.Parse(textMesh.text);
+            int startValue = int.Parse(textMesh.text.Split(' ')[0]);  // Prend en compte le cas où il y a déjà un suffixe
             float elapsedTime = 0f;
 
             while (elapsedTime < info.Duration)
@@ -100,11 +104,11 @@ public class NumericTextAnimator : MonoBehaviour
                 elapsedTime += Time.deltaTime;
                 float t = elapsedTime / info.Duration;
                 int currentValue = Mathf.RoundToInt(Mathf.Lerp(startValue, info.TargetValue, t));
-                textMesh.text = currentValue.ToString();
+                textMesh.text = currentValue.ToString() + (string.IsNullOrEmpty(info.Suffix) ? "" : " " + info.Suffix);
                 yield return null;
             }
 
-            textMesh.text = info.TargetValue.ToString();
+            textMesh.text = info.TargetValue.ToString() + (string.IsNullOrEmpty(info.Suffix) ? "" : " " + info.Suffix);
             animationQueues[textMesh].Dequeue();
         }
     }
