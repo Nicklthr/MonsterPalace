@@ -3,99 +3,189 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class RoomShopManager : MonoBehaviour
 {
     public JetonSO coins;
-    public TMP_Text coinsTxt;
+    public TextMeshProUGUI coinsTxt;
 
-    public SO_RoomType[] itemInfoSO;
-    public ButtonInfo[] shopPanels;
-    public GameObject[] shopSlots;
-    public Button[] purchaseButtons;
+    [Space(10)]
+    public SO_RoomType[] itemsBedroom;
+    public SO_RoomType[] itemsActivity;
+    public SO_Food[] itemsFood;
 
-    public GameObject roomPage;
-    public GameObject activityPage;
-    public GameObject foodPage;
+    [Space(10)]
+    public GameObject bedroomPanel;
+    public GameObject activityPanel;
+    public GameObject foodPanel;
+
+    [Space (10)]
+    [Header("Button Prefab")]
+    public GameObject buttonFoodPrefab;
+    public GameObject buttonRoomPrefab;
+
+    [Space(10)]
+    [Header("Event")]
+    public UnityEvent OnBuyItem = new UnityEvent();
+    public UnityEvent OnCantBuyItem = new UnityEvent();
 
     void Start()
     {
-        coinsTxt.text = "Coins: " + coins.playerCoin;
-        CheckBuyable();
-        LoadPanels();
+        int coin = (int)coins.playerCoin;
+        NumericTextAnimator.Instance.AnimateTextTo(coinsTxt, coin, 1f);
 
-        for (int i = 0; i < shopSlots.Length; i++)
-        {
-            shopSlots[i].SetActive(true);
-        }
+        CreateBedroomItems();
+        CreateActivityItems();
+        CreateFoodItems();
+        
     }
 
-    public void CheckBuyable()
+    private void CreateFoodItems()
     {
-        for (int i = 0; i < itemInfoSO.Length; i++)
+
+       foreach (SO_Food item in itemsFood)
         {
-            if(coins.playerCoin >= itemInfoSO[i].coinCost)
+            GameObject button = Instantiate(buttonFoodPrefab, foodPanel.transform);
+            ButtonInfo buttonInfo = button.GetComponent<ButtonInfo>();
+
+            buttonInfo.titleTxt.text = item.foodName;
+
+            if (item.isUnlocked)
             {
-                purchaseButtons[i].interactable = true;
+                buttonInfo.priceTxt.gameObject.SetActive(false);
+                buttonInfo.priceInt.text = "Unlocked";
+                button.GetComponent<Button>().interactable = false;
             }
             else
             {
-                purchaseButtons[i].interactable = false;
+                buttonInfo.priceInt.text = item.coinCost.ToString() + " coins";
+                button.GetComponent<Button>().onClick.AddListener(() => BuyItemFood(item));
             }
         }
     }
 
-    public void BuyItem(int btnNumber)
+    private void CreateActivityItems()
     {
-        if(coins.playerCoin >= itemInfoSO[btnNumber].coinCost && itemInfoSO[btnNumber].quantityBuyable > 0)
+        foreach (SO_RoomType item in itemsActivity)
         {
-            coins.playerCoin -= itemInfoSO[btnNumber].coinCost;
-            coinsTxt.text = "Coins: " + coins.playerCoin;
-            CheckBuyable();
+            GameObject button = Instantiate(buttonRoomPrefab, activityPanel.transform);
+            ButtonInfo buttonInfo = button.GetComponent<ButtonInfo>();
 
-            itemInfoSO[btnNumber].quantityBuyable--;
-            itemInfoSO[btnNumber].isUnlocked = true;
-            shopPanels[btnNumber].quantityTxt.text = itemInfoSO[btnNumber].quantityBuyable.ToString();
+            buttonInfo.titleTxt.text = item.roomName;
+
+            if (item.isUnlocked)
+            {
+                buttonInfo.priceTxt.gameObject.SetActive(false);
+                buttonInfo.priceInt.text = "Unlocked";
+                button.GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                buttonInfo.priceInt.text = item.coinCost.ToString() + " coins";
+                button.GetComponent<Button>().onClick.AddListener(() => BuyItem(item));
+            }
         }
     }
 
-    public void LoadPanels()
+    private void CreateBedroomItems()
     {
-        for (int i = 0; i < itemInfoSO.Length; i++)
+        foreach (SO_RoomType item in itemsBedroom)
         {
-            shopPanels[i].titleTxt.text = itemInfoSO[i].roomName;
-            shopPanels[i].priceTxt.text = "Coin(s) " + itemInfoSO[i].coinCost.ToString();
-            shopPanels[i].quantityTxt.text = itemInfoSO[i].quantityBuyable.ToString();
+            GameObject button = Instantiate(buttonRoomPrefab, bedroomPanel.transform);
+            ButtonInfo buttonInfo = button.GetComponent<ButtonInfo>();
+
+            buttonInfo.titleTxt.text = item.roomName;
+
+            if (item.isUnlocked)
+            {
+                buttonInfo.priceTxt.gameObject.SetActive(false);
+                buttonInfo.priceInt.text = "Unlocked";
+                button.GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                buttonInfo.priceInt.text = item.coinCost.ToString() + " coins";
+                button.GetComponent<Button>().onClick.AddListener(() => BuyItem(item));
+            }
         }
     }
 
-    public void ShowRoomPage()
+    public void BuyItemFood(SO_Food item)
     {
-        roomPage.SetActive(true);
+        if (coins.playerCoin >= item.coinCost)
+        {
+            if (coins.playerCoin + item.coinCost < 0)
+            {
+                coins.playerCoin = 0;
+                NumericTextAnimator.Instance.AnimateTextTo(coinsTxt, (int)coins.playerCoin, 1f);
+            }
+            else
+            {
+                coins.playerCoin -= item.coinCost;
+                NumericTextAnimator.Instance.AnimateTextTo(coinsTxt, (int)coins.playerCoin, 1f);
+
+            }
+            item.isUnlocked = true;
+
+            UpdateUI();
+            OnBuyItem.Invoke();
+        }
+        else
+        {
+            OnCantBuyItem.Invoke();
+        }
+
     }
 
-    public void HideRoomPage()
+    public void BuyItem(SO_RoomType item)
     {
-        roomPage.SetActive(false);
+        if (coins.playerCoin >= item.coinCost)
+        {
+            if (coins.playerCoin + item.coinCost < 0)
+            {
+                coins.playerCoin = 0;
+                NumericTextAnimator.Instance.AnimateTextTo(coinsTxt, (int)coins.playerCoin, 1f);
+            }
+            else
+            {
+                coins.playerCoin -= item.coinCost;
+                NumericTextAnimator.Instance.AnimateTextTo(coinsTxt, (int)coins.playerCoin, 1f);
+
+            }
+
+            item.isUnlocked = true;
+
+            UpdateUI();
+            OnBuyItem.Invoke();
+        }
+        else
+        {
+            OnCantBuyItem.Invoke();
+        }
+
     }
 
-    public void ShowActivityPage()
+    private void UpdateUI()
     {
-        activityPage.SetActive(true);
+        foreach (Transform child in bedroomPanel.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (Transform child in activityPanel.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (Transform child in foodPanel.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        CreateBedroomItems();
+        CreateActivityItems();
+        CreateFoodItems();
     }
 
-    public void HideActivityPage()
-    {
-        activityPage.SetActive(false);
-    }
-
-    public void ShowFoodPage()
-    {
-        foodPage.SetActive(true);
-    }
-
-    public void HideFoodPage()
-    {
-        foodPage.SetActive(false);
-    }
 }

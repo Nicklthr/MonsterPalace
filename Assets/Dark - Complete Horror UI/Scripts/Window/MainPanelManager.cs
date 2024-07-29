@@ -50,6 +50,7 @@ namespace Michsky.UI.Dark
             public GameObject panelObject;
             public GameObject panelButton;
             public GameObject defaultSelected;
+            public bool isLock = false;
         }
 
         void OnEnable()
@@ -109,8 +110,14 @@ namespace Michsky.UI.Dark
 
         public void OpenPanel(string newPanel)
         {
+
             for (int i = 0; i < panels.Count; i++)
             {
+                if (panels[i].panelName == newPanel && panels[i].isLock)
+                {
+                    return;
+                }
+
                 if (panels[i].panelName == newPanel)
                     newPanelIndex = i;
             }
@@ -155,6 +162,11 @@ namespace Michsky.UI.Dark
 
         public void NextPage()
         {
+            if (panels[currentPanelIndex + 1].isLock)
+            {
+                return;
+            }
+
             if (currentPanelIndex <= panels.Count - 2)
             {
                 StopCoroutine("DisablePreviousPanel");
@@ -201,6 +213,11 @@ namespace Michsky.UI.Dark
 
         public void PrevPage()
         {
+            if (panels[currentPanelIndex - 1].isLock)
+            {
+                return;
+            }
+
             if (currentPanelIndex >= 1)
             {
                 StopCoroutine("DisablePreviousPanel");

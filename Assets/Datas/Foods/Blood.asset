@@ -16,6 +16,6 @@ MonoBehaviour:
   sprite: {fileID: 0}
   description: description
   typeList: 020000000300000004000000
-  coinCost: 5
+  coinCost: 15
   quantityBuyable: 1
-  isUnlocked: 0
+  isUnlocked: 1

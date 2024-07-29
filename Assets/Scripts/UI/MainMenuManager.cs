@@ -1,15 +1,27 @@
+using Michsky.UI.Dark;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Michsky.UI.Dark.MainPanelManager;
 
 public class MainMenuManager : MonoBehaviour
 {
     private SaveManager _saveManager;
 
     public GameObject newGame;
-    public GameObject[] panelToHide;
+    public List<PanelToHide> panelToHide = new List<PanelToHide>();
+
+    public MainPanelManager mainPanelManager;
 
     public bool debug = false;
+
+    [System.Serializable]
+    public class PanelToHide
+    {
+        public GameObject panel;
+        public string panelName;
+        public GameObject button;
+    }
 
     void Start()
     {
@@ -22,18 +34,44 @@ public class MainMenuManager : MonoBehaviour
         {
             newGame.SetActive(false);
 
-            foreach ( GameObject panel in panelToHide )
+            foreach (PanelToHide panel in panelToHide )
             {
-                panel.SetActive(true);
+                panel.panel.SetActive(true);
+
+                if (panel.button != null)
+                {
+                    panel.button.SetActive(true);
+                }
+
+                foreach (PanelItem item in mainPanelManager.panels)
+                {
+                    if (item.panelName == panel.panelName)
+                    {
+                        item.isLock = false;
+                    }
+                }
             }
         }
         else
         {
-            newGame.SetActive(true);
+            newGame.SetActive( true );
 
-            foreach (GameObject panel in panelToHide)
+            foreach (PanelToHide panel in panelToHide)
             {
-                panel.SetActive(false);
+                panel.panel.SetActive(false);
+
+                if (panel.button != null)
+                {
+                    panel.button.SetActive(false);
+                }
+
+                foreach (PanelItem item in mainPanelManager.panels)
+                {
+                    if (item.panelName == panel.panelName)
+                    {
+                        item.isLock = true;
+                    }
+                }
             }
         }
         

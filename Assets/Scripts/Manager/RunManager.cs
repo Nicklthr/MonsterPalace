@@ -1,10 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using Michsky.UI.Dark;
 
 public class RunManager : MonoBehaviour
 {
     [SerializeField] private SaveManager _saveManager;
+    [SerializeField] private MusicController _musicController;
+    [SerializeField] private UIDissolveEffect _dissolveEffect;
+
+    [SerializeField] private AudioClip _runMusic;
 
     public UnityEvent onRunStart = new UnityEvent();
     public UnityEvent onRunPause = new UnityEvent();
@@ -26,6 +31,12 @@ public class RunManager : MonoBehaviour
         GameManager.Instance.onPauseExit.AddListener(OnRunResume);
         GameManager.Instance.onRunLost.AddListener(OnRunLost);
         GameManager.Instance.onRunWin.AddListener(OnRunWin);
+    }
+
+    public void Start()
+    {
+        _musicController.PlayMusic( _runMusic, true );
+        _dissolveEffect.DissolveOut();
     }
 
     private void OnDestroy()

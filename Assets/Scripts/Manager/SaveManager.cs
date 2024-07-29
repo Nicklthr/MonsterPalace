@@ -31,7 +31,6 @@ public class SaveManager : MonoBehaviour
 
         onSaveGame.Invoke();
 
-
         ES3.Save("bestiary", bestiary);
         ES3.Save("jetons", jetons);
 

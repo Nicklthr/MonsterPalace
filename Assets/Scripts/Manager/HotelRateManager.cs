@@ -43,11 +43,11 @@ public class HotelRateManager : MonoBehaviour
     {
         hotelRating.InitializeRateing();
 
-        AddReview(new RateReviews(2, "Great hotel", "Dracula", MonsterType.VAMPIRE));
-        AddReview(new RateReviews(2, "Not bad", "Frankenstein", MonsterType.GHOUL));
-        AddReview(new RateReviews(2, "I love it", "Wolfy", MonsterType.WEREWOLF));
-        AddReview(new RateReviews(2, "Good place", "Mother", MonsterType.WITCH));
-        AddReview(new RateReviews(2, "I will come back", "Bhou", MonsterType.YOKAI));
+        AddReview(new RateReviews(2, "Great hotel", "Dracula", MonsterType.VAMPIRE), false);
+        AddReview(new RateReviews(2, "Not bad", "Frankenstein", MonsterType.GHOUL), false);
+        AddReview(new RateReviews(2, "I love it", "Wolfy", MonsterType.WEREWOLF), false);
+        AddReview(new RateReviews(2, "Good place", "Mother", MonsterType.WITCH), false);
+        AddReview(new RateReviews(2, "I will come back", "Bhou", MonsterType.YOKAI), false);
 
         averageCurrentRating = hotelRating.intialStartRating;
         OnInitialRating?.Invoke();
@@ -80,10 +80,12 @@ public class HotelRateManager : MonoBehaviour
         totalReviews = listReviews.Count;
     }
 
-    public void AddReview(RateReviews reviews)
+    public void AddReview(RateReviews reviews, bool useEvent = true)
     {
         listReviews.Add(reviews);
         RateUpdate();
-        OnReviewAdd?.Invoke();
+        if( useEvent) {
+            OnReviewAdd?.Invoke();
+        }
     }
 }
