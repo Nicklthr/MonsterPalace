@@ -28,6 +28,6 @@ public class MoneyPlayerUI : MonoBehaviour
     {
         int money = (int)_argentSO.playerMoney;
 
-        NumericTextAnimator.Instance.AnimateTextTo(_argentText, money, 1f);
+        NumericTextAnimator.Instance.AnimateTextTo(_argentText, money, 1f, "$");
     }
 }

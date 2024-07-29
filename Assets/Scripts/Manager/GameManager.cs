@@ -58,6 +58,12 @@ public class GameManager : MonoBehaviour
     [Space(10)]
     [Header("References")]
     [SerializeField] private SaveManager _saveManager;
+    [SerializeField] private MusicController _musicController;
+
+    [Space(10)]
+    [Header("Music")]
+    public AudioClip gameMusic;
+
 
     private void Awake()
     {
@@ -91,6 +97,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _saveManager = FindObjectOfType<SaveManager>();
+        _musicController = FindObjectOfType<MusicController>();
     }
 
     private void Update()
@@ -113,6 +120,9 @@ public class GameManager : MonoBehaviour
             case GameState.STARTRUN:
                 Time.timeScale = 1;
                 onPlay.Invoke();
+
+                _musicController.PlayMusic(gameMusic);
+
                 isPlay = true;
                 break;
             case GameState.PAUSE:
