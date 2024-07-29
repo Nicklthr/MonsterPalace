@@ -1,11 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager _instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<GameManager>();
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject("GameManager");
+                    _instance = go.AddComponent<GameManager>();
+                }
+            }
+            return _instance;
+        }
+    }
+
     public enum GameState
     {
         MAINMENU,
@@ -19,7 +37,7 @@ public class GameManager : MonoBehaviour
     public GameState currentState;
 
     public bool isMainMenu = false;
-    public bool isShop = false; 
+    public bool isShop = false;
     public bool isPlay = false;
     public bool isPause = false;
     public bool isRunEnd = false;
@@ -38,9 +56,37 @@ public class GameManager : MonoBehaviour
     public UnityEvent onRunWin = new UnityEvent();
 
     [Space(10)]
-    [Header("Referances")]
-    [SerializeField] private ArgentSO _argent;
+    [Header("References")]
     [SerializeField] private SaveManager _saveManager;
+
+    private void Awake()
+    {
+        if ( _instance == null )
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "MainMenu")
+        {
+            TransitionToState(GameState.MAINMENU);
+        }
+        else if (scene.name == "Run")
+        {
+            if (currentState != GameState.STARTRUN)
+            {
+                TransitionToState(GameState.STARTRUN);
+            }
+        }
+    }
 
     private void Start()
     {
@@ -58,7 +104,6 @@ public class GameManager : MonoBehaviour
         {
             case GameState.MAINMENU:
                 onStart.Invoke();
-                Time.timeScale = 0;
                 isMainMenu = true;
                 break;
             case GameState.SHOP:
@@ -76,8 +121,6 @@ public class GameManager : MonoBehaviour
                 isPause = true;
                 break;
             case GameState.RUNEND:
-                Time.timeScale = 0;
-
                 if ( isRunWin )
                 {
                     onRunWin.Invoke();
@@ -86,11 +129,7 @@ public class GameManager : MonoBehaviour
                 {
                     onRunLost.Invoke();
                 }
-
                 isRunEnd = true;
-                
-                break;
-            default:
                 break;
         }
     }
@@ -165,8 +204,6 @@ public class GameManager : MonoBehaviour
                     TransitionToState(GameState.PAUSE);
                 }
                 break;
-            default:
-                break;
         }
     }
 
@@ -190,9 +227,8 @@ public class GameManager : MonoBehaviour
                 isPause = false;
                 break;
             case GameState.RUNEND:
-                isMainMenu = false;
-                break;
-            default:
+                isRunEnd = false;
+                isRunWin = false;
                 break;
         }
     }
@@ -206,7 +242,7 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
-       Application.Quit();
+        Application.Quit();
     }
 
     public void StartRun()
@@ -232,16 +268,21 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void BackToMainMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void StartNewRun()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Run");
+        SceneManager.LoadScene("Run");
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

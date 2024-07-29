@@ -35,6 +35,16 @@ public class MonsterPanelUI : MonoBehaviour
 
     public event Action OnMonsterPanelOpen, OnMonsterPanelClose;
 
+    private void OnEnable()
+    {
+        MonsterController.OnNewCommentaire += UpdateMonsterCommentaire;
+    }
+
+    private void OnDisable()
+    {
+        MonsterController.OnNewCommentaire -= UpdateMonsterCommentaire;
+    }
+
     public void Start()
     {
         if ( _monsterPanel == null )
@@ -79,7 +89,8 @@ public class MonsterPanelUI : MonoBehaviour
 
         if (_monsterController.commentaries.Count > 0)
         {
-            _commentPanel.GetComponentInChildren<TextMeshProUGUI>().text = _monsterController.commentaries.Last();
+            _commentPanel.SetActive(true);
+            TextMeshFader.Instance.FadeTextWithUpdate(_commentPanel.GetComponentInChildren<TextMeshProUGUI>(), _monsterController.commentaries.Last());
         }
         else
         {
@@ -137,6 +148,15 @@ public class MonsterPanelUI : MonoBehaviour
             }
         }
 
+    }
+
+    private void UpdateMonsterCommentaire(MonsterController monster)
+    {
+        if (monster == _monsterController && monster.commentaries.Count > 0)
+        {
+            _commentPanel.SetActive(true);
+            TextMeshFader.Instance.FadeTextWithUpdate(_commentPanel.GetComponentInChildren<TextMeshProUGUI>(), monster.commentaries.Last());
+        }
     }
 
     private void HideMonsterPanel()

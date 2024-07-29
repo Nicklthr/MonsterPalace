@@ -15,8 +15,8 @@ MonoBehaviour:
   roomName: Gimp Bedroom
   roomSize: {x: 8, y: 5, z: 8}
   roomType: 0
-  activityType: 0
-  monsterTypeOfRoom: 0
+  activityType: 8
+  monsterTypeOfRoom: 5
   maxUsers: 1
   cost: 500
   coinCost: 0
