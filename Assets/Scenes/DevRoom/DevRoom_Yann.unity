@@ -15364,12 +15364,6 @@ PrefabInstance:
       propertyPath: idRef._Values.Array.data[2444]
       value: 
       objectReference: {fileID: 1343755257}
-    - target: {fileID: 7173746792706175094, guid: 5db94c663ba32454b914243f400c339f,
-        type: 3}
-      propertyPath: room
-      value: 
-      objectReference: {fileID: 11400000, guid: 3362b345ce550c5439b700393a8b9573,
-        type: 2}
     - target: {fileID: 8014204671878593909, guid: 5db94c663ba32454b914243f400c339f,
         type: 3}
       propertyPath: m_LocalPosition.x
