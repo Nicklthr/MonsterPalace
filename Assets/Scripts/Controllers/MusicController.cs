@@ -5,6 +5,7 @@ public class MusicController : MonoBehaviour
 {
     public AudioSource audioSource;
     public float fadeDuration = 1f;
+    public float volume = 0.5f;
 
     private Coroutine fadeCoroutine;
 
@@ -24,15 +25,15 @@ public class MusicController : MonoBehaviour
         }
 
         audioSource.clip = musicClip;
-        audioSource.Play();
+        audioSource.PlayDelayed(0.2f);
 
         if (fadeIn)
         {
-            fadeCoroutine = StartCoroutine(FadeMusic(0f, 1f));
+            fadeCoroutine = StartCoroutine(FadeMusic(0f, volume));
         }
         else
         {
-            audioSource.volume = 1f;
+            audioSource.volume = volume;
         }
     }
 

@@ -5,7 +5,7 @@ using TMPro;
 
 public class ButtonInfo : MonoBehaviour
 {
-    public TMP_Text titleTxt;
-    public TMP_Text priceTxt;
-    public TMP_Text quantityTxt;
+    public TextMeshProUGUI titleTxt;
+    public TextMeshProUGUI priceTxt;
+    public TextMeshProUGUI priceInt;
 }
