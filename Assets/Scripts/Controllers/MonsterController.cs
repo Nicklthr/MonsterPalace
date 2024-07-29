@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class MonsterController : MonoBehaviour
 {
@@ -69,6 +70,7 @@ public class MonsterController : MonoBehaviour
 
     //Monster commentary
     public List<string> commentaries = new List<string>();
+    public static event Action<MonsterController> OnNewCommentaire;
 
     //Beahviour tree variables
     #region Beahviour tree variables
@@ -102,12 +104,12 @@ public class MonsterController : MonoBehaviour
 
 
         //Name
-        monsterName = monsterDatas.monsterNameList.Name[Random.Range(0, monsterDatas.monsterNameList.Name.Length)];
+        monsterName = monsterDatas.monsterNameList.Name[UnityEngine.Random.Range(0, monsterDatas.monsterNameList.Name.Length)];
 
         //Eating Hour
         if (monsterDatas.eatingHourMax < monsterDatas.eatingHourMin)
         {
-            eatingHour = Random.Range(monsterDatas.eatingHourMin, (24 + monsterDatas.eatingHourMax));
+            eatingHour = UnityEngine.Random.Range(monsterDatas.eatingHourMin, (24 + monsterDatas.eatingHourMax));
 
             if (eatingHour > 23) 
             {
@@ -116,13 +118,13 @@ public class MonsterController : MonoBehaviour
         }
         else
         {
-            eatingHour = Random.Range(monsterDatas.eatingHourMin, monsterDatas.eatingHourMax);
+            eatingHour = UnityEngine.Random.Range(monsterDatas.eatingHourMin, monsterDatas.eatingHourMax);
         }
 
         //Activity Hour
         if (monsterDatas.activityHourMax < monsterDatas.activityHourMin)
         {
-            activityHour = Random.Range(monsterDatas.activityHourMin, (24 + monsterDatas.activityHourMax));
+            activityHour = UnityEngine.Random.Range(monsterDatas.activityHourMin, (24 + monsterDatas.activityHourMax));
 
             if (activityHour > 23)
             {
@@ -131,7 +133,7 @@ public class MonsterController : MonoBehaviour
         }
         else
         {
-            activityHour = Random.Range(monsterDatas.activityHourMin, monsterDatas.activityHourMax);
+            activityHour = UnityEngine.Random.Range(monsterDatas.activityHourMin, monsterDatas.activityHourMax);
         }
 
         //Preventing Activity and Eating Hour to Overlap
@@ -156,7 +158,7 @@ public class MonsterController : MonoBehaviour
         }
 
         //StayDuration
-        stayDuration = Random.Range(stayDurationMin, stayDurationMax);
+        stayDuration = UnityEngine.Random.Range(stayDurationMin, stayDurationMax);
 
         //ReceptionPosition
         //agent.destination = receptionPosition.position;
@@ -391,6 +393,7 @@ public class MonsterController : MonoBehaviour
         }
 
         commentaries.Add(message);
+        OnNewCommentaire?.Invoke(this);
         //Debug.Log(message);
     }
 

@@ -1,3 +1,4 @@
+using Michsky.UI.Dark;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,7 @@ public class RoomPanelManager : MonoBehaviour
     [SerializeField] private Room _room;
 
     [SerializeField] private TextMeshProUGUI _roomName;
+    [SerializeField] private GameObject _header;
     [SerializeField] private GameObject _freeRoom;
     [SerializeField] private GameObject _customerRow;
     [SerializeField] private GameObject _roomInformations;
@@ -23,6 +25,9 @@ public class RoomPanelManager : MonoBehaviour
     [SerializeField] private Transform _foodGrid;
     [SerializeField] private GameObject _cardPrefab;
     [SerializeField] private List<SO_Food> _foods;
+
+    private bool isDissolvingOut = false;
+    private bool isDissolvingIn = false;
 
     private void Start()
     {
@@ -39,12 +44,15 @@ public class RoomPanelManager : MonoBehaviour
 
     private void ShowRoomPanel()
     {
-        FindRoomInHotel();
+        _roomPanel.SetActive(true);
+        _roomPanel.GetComponent<UIDissolveEffect>().DissolveIn();
 
+        FindRoomInHotel();
+        _header.SetActive(true);
         _roomName.text = _room.roomName;
-        
-        switch( _room.type )
-            {
+
+        switch (_room.type)
+        {
             case RoomType.BEDROOM:
                 HandleRoom();
                 break;
@@ -55,17 +63,32 @@ public class RoomPanelManager : MonoBehaviour
 
         _roomInformations.SetActive(true);
 
-        _roomInformations.GetComponent<RoomInformationsPanelUI>().SetRoomInformations( _room.maxUsers, _room.currentUsers );
-
-        _roomPanel.SetActive(true);
+        _roomInformations.GetComponent<RoomInformationsPanelUI>().SetRoomInformations(_room.maxUsers, _room.currentUsers);
     }
 
     private void HideRoomPanel()
     {
+        if ( isDissolvingOut ) return;
         _room = null;
-        _roomPanel.SetActive(false);
+        _header.SetActive(false);
         _foodRow.SetActive(false);
         _NofoodRow.SetActive(false);
+        _customerRow.SetActive(false);
+        _roomInformations.SetActive(false);
+        _freeRoom.SetActive(false);
+
+        _roomPanel.GetComponent<UIDissolveEffect>().DissolveOut();
+        StartCoroutine(DissolveOut());
+
+    }
+
+    // coroutin to wait for the dissolve effect
+    public IEnumerator DissolveOut()
+    {
+        isDissolvingOut = true;
+        yield return new WaitForSeconds(_roomPanel.GetComponent<UIDissolveEffect>().animationSpeed);
+        _roomPanel.SetActive(false);
+        isDissolvingOut = false;
     }
 
     private void FindRoomInHotel()

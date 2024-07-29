@@ -48,6 +48,7 @@ public class ConstructionUIManager : MonoBehaviour
     private void Start()
     {
         _placementSystem = FindObjectOfType<PlacementSystem>();
+
         builderBtn.GetComponent<Button>().onClick.AddListener( OpenConstructionPanel );
         builderBtn.GetComponent<Button>().onClick.AddListener( () => _placementSystem.ToggleGridVisualization() );
     }
@@ -73,6 +74,7 @@ public class ConstructionUIManager : MonoBehaviour
         foreach ( var category in data.rooms )
         {
             if ( category.RoomType == RoomType.BASE ) continue;
+            if ( category.rooms.Any( room => room.isUnlocked == true ) == false ) continue;
 
             var button = Instantiate(categoryBtnPrefb, roomConstructionPanel.transform);
             button.GetComponentInChildren<TextMeshProUGUI>().text = category.RoomType.ToString();
@@ -113,9 +115,6 @@ public class ConstructionUIManager : MonoBehaviour
 
             button.GetComponent<Button>().onClick.AddListener( () => CreateNewRoom( room ) );
             button.name = room.roomName.ToString();
-
-            //button.GetComponent<RoomBtnUI>().SetPriceColor(_colorMoneyCan);
-            //button.GetComponent<Button>().interactable = true;
         }
 
         var backButton = Instantiate(categoryBtnPrefb, categoryPanel.transform);

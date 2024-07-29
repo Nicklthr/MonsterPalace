@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DailyTaxes : MonoBehaviour
 {
     private DayNightCycle _cycle;
-    private MoneyManager _argent;
+    private MoneyManager _moneyManager;
     private HotelController _hotel;
 
     [SerializeField]
@@ -25,10 +26,12 @@ public class DailyTaxes : MonoBehaviour
     public float specialRoomTaxes = 16f;
     public float activityRoomTaxes = 22f;
 
+    public UnityEvent OnTaxesPaid = new UnityEvent();
+
     private void Start()
     {
         _cycle = FindObjectOfType<DayNightCycle>();
-        _argent = FindObjectOfType<MoneyManager>();
+        _moneyManager = FindObjectOfType<MoneyManager>();
         _hotel = FindObjectOfType<HotelController>();
     }
 
@@ -48,11 +51,13 @@ public class DailyTaxes : MonoBehaviour
     public void Taxes()
     {
 
-        _argent.PayTaxe(basicRoomTaxes * FindCountRoomByType(RoomType.BASE));
-        _argent.PayTaxe(specialRoomTaxes * FindCountRoomByType(RoomType.BEDROOM));
-        _argent.PayTaxe(activityRoomTaxes * FindCountRoomByType(RoomType.ACTIVITY));
+        _moneyManager.PayTaxe(basicRoomTaxes * FindCountRoomByType(RoomType.BASE));
+        _moneyManager.PayTaxe(specialRoomTaxes * FindCountRoomByType(RoomType.BEDROOM));
+        _moneyManager.PayTaxe(activityRoomTaxes * FindCountRoomByType(RoomType.ACTIVITY));
 
         taxed = true;
+
+        OnTaxesPaid.Invoke();
 
         Debug.Log("Payement quotidien effectué!");
     }

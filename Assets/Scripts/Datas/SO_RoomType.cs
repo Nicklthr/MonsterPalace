@@ -67,10 +67,9 @@ public class Room
         this.roomID = roomId;
         this.level = level;
         
-        if ( roomType.roomType == RoomType.ACTIVITY )
-        {
-            this.activityType = roomType.activityType;
-        }
+        this.activityType = roomType.activityType;
+
+        this.monsterTypeOfRoom = roomType.monsterTypeOfRoom;
 
         this.targets = new List<TargetInRoom>();
 
