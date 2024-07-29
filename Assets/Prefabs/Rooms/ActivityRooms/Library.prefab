@@ -4712,7 +4712,7 @@ GameObject:
   - component: {fileID: 5788239077431727729}
   - component: {fileID: 9202612278027755976}
   m_Layer: 10
-  m_Name: "Biblioth\xE8que"
+  m_Name: Library
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
