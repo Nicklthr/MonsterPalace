@@ -63,12 +63,29 @@ public class RoomPanelManager : MonoBehaviour
 
         _roomInformations.SetActive(true);
 
-        _roomInformations.GetComponent<RoomInformationsPanelUI>().SetRoomInformations(_room.maxUsers, _room.currentUsers);
+        string placement = "";
+
+        if ( _room.roomPlacement.Length == 0 )
+        {
+            placement = "No placement";
+        }else if ( _room.roomPlacement.Length == 1 )
+        {
+            placement = _room.roomPlacement[0].ToString();
+        }
+        else
+        {
+            foreach ( RoomPlacement roomPlacement in _room.roomPlacement )
+            {
+                placement += roomPlacement.ToString() + ", ";
+            }
+        }
+
+        _roomInformations.GetComponent<RoomInformationsPanelUI>().SetRoomInformations(_room.maxUsers, _room.currentUsers, placement);
     }
 
     private void HideRoomPanel()
     {
-        if ( isDissolvingOut ) return;
+        //if ( isDissolvingOut ) return;
         _room = null;
         _header.SetActive(false);
         _foodRow.SetActive(false);
@@ -77,8 +94,9 @@ public class RoomPanelManager : MonoBehaviour
         _roomInformations.SetActive(false);
         _freeRoom.SetActive(false);
 
-        _roomPanel.GetComponent<UIDissolveEffect>().DissolveOut();
-        StartCoroutine(DissolveOut());
+        //_roomPanel.GetComponent<UIDissolveEffect>().DissolveOut();
+       // StartCoroutine(DissolveOut());
+        _roomPanel.SetActive(false);
 
     }
 
