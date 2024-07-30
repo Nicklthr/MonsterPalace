@@ -45,6 +45,11 @@ public class MonsterPanelUI : MonoBehaviour
         MonsterController.OnNewCommentaire -= UpdateMonsterCommentaire;
     }
 
+    public void Awake()
+    {
+        _monsterSelectionManager = FindObjectOfType<MonsterSelectionManager>();
+    }
+
     public void Start()
     {
         if ( _monsterPanel == null )

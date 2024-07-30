@@ -94,12 +94,15 @@ public class PlacementSystem : MonoBehaviour
                 if (dir == "right" || dir == "left" && gridPosition.y > 0)
                 {
                     room.AddRoomPlacement( RoomPlacement.LIGHT );
+
                 } else if (dir == "right" || dir == "left" && gridPosition.y < 0 )
                 {
                     room.AddRoomPlacement(RoomPlacement.DARK);
+
                 }else if ( dir == "both" && gridPosition.y > 0 )
                 {
                     room.AddRoomPlacement(RoomPlacement.DARK);
+
                 }else if (dir == "both" && gridPosition.y < 0)
                 {
                     room.AddRoomPlacement(RoomPlacement.DARK);

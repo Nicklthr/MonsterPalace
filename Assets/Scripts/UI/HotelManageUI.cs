@@ -16,6 +16,11 @@ public class HotelManageUI : MonoBehaviour
     [SerializeField] private PlacementSystem _placementSystem;
     [SerializeField] private WaitingQ _waitingQ;
 
+    private void Awake()
+    {
+        _placementSystem = FindObjectOfType<PlacementSystem>();
+    }
+
     void Start()
     {
         UpdateUIRooms();
