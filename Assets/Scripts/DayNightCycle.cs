@@ -45,6 +45,7 @@ public class DayNightCycle : MonoBehaviour
 
         Clock();
         CurrentTime();
+        CurrentDayOfTheWeek();
     }
 
     public void Clock()
