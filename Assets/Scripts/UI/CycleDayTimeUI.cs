@@ -32,16 +32,17 @@ public class CycleDayTimeUI : MonoBehaviour
             Debug.LogError( "CycleDayTimeUI: Time Text is not assigned" );
             return;
         }
+
+        _dayText.text = _dayNightCycle.currentDayOfTheWeek + " -";
     }
 
     void Update()
     {
-        _dayText.text = "Jour : " + _dayNightCycle.dayCount + " - ";
         _timeText.text = _dayNightCycle.currentHour + "h";
     }
 
     void UpdateDayUI()
     {
-        TextMeshFader.Instance.FadeTextWithUpdate( _dayText, _dayNightCycle.currentDayOfTheWeek, 1f );
+        TextMeshFader.Instance.FadeTextWithUpdate( _dayText, _dayNightCycle.currentDayOfTheWeek + " -", 1f );
     }
 }
