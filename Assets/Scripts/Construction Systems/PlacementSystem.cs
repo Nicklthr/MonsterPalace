@@ -392,6 +392,12 @@ public class PlacementSystem : MonoBehaviour
             closeRoom.GetComponent<StairCaseController>().DesactivateStairWall();
             closeRoom.GetComponent<StairCaseController>().DesactivateGround();
             roomInstance.GetComponent<StairCaseController>().ActivateStarMiniWall();
+
+            if (CheckIfBaseRoomUpper(0))
+            {
+                roomInstance.GetComponent<StairCaseController>().DesactivateStarMiniWall();
+            }
+
         }
         else
         {
@@ -445,24 +451,18 @@ public class PlacementSystem : MonoBehaviour
                 oneLevelBelowRoom.GetComponent<StairCaseController>().DesactivateStarMiniWall();
             }
 
+            if (CheckIfBaseRoomBelow(0))
+            {
+                Debug.Log("Il y a une pièce de type BASE en dessous de 0");
+                GetBaseRoomLevel(-1).GetComponent<StairCaseController>().DesactivateStarMiniWall();
+            }
+
             closeRoom.GetComponent<StairCaseController>().DesactivateStairWall();
             closeRoom.GetComponent<StairCaseController>().ActivateStarMiniWall();
         }
-        else if (level > 1)
+        else if (level >= 1)
         {
             closeRoom.GetComponent<StairCaseController>().ActivateStarMiniWall();
-
-            if (CheckIfBaseRoomBelow(level))
-            {
-                Debug.Log("Il y a une pièce de base en dessous de zero");
-
-                Room oneLevelBelow = _hotel.rooms.Find(x => x.level == level - 1 && x.roomType.roomType == RoomType.BASE);
-                if (oneLevelBelow != null)
-                {
-                    GameObject oneLevelBelowRoom = GameObject.Find(oneLevelBelow.roomID);
-                    oneLevelBelowRoom.GetComponent<StairCaseController>().DesactivateStarMiniWall();
-                }
-            }
 
             // Logique pour gérer le miniwall de la pièce deux niveaux en dessous
             if (level >= 2)
@@ -490,7 +490,19 @@ public class PlacementSystem : MonoBehaviour
     private bool CheckIfBaseRoomBelow(int level)
     {
         List<Room> baseRooms = _hotel.rooms.FindAll(room => room.roomType.roomType == RoomType.BASE);
-        return baseRooms.Any(x => x.level == level);
+        return baseRooms.Any(x => x.level == level - 1);
+    }
+
+    private bool CheckIfBaseRoomUpper(int level)
+    {
+        List<Room> baseRooms = _hotel.rooms.FindAll(room => room.roomType.roomType == RoomType.BASE);
+        return baseRooms.Any(x => x.level == level + 1);
+    }
+
+    private GameObject GetBaseRoomLevel(int level)
+    {   Room room = _hotel.rooms.Find(x => x.level == level && x.roomType.roomType == RoomType.BASE);
+
+        return GameObject.Find(room.roomID);
     }
 
     private int FindStageLevel(bool negatif)
