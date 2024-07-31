@@ -120,6 +120,7 @@ public class ConstructionUIManager : MonoBehaviour
         }
 
         var backButton = Instantiate(categoryBtnPrefb, categoryPanel.transform);
+
         backButton.GetComponentInChildren<TextMeshProUGUI>().text = "Retour";
         backButton.GetComponent<Button>().onClick.AddListener(() => categoryPanel.SetActive( false ));
         backButton.GetComponent<Button>().onClick.AddListener(() => roomConstructionPanel.SetActive( true ));
