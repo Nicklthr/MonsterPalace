@@ -24,7 +24,11 @@ public class DayNightCycle : MonoBehaviour
     public UnityEvent OnNextDay = new UnityEvent();
     public event Action OnNextDayAction;
 
-    
+    public int dayOfTheWeek = 1;
+    public string currentDayOfTheWeek = "";
+
+    public UnityEvent OnNextWeek = new UnityEvent();
+    public event Action OnNextWeekAction;
 
     void Start()
     {
@@ -50,9 +54,17 @@ public class DayNightCycle : MonoBehaviour
         if(timer >= dayLength)
         {
             dayCount++;
+            dayOfTheWeek++;
             timer = 0;
             OnNextDay.Invoke();
             OnNextDayAction?.Invoke();
+        }
+
+        if (dayOfTheWeek >= 8)
+        {
+            dayOfTheWeek = 1;
+            OnNextWeek.Invoke();
+            OnNextWeekAction?.Invoke();
         }
     }
 
@@ -68,5 +80,33 @@ public class DayNightCycle : MonoBehaviour
         float timeRatio = startHour / 24f;
 
         timer = timeRatio * dayLength;
+    }
+
+    public void CurrentDayOfTheWeek()
+    {
+        switch (dayOfTheWeek)
+        {
+            case 1:
+                currentDayOfTheWeek = "Monday";
+                break;
+            case 2:
+                currentDayOfTheWeek = "Tuesday";
+                break;
+            case 3:
+                currentDayOfTheWeek = "Wednesday";
+                break;
+            case 4:
+                currentDayOfTheWeek = "Thursday";
+                break;
+            case 5:
+                currentDayOfTheWeek = "Friday";
+                break;
+            case 6:
+                currentDayOfTheWeek = "Saturday";
+                break;
+            case 7:
+                currentDayOfTheWeek = "Sunday";
+                break;
+        }
     }
 }
