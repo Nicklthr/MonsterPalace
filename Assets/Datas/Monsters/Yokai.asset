@@ -24,7 +24,7 @@ MonoBehaviour:
   roomPlacementsDislike: 02000000
   foodLike: 
   foodDislike: 0200000003000000
-  activityLike: 0400000007000000
+  activityLike: 0400000001000000
   patienceMax: 25
   monsterNameList: {fileID: 11400000, guid: 1a69954befff3924582f8ec5abee753a, type: 2}
   monsterSprite: {fileID: 21300000, guid: 5a8bebe52abd88b41b58fd379ccba637, type: 3}

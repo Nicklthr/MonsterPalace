@@ -22,4 +22,4 @@ MonoBehaviour:
   coinCost: 50
   quantityBuyable: 1
   prefab: {fileID: 7836050557590243390, guid: b87ab11556a6e564aada17fa845cd163, type: 3}
-  isUnlocked: 0
+  isUnlocked: 1
