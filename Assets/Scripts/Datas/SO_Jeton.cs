@@ -19,4 +19,9 @@ public class JetonSO : ScriptableObject
     {
         playerCoin += gainedAmount;
     }
+
+    public void AddCoin(int amount)
+    {
+        playerCoin += amount;
+    }
 }

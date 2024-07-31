@@ -359,9 +359,6 @@ public class PlacementSystem : MonoBehaviour
 
     public void AddUnderStaire()
     {
-
-        Debug.Log("Add basement");
-
         List<Room> baseRooms = _hotel.rooms.FindAll(room => room.roomType.roomType == RoomType.BASE);
 
         if ( baseRooms.Count == 0 )
@@ -394,10 +391,12 @@ public class PlacementSystem : MonoBehaviour
         {
             closeRoom.GetComponent<StairCaseController>().DesactivateStairWall();
             closeRoom.GetComponent<StairCaseController>().DesactivateGround();
+            roomInstance.GetComponent<StairCaseController>().ActivateStarMiniWall();
         }
         else
         {
             closeRoom.GetComponent<StairCaseController>().DesactivateGround();
+            roomInstance.GetComponent<StairCaseController>().DesactivateStarMiniWall();
         }
 
         roomInstance.GetComponent<StairCaseController>().ActivateStair();
@@ -413,47 +412,85 @@ public class PlacementSystem : MonoBehaviour
     public void AddUpperStaire()
     {
         List<Room> baseRooms = _hotel.rooms.FindAll(room => room.roomType.roomType == RoomType.BASE);
-
         if (baseRooms.Count == 0)
         {
             Console.WriteLine("Aucune pièce de type BASE trouvée.");
             return;
         }
-
         if (!CheckIfEnoughMoney(_stairRoom.cost))
         {
             return;
         }
-
         int newPosY = 0;
-        int level = 0;
-
-        level = baseRooms.Max(x => x.level) + 1;
+        int level = baseRooms.Max(x => x.level) + 1;
         newPosY = _stairRoom.roomSize.y * level;
-
         Vector3Int position = new Vector3Int(0, newPosY, 0);
-
         GameObject roomInstance = Instantiate(_stairRoom.prefab, position, Quaternion.identity);
         roomInstance.name = roomInstance.GetInstanceID().ToString();
 
-        // On récupère la pièce la plus proche du haut pour ouvire son sol et accéder à l'escalier
+        // On récupère la pièce la plus proche du haut pour ouvrir son sol et accéder à l'escalier
         Room close_room = _hotel.rooms.Find(x => x.level == baseRooms.Max(x => x.level) && x.roomType.roomType == RoomType.BASE);
         GameObject closeRoom = GameObject.Find(close_room.roomID);
-
         closeRoom.GetComponent<StairCaseController>().ActivateStair();
 
-        if (close_room.level == 0)
+        // Gestion du miniwall pour la pièce actuelle et celle juste en dessous
+        if (level == 1)
         {
+            // on récupére la piece du -1
+            Room oneLevelBelow = _hotel.rooms.Find(x => x.level == level - 1 && x.roomType.roomType == RoomType.BASE);
+            if (oneLevelBelow != null)
+            {
+
+                GameObject oneLevelBelowRoom = GameObject.Find(oneLevelBelow.roomID);
+                oneLevelBelowRoom.GetComponent<StairCaseController>().DesactivateStarMiniWall();
+            }
+
             closeRoom.GetComponent<StairCaseController>().DesactivateStairWall();
+            closeRoom.GetComponent<StairCaseController>().ActivateStarMiniWall();
+        }
+        else if (level > 1)
+        {
+            closeRoom.GetComponent<StairCaseController>().ActivateStarMiniWall();
+
+            if (CheckIfBaseRoomBelow(level))
+            {
+                Debug.Log("Il y a une pièce de base en dessous de zero");
+
+                Room oneLevelBelow = _hotel.rooms.Find(x => x.level == level - 1 && x.roomType.roomType == RoomType.BASE);
+                if (oneLevelBelow != null)
+                {
+                    GameObject oneLevelBelowRoom = GameObject.Find(oneLevelBelow.roomID);
+                    oneLevelBelowRoom.GetComponent<StairCaseController>().DesactivateStarMiniWall();
+                }
+            }
+
+            // Logique pour gérer le miniwall de la pièce deux niveaux en dessous
+            if (level >= 2)
+            {
+                Room twoLevelsBelow = _hotel.rooms.Find(x => x.level == level - 2 && x.roomType.roomType == RoomType.BASE);
+                if (twoLevelsBelow != null)
+                {
+                    GameObject twoLevelsBelowRoom = GameObject.Find(twoLevelsBelow.roomID);
+                    twoLevelsBelowRoom.GetComponent<StairCaseController>().DesactivateStarMiniWall();
+                    Debug.Log("Miniwall désactivé pour le niveau " + twoLevelsBelow.level);
+                }
+            }
+
         }
 
+        roomInstance.GetComponent<StairCaseController>().DesactivateStarMiniWall();
         roomInstance.GetComponent<StairCaseController>().DesactivateGround();
-
         _hotel.rooms.Add(new Room(_stairRoom, position, roomInstance.name, level));
         _moneyManager.PayRoom(_stairRoom.cost);
-
         OnStairBuild.Invoke();
         OnStairPlaced?.Invoke();
+    }
+
+
+    private bool CheckIfBaseRoomBelow(int level)
+    {
+        List<Room> baseRooms = _hotel.rooms.FindAll(room => room.roomType.roomType == RoomType.BASE);
+        return baseRooms.Any(x => x.level == level);
     }
 
     private int FindStageLevel(bool negatif)

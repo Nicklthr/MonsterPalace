@@ -37,4 +37,5 @@ MonoBehaviour:
     - {fileID: 11400000, guid: aa5bccc57810d574696f76b9e683968f, type: 2}
     - {fileID: 11400000, guid: 99c0520831aaa5b46884e33819d1e0ca, type: 2}
     - {fileID: 11400000, guid: 0e48eb5cf57c825428480d155978de12, type: 2}
+    - {fileID: 11400000, guid: e5c2784029ce21a42a680309fce888f7, type: 2}
     <RoomType>k__BackingField: 2

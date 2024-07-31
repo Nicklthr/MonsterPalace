@@ -12,4 +12,118 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28ee795b38e4114d81ac14229c2a1e6, type: 3}
   m_Name: Hotel
   m_EditorClassIdentifier: 
-  rooms: []
+  rooms:
+  - roomType: {fileID: 11400000, guid: 93c75af1ba84aa9439a58afc0bf20771, type: 2}
+    positionInGrid: {x: 0, y: 0, z: 0}
+    roomID: 32538
+    roomSize: {x: 24, y: 5, z: 8}
+    roomName: "R\xE9c\xE9ption Hall"
+    activityType: 8
+    type: 1
+    monsterTypeOfRoom: 8
+    roomPlacement: 
+    foodAssigned: {fileID: 0}
+    monsterID: 
+    monsterDataCurrentCustomer: {fileID: 0}
+    maxUsers: 100
+    currentUsers: 0
+    cost: 0
+    roomObject: {fileID: 5337759631987397356, guid: 983700d96a61f694fa6d05c42c5272d4,
+      type: 3}
+    targets: []
+    level: 0
+  - roomType: {fileID: 11400000, guid: a5bf73b5e70d2494ba552db6b3563c00, type: 2}
+    positionInGrid: {x: -8, y: 0, z: 0}
+    roomID: -5220988
+    roomSize: {x: 8, y: 5, z: 8}
+    roomName: Classic Bedroom
+    activityType: 8
+    type: 0
+    monsterTypeOfRoom: 8
+    roomPlacement: 0100000002000000
+    foodAssigned: {fileID: 11400000, guid: 09184ec85fb5ca24589c59757cc72288, type: 2}
+    monsterID: -5210202_0
+    monsterDataCurrentCustomer: {fileID: 11400000, guid: cb3fdf2b2ca928e42b72c9715d00d265,
+      type: 2}
+    maxUsers: 1
+    currentUsers: 1
+    cost: 350
+    roomObject: {fileID: 7979408197378562090, guid: 89b4473d6e7c4184c9f530a6ce3e98e9,
+      type: 3}
+    targets:
+    - <target>k__BackingField: {x: -3.5100002, y: 0, z: 4.22}
+      <isOccupied>k__BackingField: 0
+    level: 0
+  - roomType: {fileID: 11400000, guid: c00c1501c4e94304ba5e1842b90e1222, type: 2}
+    positionInGrid: {x: -16, y: 0, z: 0}
+    roomID: -5224148
+    roomSize: {x: 8, y: 5, z: 8}
+    roomName: Classic Dining
+    activityType: 8
+    type: 3
+    monsterTypeOfRoom: 8
+    roomPlacement: 0100000002000000
+    foodAssigned: {fileID: 0}
+    monsterID: 
+    monsterDataCurrentCustomer: {fileID: 0}
+    maxUsers: 3
+    currentUsers: 2
+    cost: 350
+    roomObject: {fileID: 7747265682634970280, guid: c68447d8471d22a4885604124dc2ba37,
+      type: 3}
+    targets:
+    - <target>k__BackingField: {x: -13.4, y: 0, z: 6.38}
+      <isOccupied>k__BackingField: 0
+    - <target>k__BackingField: {x: -11.8, y: 0, z: 6.38}
+      <isOccupied>k__BackingField: 0
+    - <target>k__BackingField: {x: -10.07, y: 0, z: 6.38}
+      <isOccupied>k__BackingField: 0
+    - <target>k__BackingField: {x: -10.07, y: 0, z: 1.29}
+      <isOccupied>k__BackingField: 0
+    - <target>k__BackingField: {x: -11.559999, y: 0, z: 1.29}
+      <isOccupied>k__BackingField: 0
+    - <target>k__BackingField: {x: -12.87, y: 0, z: 1.29}
+      <isOccupied>k__BackingField: 0
+    level: 0
+  - roomType: {fileID: 11400000, guid: a5bf73b5e70d2494ba552db6b3563c00, type: 2}
+    positionInGrid: {x: 24, y: 0, z: 0}
+    roomID: -5229234
+    roomSize: {x: 8, y: 5, z: 8}
+    roomName: Classic Bedroom
+    activityType: 8
+    type: 0
+    monsterTypeOfRoom: 8
+    roomPlacement: 01000000
+    foodAssigned: {fileID: 0}
+    monsterID: 
+    monsterDataCurrentCustomer: {fileID: 0}
+    maxUsers: 1
+    currentUsers: 0
+    cost: 350
+    roomObject: {fileID: 7979408197378562090, guid: 89b4473d6e7c4184c9f530a6ce3e98e9,
+      type: 3}
+    targets:
+    - <target>k__BackingField: {x: 28.49, y: 0, z: 4.22}
+      <isOccupied>k__BackingField: 0
+    level: 0
+  - roomType: {fileID: 11400000, guid: a5bf73b5e70d2494ba552db6b3563c00, type: 2}
+    positionInGrid: {x: 32, y: 0, z: 0}
+    roomID: -5234074
+    roomSize: {x: 8, y: 5, z: 8}
+    roomName: Classic Bedroom
+    activityType: 8
+    type: 0
+    monsterTypeOfRoom: 8
+    roomPlacement: 01000000
+    foodAssigned: {fileID: 0}
+    monsterID: 
+    monsterDataCurrentCustomer: {fileID: 0}
+    maxUsers: 1
+    currentUsers: 0
+    cost: 350
+    roomObject: {fileID: 7979408197378562090, guid: 89b4473d6e7c4184c9f530a6ce3e98e9,
+      type: 3}
+    targets:
+    - <target>k__BackingField: {x: 36.489998, y: 0, z: 4.22}
+      <isOccupied>k__BackingField: 0
+    level: 0

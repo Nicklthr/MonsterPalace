@@ -53,18 +53,6 @@ public class HotelRateManager : MonoBehaviour
         OnInitialRating?.Invoke();
     }
 
-    private void Update()
-    {
-        if ( hotelRating.currentStartRating < 1 )
-        {
-            GameManager.Instance.RunOver(true);
-        }
-        else if ( hotelRating.currentStartRating >= 5 )
-        {
-            GameManager.Instance.RunOver(false);
-        }
-    }
-
     public void RateUpdate()
     {
         averageCurrentRating = 0;

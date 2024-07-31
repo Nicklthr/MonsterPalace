@@ -7,6 +7,7 @@ public class StairCaseController : MonoBehaviour
     [SerializeField] private GameObject _stair;
     [SerializeField] private GameObject _stairWall;
     [SerializeField] private GameObject _ground;
+    [SerializeField] private GameObject _starMiniWall;
 
     public void DesactivateGround()
     {
@@ -36,5 +37,15 @@ public class StairCaseController : MonoBehaviour
     public void DesactivateStairWall()
     {
        _stairWall.SetActive( false );
+    }
+
+    public void ActivateStarMiniWall()
+    {
+       _starMiniWall.SetActive( true );
+    }
+
+    public void DesactivateStarMiniWall()
+    {
+       _starMiniWall.SetActive( false );
     }
 }

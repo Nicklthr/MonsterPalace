@@ -12,6 +12,9 @@ public class DailyTaxes : MonoBehaviour
     [SerializeField]
     private int taxeHour = 8;
 
+    [SerializeField] bool useTaxeDay = false;
+    [SerializeField] private string taxeDay = "Monday";
+
     private bool taxed = false;
 
     [Header("Room Number")]
@@ -37,14 +40,29 @@ public class DailyTaxes : MonoBehaviour
 
     void Update()
     {
-        if ( _cycle.currentHour == taxeHour && !taxed )
+        if (useTaxeDay)
         {
-            Taxes();
-        }
+            if (_cycle.currentDayOfTheWeek == taxeDay && !taxed)
+            {
+                Taxes();
+            }
 
-        if ( _cycle.currentHour == taxeHour + 1 )
+            if (_cycle.currentDayOfTheWeek != taxeDay)
+            {
+                taxed = false;
+            }
+        }
+        else
         {
-            taxed = false;
+            if (_cycle.currentHour == taxeHour && !taxed)
+            {
+                Taxes();
+            }
+
+            if (_cycle.currentHour == taxeHour + 1)
+            {
+                taxed = false;
+            }
         }
     }
 
@@ -59,7 +77,7 @@ public class DailyTaxes : MonoBehaviour
 
         OnTaxesPaid.Invoke();
 
-        Debug.Log("Payement quotidien effectué!");
+        //Debug.Log("Payement quotidien effectué!");
     }
 
     public int FindCountRoomByType(RoomType type)
@@ -68,7 +86,7 @@ public class DailyTaxes : MonoBehaviour
 
         if ( count == 0 )
         {
-            Debug.LogWarning("Aucune pièce de type " + type + " n'a été trouvée.");
+            //Debug.LogWarning("Aucune pièce de type " + type + " n'a été trouvée.");
             return 0;
         }
         else
