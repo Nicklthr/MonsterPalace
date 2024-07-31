@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         MAINMENU,
-        SHOP,
         STARTRUN,
         PAUSE,
         RUNEND
@@ -37,7 +36,6 @@ public class GameManager : MonoBehaviour
     public GameState currentState;
 
     public bool isMainMenu = false;
-    public bool isShop = false;
     public bool isPlay = false;
     public bool isPause = false;
     public bool isRunEnd = false;
@@ -47,8 +45,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent onStart = new UnityEvent();
-    public UnityEvent onShopEnter = new UnityEvent();
-    public UnityEvent onShopExit = new UnityEvent();
     public UnityEvent onPlay = new UnityEvent();
     public UnityEvent onPauseEnter = new UnityEvent();
     public UnityEvent onPauseExit = new UnityEvent();
@@ -107,10 +103,6 @@ public class GameManager : MonoBehaviour
                 onStart.Invoke();
                 isMainMenu = true;
                 break;
-            case GameState.SHOP:
-                onShopEnter.Invoke();
-                isShop = true;
-                break;
             case GameState.STARTRUN:
                 Time.timeScale = 1;
                 onPlay.Invoke();
@@ -140,11 +132,7 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case GameState.MAINMENU:
-                if (isShop)
-                {
-                    TransitionToState(GameState.SHOP);
-                }
-                else if (isPlay)
+                if (isPlay)
                 {
                     TransitionToState(GameState.STARTRUN);
                 }
@@ -155,12 +143,6 @@ public class GameManager : MonoBehaviour
                 else if (isRunEnd || isRunWin)
                 {
                     TransitionToState(GameState.RUNEND);
-                }
-                break;
-            case GameState.SHOP:
-                if (!isShop)
-                {
-                    TransitionToState(GameState.MAINMENU);
                 }
                 break;
             case GameState.STARTRUN:
@@ -214,10 +196,6 @@ public class GameManager : MonoBehaviour
         {
             case GameState.MAINMENU:
                 isMainMenu = false;
-                break;
-            case GameState.SHOP:
-                onShopExit.Invoke();
-                isShop = false;
                 break;
             case GameState.STARTRUN:
                 isPlay = false;

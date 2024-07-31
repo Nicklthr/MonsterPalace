@@ -12,6 +12,9 @@ public class CycleDayTimeUI : MonoBehaviour
 
     private void Start()
     {
+        _dayNightCycle = FindObjectOfType<DayNightCycle>();
+        _dayNightCycle.OnNextDayAction += UpdateDayUI;
+
         if ( _dayNightCycle == null )
         {
             Debug.LogError( "CycleDayTimeUI: DayNightCycle is not assigned" );
@@ -35,5 +38,10 @@ public class CycleDayTimeUI : MonoBehaviour
     {
         _dayText.text = "Jour : " + _dayNightCycle.dayCount + " - ";
         _timeText.text = _dayNightCycle.currentHour + "h";
+    }
+
+    void UpdateDayUI()
+    {
+        TextMeshFader.Instance.FadeTextWithUpdate( _dayText, _dayNightCycle.currentDayOfTheWeek, 1f );
     }
 }

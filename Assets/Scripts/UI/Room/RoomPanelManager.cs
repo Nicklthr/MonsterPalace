@@ -26,9 +26,6 @@ public class RoomPanelManager : MonoBehaviour
     [SerializeField] private GameObject _cardPrefab;
     [SerializeField] private List<SO_Food> _foods;
 
-    private bool isDissolvingOut = false;
-    private bool isDissolvingIn = false;
-
     private void Start()
     {
         _roomSelectionManager = FindObjectOfType<RoomSelectionManager>();
@@ -45,7 +42,6 @@ public class RoomPanelManager : MonoBehaviour
     private void ShowRoomPanel()
     {
         _roomPanel.SetActive(true);
-        _roomPanel.GetComponent<UIDissolveEffect>().DissolveIn();
 
         FindRoomInHotel();
         _header.SetActive(true);
@@ -85,7 +81,6 @@ public class RoomPanelManager : MonoBehaviour
 
     private void HideRoomPanel()
     {
-        //if ( isDissolvingOut ) return;
         _room = null;
         _header.SetActive(false);
         _foodRow.SetActive(false);
@@ -94,19 +89,8 @@ public class RoomPanelManager : MonoBehaviour
         _roomInformations.SetActive(false);
         _freeRoom.SetActive(false);
 
-        //_roomPanel.GetComponent<UIDissolveEffect>().DissolveOut();
-       // StartCoroutine(DissolveOut());
         _roomPanel.SetActive(false);
 
-    }
-
-    // coroutin to wait for the dissolve effect
-    public IEnumerator DissolveOut()
-    {
-        isDissolvingOut = true;
-        yield return new WaitForSeconds(_roomPanel.GetComponent<UIDissolveEffect>().animationSpeed);
-        _roomPanel.SetActive(false);
-        isDissolvingOut = false;
     }
 
     private void FindRoomInHotel()

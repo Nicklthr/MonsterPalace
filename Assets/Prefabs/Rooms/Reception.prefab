@@ -1125,7 +1125,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1.0185, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2151191884706156590}
   - {fileID: 1477333495830301952}
   - {fileID: 67778821249551592}
   m_Father: {fileID: 9069761739606613495}
@@ -6710,6 +6709,7 @@ MonoBehaviour:
   _stair: {fileID: 448455093122481369}
   _stairWall: {fileID: 2763992595913850783}
   _ground: {fileID: 6691072819045062881}
+  _starMiniWall: {fileID: 7118097925748509101}
 --- !u!1 &5384795491353199779
 GameObject:
   m_ObjectHideFlags: 0
@@ -8916,7 +8916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2151191884706156590
 Transform:
   m_ObjectHideFlags: 0
@@ -8926,12 +8926,12 @@ Transform:
   m_GameObject: {fileID: 7118097925748509101}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.500001, y: 0, z: 2.5000005}
+  m_LocalScale: {x: 1, y: 1.0185, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1356394795769368565}
-  m_Father: {fileID: 6092728351462679393}
+  m_Father: {fileID: 9069761739606613495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7252177482011151033
 GameObject:
@@ -9971,6 +9971,7 @@ Transform:
   m_Children:
   - {fileID: 3146830722800794513}
   - {fileID: 1804690687761957233}
+  - {fileID: 2151191884706156590}
   - {fileID: 6092728351462679393}
   m_Father: {fileID: 5659913139597604695}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

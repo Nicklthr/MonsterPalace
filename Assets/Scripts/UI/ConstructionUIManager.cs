@@ -9,6 +9,8 @@ public class ConstructionUIManager : MonoBehaviour
     public SO_RoomsDB data;
     [SerializeField]
     private ArgentSO _argent;
+    [SerializeField]
+    private SO_RoomType _stairRoom;
 
     [Space(10)]
     [Header("Color Btns")]
@@ -155,12 +157,16 @@ public class ConstructionUIManager : MonoBehaviour
 
     private void PopulateStagePanel()
     {
-        var addStageButton = Instantiate(StageBtnPrefab, stagePanel.transform);
-        addStageButton.GetComponentInChildren<TextMeshProUGUI>().text = "Etage";
+        var addStageButton = Instantiate( roomCategoryBtnPrefab, stagePanel.transform );
+        addStageButton.GetComponent<RoomBtnUI>().SetPrice(_stairRoom.cost);
+        addStageButton.GetComponent<RoomBtnUI>().SetName("Etage");
+
         addStageButton.GetComponent<Button>().onClick.AddListener(() => AddStage());
 
-        var addBasementButton = Instantiate(StageBtnPrefab, stagePanel.transform);
-        addBasementButton.GetComponentInChildren<TextMeshProUGUI>().text = "Sous-sol";
+        var addBasementButton = Instantiate( roomCategoryBtnPrefab, stagePanel.transform );
+        addBasementButton.GetComponent<RoomBtnUI>().SetPrice(_stairRoom.cost);
+        addBasementButton.GetComponent<RoomBtnUI>().SetName("Sous-sol");
+
         addBasementButton.GetComponent<Button>().onClick.AddListener(() => AddBasement());
 
         var backButton = Instantiate(categoryBtnPrefb, stagePanel.transform);
