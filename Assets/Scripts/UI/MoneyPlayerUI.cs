@@ -34,6 +34,7 @@ public class MoneyPlayerUI : MonoBehaviour
         else
         {
             gameObject.GetComponent<MMF_Player>().StopFeedbacks();
+            _argentText.color = Color.white;
         }
     }
 
