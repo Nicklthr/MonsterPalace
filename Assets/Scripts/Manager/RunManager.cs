@@ -2,9 +2,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using Michsky.UI.Dark;
-
+using System;
+using System.Collections;
 public class RunManager : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private SaveManager _saveManager;
     [SerializeField] private MusicController _musicController;
     [SerializeField] private HotelRateManager _hotelRateManager;
@@ -12,16 +14,27 @@ public class RunManager : MonoBehaviour
     [SerializeField] private UIDissolveEffect _dissolveEffect;
 
     [Space(10)]
+    [Header("Jeton")]
     [SerializeField] private JetonSO _jetonSO;
 
     [Space(10)]
+    [Header("Music")]
     [SerializeField] private AudioClip _runMusic;
+    [SerializeField] private AudioClip _runWinMusic;
+    [SerializeField] private AudioClip _runLostMusic;
 
+    [Space(10)]
+    [Header("Events")]
     public UnityEvent onRunStart = new UnityEvent();
     public UnityEvent onRunPause = new UnityEvent();
     public UnityEvent onRunResume = new UnityEvent();
     public UnityEvent onRunLost = new UnityEvent(); 
     public UnityEvent onRunWin = new UnityEvent();
+    public event Action OnAddCoin;
+
+    [Space(10)]
+    [Header("Debug Mode")]
+    [SerializeField] private bool _debugMode = false;
 
     private void Awake()
     {
@@ -40,8 +53,6 @@ public class RunManager : MonoBehaviour
         GameManager.Instance.onPlay.AddListener(OnRunStart);
         GameManager.Instance.onPauseEnter.AddListener(OnRunPause);
         GameManager.Instance.onPauseExit.AddListener(OnRunResume);
-        GameManager.Instance.onRunLost.AddListener(OnRunLost);
-        GameManager.Instance.onRunWin.AddListener(OnRunWin);
     }
 
     public void Start()
@@ -55,16 +66,16 @@ public class RunManager : MonoBehaviour
     {
         if (_hotelRateManager.hotelRating.currentStartRating < 1)
         {
-            RunOver(false);
+            OnRunLost();
         }
         else if (_hotelRateManager.hotelRating.currentStartRating >= 5)
         {
-            RunOver(true);
+            OnRunWin();
         }
 
         if (_moneyManager.playerMoney <= 0)
         {
-            RunOver(false);
+            OnRunLost();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -80,8 +91,6 @@ public class RunManager : MonoBehaviour
             GameManager.Instance.onPlay.RemoveListener(OnRunStart);
             GameManager.Instance.onPauseEnter.RemoveListener(OnRunPause);
             GameManager.Instance.onPauseExit.RemoveListener(OnRunResume);
-            GameManager.Instance.onRunLost.RemoveListener(OnRunLost);
-            GameManager.Instance.onRunWin.RemoveListener(OnRunWin);
         }
     }
 
@@ -119,42 +128,47 @@ public class RunManager : MonoBehaviour
         onRunResume.Invoke();
     }
 
+    [ContextMenu("Run Lost")]
     public void OnRunLost()
     {
+        _saveManager.SaveGame();
+        _musicController.StopMusic(true);
         onRunLost.Invoke();
+
+        StartCoroutine(WaitAndPause(3f));
+
         CoinScoreAdd();
         Debug.Log("Run Lost");
-        _saveManager.SaveGame();
     }
 
     private void CoinScoreAdd()
     {
         int amout = (int)_hotelRateManager.totalReviews;
         _jetonSO.AddCoin(amout);
+        OnAddCoin?.Invoke();
     }
 
+    [ContextMenu("Run Win")]
     public void OnRunWin()
     {
+        _saveManager.SaveGame();
+        _musicController.StopMusic(true);
         onRunWin.Invoke();
+
+        StartCoroutine(WaitAndPause(3f));
+
         CoinScoreAdd();
         Debug.Log("Run Win");
-        _saveManager.SaveGame();
-    }
-
-    public void RunOver(bool isWin)
-    {
-        if ( isWin )
-        {
-            GameManager.Instance.RunOver(isWin);
-        }
-        else
-        {
-            GameManager.Instance.RunOver(isWin);
-        }
     }
 
     public void LoadMainMenu()
     {
         GameManager.Instance.BackToMainMenu();
+    }
+
+    private IEnumerator WaitAndPause(float time)
+    {
+        yield return new WaitForSeconds(time);
+        GameManager.Instance.PauseGame();
     }
 }

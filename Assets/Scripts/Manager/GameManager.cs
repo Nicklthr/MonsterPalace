@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
     public bool isPlay = false;
     public bool isPause = false;
     public bool isRunEnd = false;
-    public bool isRunWin = false;
 
     [Space(10)]
 
@@ -48,8 +47,8 @@ public class GameManager : MonoBehaviour
     public UnityEvent onPlay = new UnityEvent();
     public UnityEvent onPauseEnter = new UnityEvent();
     public UnityEvent onPauseExit = new UnityEvent();
-    public UnityEvent onRunLost = new UnityEvent();
-    public UnityEvent onRunWin = new UnityEvent();
+    public UnityEvent onRunEnd = new UnityEvent();
+
 
     [Space(10)]
     [Header("References")]
@@ -114,14 +113,7 @@ public class GameManager : MonoBehaviour
                 isPause = true;
                 break;
             case GameState.RUNEND:
-                if ( isRunWin )
-                {
-                    onRunWin.Invoke();
-                }
-                else
-                {
-                    onRunLost.Invoke();
-                }
+                onRunEnd.Invoke();
                 isRunEnd = true;
                 break;
         }
@@ -140,10 +132,6 @@ public class GameManager : MonoBehaviour
                 {
                     TransitionToState(GameState.PAUSE);
                 }
-                else if (isRunEnd || isRunWin)
-                {
-                    TransitionToState(GameState.RUNEND);
-                }
                 break;
             case GameState.STARTRUN:
                 if (isMainMenu)
@@ -154,7 +142,7 @@ public class GameManager : MonoBehaviour
                 {
                     TransitionToState(GameState.PAUSE);
                 }
-                else if (isRunEnd || isRunWin)
+                else if (isRunEnd)
                 {
                     TransitionToState(GameState.RUNEND);
                 }
@@ -168,7 +156,7 @@ public class GameManager : MonoBehaviour
                 {
                     TransitionToState(GameState.STARTRUN);
                 }
-                else if (isRunEnd || isRunWin)
+                else if (isRunEnd)
                 {
                     TransitionToState(GameState.RUNEND);
                 }
@@ -207,7 +195,6 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.RUNEND:
                 isRunEnd = false;
-                isRunWin = false;
                 break;
         }
     }
@@ -239,10 +226,9 @@ public class GameManager : MonoBehaviour
         isPlay = true;
     }
 
-    public void RunOver(bool isWin)
+    public void RunOver()
     {
         isRunEnd = true;
-        isRunWin = isWin;
     }
 
     public void RestartGame()

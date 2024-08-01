@@ -14,6 +14,7 @@ public class DailyTaxes : MonoBehaviour
 
     [SerializeField] bool useTaxeDay = false;
     [SerializeField] private string taxeDay = "Monday";
+    [SerializeField] private string taxeDayAlert = "Sunday";
 
     private bool taxed = false;
 

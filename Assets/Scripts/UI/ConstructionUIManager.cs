@@ -1,5 +1,6 @@
 using Michsky.UI.Dark;
 using System;
+using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -42,10 +43,12 @@ public class ConstructionUIManager : MonoBehaviour
     [SerializeField]
     private PlacementSystem _placementSystem;
 
+    private bool _IsNextPanelCoroutineRunning = false;
+    private bool _IsBackPanelCoroutineRunning = false;
+
     private void Awake()
     {
-        roomConstructionPanel.SetActive(false);
-        PopulateCategories();
+        //roomConstructionPanel.SetActive(false);
     }
 
     private void Start()
@@ -54,6 +57,7 @@ public class ConstructionUIManager : MonoBehaviour
 
         //builderBtn.GetComponent<Button>().onClick.AddListener( OpenConstructionPanel );
         //builderBtn.GetComponent<Button>().onClick.AddListener( () => _placementSystem.ToggleGridVisualization() );
+        PopulateCategories();
     }
 
     private void VerifyReferences()
@@ -64,12 +68,17 @@ public class ConstructionUIManager : MonoBehaviour
         }
     }
 
-
     public void OpenConstructionPanel()
     {
+        //mainPanel.GetComponent<UIDissolveEffect>().DissolveOut();
+        //roomConstructionPanel.GetComponent<UIDissolveEffect>().DissolveIn();
+
+        StartCoroutine(NextPanel(mainPanel, roomConstructionPanel));
+
+        _placementSystem.ToggleGridVisualization();
         //builderBtn.SetActive( false );
-        mainPanel.SetActive( false );
-        roomConstructionPanel.SetActive( true );
+        //mainPanel.SetActive( false );
+        //roomConstructionPanel.SetActive( true );
     }
 
     private void PopulateCategories()
@@ -80,30 +89,32 @@ public class ConstructionUIManager : MonoBehaviour
             if ( category.rooms.Any( room => room.isUnlocked == true ) == false ) continue;
 
             var button = Instantiate(categoryBtnPrefb, roomConstructionPanel.transform);
+            button.name = category.RoomType.ToString();
+
             button.GetComponent<ButtonManager>().buttonText = category.RoomType.ToString();
+            button.GetComponent<ButtonManager>().UpdateUI();
+
             button.GetComponent<Button>().onClick.AddListener(() => OpenCategoryRooms( category ));
+
         }
 
         var stageButton = Instantiate(categoryBtnPrefb, roomConstructionPanel.transform);
         stageButton.GetComponent<ButtonManager>().buttonText = "STAGES";
         stageButton.GetComponent<ButtonManager>().UpdateUI();
+
         stageButton.GetComponent<Button>().onClick.AddListener(() => OpenStagePanel());
 
-        var backButton = Instantiate(categoryBtnPrefb, roomConstructionPanel.transform);
-        backButton.GetComponent<ButtonManager>().buttonText = "BACK";
-        backButton.GetComponent<ButtonManager>().UpdateUI();
-        backButton.GetComponent<Button>().onClick.AddListener(() => roomConstructionPanel.SetActive( false ) );
-        backButton.GetComponent<Button>().onClick.AddListener(() => builderBtn.SetActive( true ) );
-        backButton.GetComponent<Button>().onClick.AddListener(() => mainPanel.SetActive( true ) );
-        backButton.GetComponent<Button>().onClick.AddListener(() => _placementSystem.ToggleGridVisualization());
+        GenerateBackBtn(roomConstructionPanel, mainPanel).GetComponent<Button>().onClick.AddListener(() => _placementSystem.ToggleGridVisualization());
     }
 
     private void OpenCategoryRooms( RoomDB category )
     {
-        roomConstructionPanel.SetActive( false );
-        categoryPanel.SetActive( true );
+        //roomConstructionPanel.SetActive( false );
+        //categoryPanel.SetActive( true );
         ClearCategoriesPanel();
         PopulateSubCategorie( category );
+
+        StartCoroutine(NextPanel(roomConstructionPanel, categoryPanel));
     }
 
     private void PopulateSubCategorie( RoomDB category )
@@ -122,13 +133,7 @@ public class ConstructionUIManager : MonoBehaviour
             button.name = room.roomName.ToString();
         }
 
-        var backButton = Instantiate(categoryBtnPrefb, categoryPanel.transform);
-
-        backButton.GetComponent<ButtonManager>().buttonText = "BACK";
-        backButton.GetComponent<ButtonManager>().UpdateUI();
-        backButton.GetComponent<Button>().onClick.AddListener(() => categoryPanel.SetActive( false ));
-        backButton.GetComponent<Button>().onClick.AddListener(() => roomConstructionPanel.SetActive( true ));
-        backButton.GetComponent<Button>().onClick.AddListener(() => _placementSystem.CancelPlacement());
+        GenerateBackBtn(categoryPanel, roomConstructionPanel).GetComponent<Button>().onClick.AddListener(() => _placementSystem.CancelPlacement());
     }
 
     private void CreateNewRoom( SO_RoomType room )
@@ -154,10 +159,9 @@ public class ConstructionUIManager : MonoBehaviour
 
     private void OpenStagePanel()
     {
-        roomConstructionPanel.SetActive( false );
-        stagePanel.SetActive( true );
         ClearStagePanel();
         PopulateStagePanel();
+        StartCoroutine(NextPanel(roomConstructionPanel, stagePanel));
     }
 
     private void PopulateStagePanel()
@@ -174,23 +178,60 @@ public class ConstructionUIManager : MonoBehaviour
 
         addBasementButton.GetComponent<RoomBtnUI>().button.onClick.AddListener(() => AddBasement());
 
-        var backButton = Instantiate(categoryBtnPrefb, stagePanel.transform);
-        backButton.GetComponent<ButtonManager>().buttonText = "BACK";
-        backButton.GetComponent<ButtonManager>().UpdateUI();
-        backButton.GetComponent<Button>().onClick.AddListener(() => stagePanel.SetActive( false ));
-        backButton.GetComponent<Button>().onClick.AddListener(() => roomConstructionPanel.SetActive( true ));
-
+        GenerateBackBtn(stagePanel, roomConstructionPanel);
     }
 
     private void AddStage()
     {
-        Debug.Log("Add stage");
+        //Debug.Log("Add stage");
         _placementSystem.AddUpperStaire();
     }
 
     private void AddBasement()
     {
-        Debug.Log("Add basement");
+        //Debug.Log("Add basement");
         _placementSystem.AddUnderStaire();
+    }
+    
+    private GameObject GenerateBackBtn(GameObject currentPanel, GameObject backPanel)
+    {
+        var backButton = Instantiate( categoryBtnPrefb, currentPanel.transform );
+        backButton.GetComponent<ButtonManager>().buttonText = "BACK";
+        backButton.GetComponent<ButtonManager>().UpdateUI();
+        backButton.GetComponent<Button>().onClick.AddListener(() => StartCoroutine(BackPanel(currentPanel, backPanel)));
+
+        return backButton;
+    }
+
+    private IEnumerator NextPanel( GameObject currentPanel, GameObject nextPanel )
+    {
+        if ( _IsNextPanelCoroutineRunning || _IsBackPanelCoroutineRunning ) yield break;
+
+        _IsNextPanelCoroutineRunning = true;
+        currentPanel.GetComponent<UIDissolveEffect>().DissolveOut();
+
+        nextPanel.SetActive(true);
+        nextPanel.GetComponent<UIDissolveEffect>().DissolveIn();
+
+        yield return new WaitForSeconds(0.5f);
+
+        currentPanel.SetActive(false);
+        _IsNextPanelCoroutineRunning = false;
+
+    }
+
+    private IEnumerator BackPanel( GameObject currentPanel, GameObject backPanel )
+    {
+        if ( _IsBackPanelCoroutineRunning || _IsNextPanelCoroutineRunning ) yield break;
+
+        _IsBackPanelCoroutineRunning = true;
+        currentPanel.GetComponent<UIDissolveEffect>().DissolveOut();
+
+        backPanel.SetActive( true );
+        backPanel.GetComponent<UIDissolveEffect>().DissolveIn();
+
+        yield return new WaitForSeconds(0.5f);
+        currentPanel.SetActive( false );
+        _IsBackPanelCoroutineRunning = false;
     }
 }
