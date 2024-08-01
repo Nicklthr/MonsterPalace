@@ -31,6 +31,7 @@ public class MonsterPanelUI : MonoBehaviour
     [SerializeField] private Image _monsterPic;
     [SerializeField] private TextMeshProUGUI _monsterStayDay;
     [SerializeField] private MonsterController _monsterController;
+    [SerializeField] private CameraController _cameraController;
 
 
     public event Action OnMonsterPanelOpen, OnMonsterPanelClose;
@@ -62,6 +63,7 @@ public class MonsterPanelUI : MonoBehaviour
 
         _monsterSelectionManager.OnSelected += ShowMonsterPanel;
         _monsterSelectionManager.OnDeSelected += HideMonsterPanel;
+        _cameraController = FindObjectOfType<CameraController>();
     }
 
     private void Update()
@@ -140,6 +142,16 @@ public class MonsterPanelUI : MonoBehaviour
                 _roomPanel.SetActive(true);
 
                 _roomPanel.GetComponentInChildren<TextMeshProUGUI>().text = _hotel.rooms.Find(room => room.monsterID == _monsterController.monsterID).roomName;
+
+                // ------------------------------------------------------------------------------------------------------------------------------------------------
+                // Get the room position (calculate center of the room, cause the room pivot is at the bottom left corner) then move the camera to this position
+                Room room = _hotel.rooms.Find(room => room.monsterID == _monsterController.monsterID);
+                GameObject roomObject = GameObject.Find(room.roomID);
+
+                Vector3 position = new Vector3(roomObject.transform.position.x + (room.roomSize.x / 2), roomObject.transform.position.y + (room.roomSize.y / 2), 0);
+
+                _roomPanel.GetComponentInChildren<Button>().onClick.AddListener(() => _cameraController.MoveToTarget(position));
+                // ------------------------------------------------------------------------------------------------------------------------------------------------
 
                 _availableRooms.SetActive(false);
                 _canAssignRoomYet.SetActive(false);
