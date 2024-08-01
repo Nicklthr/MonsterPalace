@@ -1,3 +1,4 @@
+using Michsky.UI.Dark;
 using System;
 using System.Linq;
 using TMPro;
@@ -51,8 +52,8 @@ public class ConstructionUIManager : MonoBehaviour
     {
         _placementSystem = FindObjectOfType<PlacementSystem>();
 
-        builderBtn.GetComponent<Button>().onClick.AddListener( OpenConstructionPanel );
-        builderBtn.GetComponent<Button>().onClick.AddListener( () => _placementSystem.ToggleGridVisualization() );
+        //builderBtn.GetComponent<Button>().onClick.AddListener( OpenConstructionPanel );
+        //builderBtn.GetComponent<Button>().onClick.AddListener( () => _placementSystem.ToggleGridVisualization() );
     }
 
     private void VerifyReferences()
@@ -66,7 +67,7 @@ public class ConstructionUIManager : MonoBehaviour
 
     public void OpenConstructionPanel()
     {
-        builderBtn.SetActive( false );
+        //builderBtn.SetActive( false );
         mainPanel.SetActive( false );
         roomConstructionPanel.SetActive( true );
     }
@@ -79,16 +80,18 @@ public class ConstructionUIManager : MonoBehaviour
             if ( category.rooms.Any( room => room.isUnlocked == true ) == false ) continue;
 
             var button = Instantiate(categoryBtnPrefb, roomConstructionPanel.transform);
-            button.GetComponentInChildren<TextMeshProUGUI>().text = category.RoomType.ToString();
+            button.GetComponent<ButtonManager>().buttonText = category.RoomType.ToString();
             button.GetComponent<Button>().onClick.AddListener(() => OpenCategoryRooms( category ));
         }
 
         var stageButton = Instantiate(categoryBtnPrefb, roomConstructionPanel.transform);
-        stageButton.GetComponentInChildren<TextMeshProUGUI>().text = "Stage";
+        stageButton.GetComponent<ButtonManager>().buttonText = "STAGES";
+        stageButton.GetComponent<ButtonManager>().UpdateUI();
         stageButton.GetComponent<Button>().onClick.AddListener(() => OpenStagePanel());
 
         var backButton = Instantiate(categoryBtnPrefb, roomConstructionPanel.transform);
-        backButton.GetComponentInChildren<TextMeshProUGUI>().text = "Retour";
+        backButton.GetComponent<ButtonManager>().buttonText = "BACK";
+        backButton.GetComponent<ButtonManager>().UpdateUI();
         backButton.GetComponent<Button>().onClick.AddListener(() => roomConstructionPanel.SetActive( false ) );
         backButton.GetComponent<Button>().onClick.AddListener(() => builderBtn.SetActive( true ) );
         backButton.GetComponent<Button>().onClick.AddListener(() => mainPanel.SetActive( true ) );
@@ -115,13 +118,14 @@ public class ConstructionUIManager : MonoBehaviour
             button.GetComponent<RoomBtnUI>().SetPrice(room.cost);
             button.GetComponent<RoomBtnUI>().SetName(room.roomName.ToString());
 
-            button.GetComponent<Button>().onClick.AddListener( () => CreateNewRoom( room ) );
+            button.GetComponent<RoomBtnUI>().button.onClick.AddListener( () => CreateNewRoom( room ) );
             button.name = room.roomName.ToString();
         }
 
         var backButton = Instantiate(categoryBtnPrefb, categoryPanel.transform);
 
-        backButton.GetComponentInChildren<TextMeshProUGUI>().text = "Retour";
+        backButton.GetComponent<ButtonManager>().buttonText = "BACK";
+        backButton.GetComponent<ButtonManager>().UpdateUI();
         backButton.GetComponent<Button>().onClick.AddListener(() => categoryPanel.SetActive( false ));
         backButton.GetComponent<Button>().onClick.AddListener(() => roomConstructionPanel.SetActive( true ));
         backButton.GetComponent<Button>().onClick.AddListener(() => _placementSystem.CancelPlacement());
@@ -160,18 +164,19 @@ public class ConstructionUIManager : MonoBehaviour
     {
         var addStageButton = Instantiate( roomCategoryBtnPrefab, stagePanel.transform );
         addStageButton.GetComponent<RoomBtnUI>().SetPrice(_stairRoom.cost);
-        addStageButton.GetComponent<RoomBtnUI>().SetName("Etage");
+        addStageButton.GetComponent<RoomBtnUI>().SetName("UPPER STAIR");
 
-        addStageButton.GetComponent<Button>().onClick.AddListener(() => AddStage());
+        addStageButton.GetComponent<RoomBtnUI>().button.onClick.AddListener(() => AddStage());
 
         var addBasementButton = Instantiate( roomCategoryBtnPrefab, stagePanel.transform );
         addBasementButton.GetComponent<RoomBtnUI>().SetPrice(_stairRoom.cost);
-        addBasementButton.GetComponent<RoomBtnUI>().SetName("Sous-sol");
+        addBasementButton.GetComponent<RoomBtnUI>().SetName("UNDER STAIR");
 
-        addBasementButton.GetComponent<Button>().onClick.AddListener(() => AddBasement());
+        addBasementButton.GetComponent<RoomBtnUI>().button.onClick.AddListener(() => AddBasement());
 
         var backButton = Instantiate(categoryBtnPrefb, stagePanel.transform);
-        backButton.GetComponentInChildren<TextMeshProUGUI>().text = "Retour";
+        backButton.GetComponent<ButtonManager>().buttonText = "BACK";
+        backButton.GetComponent<ButtonManager>().UpdateUI();
         backButton.GetComponent<Button>().onClick.AddListener(() => stagePanel.SetActive( false ));
         backButton.GetComponent<Button>().onClick.AddListener(() => roomConstructionPanel.SetActive( true ));
 

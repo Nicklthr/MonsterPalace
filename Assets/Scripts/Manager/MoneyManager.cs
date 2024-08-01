@@ -10,6 +10,7 @@ public class MoneyManager : MonoBehaviour
     [SerializeField] private ArgentSO _argentSO;
     public float playerMoney => _argentSO.playerMoney;
     public float intialMoney = 1000f;
+    public float alertThreshold = 200f;
 
     private float rentalPrice = 0f;
     public float[] dailyCosts = { 55f, 65f, 80f, 110f, 155f };

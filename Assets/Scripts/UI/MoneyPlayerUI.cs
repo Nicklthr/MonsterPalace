@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using MoreMountains.Feedbacks;
 
 public class MoneyPlayerUI : MonoBehaviour
 {
@@ -22,6 +23,18 @@ public class MoneyPlayerUI : MonoBehaviour
 
         _placementSystem.OnRoomPlaced += UpdateUI;
         _placementSystem.OnStairPlaced += UpdateUI;
+    }
+
+    private void Update()
+    {
+        if ( _argentSO.playerMoney < _moneyManager.alertThreshold )
+        {
+              gameObject.GetComponent<MMF_Player>().PlayFeedbacks();
+        }
+        else
+        {
+            gameObject.GetComponent<MMF_Player>().StopFeedbacks();
+        }
     }
 
     private void UpdateUI()
