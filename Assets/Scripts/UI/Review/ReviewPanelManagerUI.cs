@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -76,6 +77,7 @@ public class ReviewPanelManagerUI : MonoBehaviour
         else
         {
             reviewBtnText = _hotelRateManager.totalReviews + " avis";
+            gameObject.GetComponent<MMF_Player>().PlayFeedbacks();
         }
         _reveiwsBtn.GetComponentInChildren<TextMeshProUGUI>().text = reviewBtnText;
 
