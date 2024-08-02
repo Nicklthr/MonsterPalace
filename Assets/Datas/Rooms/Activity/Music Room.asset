@@ -18,7 +18,7 @@ MonoBehaviour:
   activityType: 5
   monsterTypeOfRoom: 8
   maxUsers: 2
-  cost: 750
+  cost: 500
   coinCost: 50
   quantityBuyable: 1
   prefab: {fileID: 7836050557590243390, guid: b87ab11556a6e564aada17fa845cd163, type: 3}

@@ -73,7 +73,7 @@ public class RunManager : MonoBehaviour
             OnRunWin();
         }
 
-        if ( _moneyManager.playerMoney <= 0 )
+        if ( _moneyManager.playerMoney < 0 )
         {
             OnRunLost();
         }

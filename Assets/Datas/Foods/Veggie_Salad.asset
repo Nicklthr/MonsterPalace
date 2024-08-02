@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1139cf9a9af525479b67bd62a25ded1, type: 3}
   m_Name: Veggie_Salad
   m_EditorClassIdentifier: 
-  foodName: 
+  foodName: Veggie Salad
   sprite: {fileID: 0}
   description: 
-  typeList: 
-  coinCost: 0
+  typeList: 010000000200000004000000
+  coinCost: 15
   quantityBuyable: 1
   isUnlocked: 0
