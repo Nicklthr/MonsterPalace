@@ -21,5 +21,5 @@ MonoBehaviour:
   cost: 500
   coinCost: 45
   quantityBuyable: 1
-  prefab: {fileID: 1661363503429869533, guid: 161d867436aaf1e42988fe8e571baaf4, type: 3}
+  prefab: {fileID: 6514438230751400194, guid: 88d44a8a2c1acd743898b9b993a20443, type: 3}
   isUnlocked: 0

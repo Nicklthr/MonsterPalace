@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 815228bcee294f7439aa6226e47fdf98, type: 3}
-  m_Name: PlayerCoin
+  m_Script: {fileID: 11500000, guid: e1139cf9a9af525479b67bd62a25ded1, type: 3}
+  m_Name: Veggie_Salad
   m_EditorClassIdentifier: 
-  playerCoin: 50
-  payedAmount: 0
-  gainedAmount: 0
+  foodName: 
+  sprite: {fileID: 0}
+  description: 
+  typeList: 
+  coinCost: 0
+  quantityBuyable: 1
+  isUnlocked: 0

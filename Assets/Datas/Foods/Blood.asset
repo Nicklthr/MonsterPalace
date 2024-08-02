@@ -15,7 +15,7 @@ MonoBehaviour:
   foodName: Blood
   sprite: {fileID: 0}
   description: description
-  typeList: 020000000300000004000000
+  typeList: 0300000000000000
   coinCost: 15
   quantityBuyable: 1
   isUnlocked: 1
