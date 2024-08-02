@@ -74,6 +74,11 @@ public class RoomShopManager : MonoBehaviour
 
             buttonInfo.titleTxt.text = item.roomName;
 
+            if (item.roomSprite != null)
+            {
+                buttonInfo.icon.sprite = item.roomSprite;
+            }
+
             if (item.isUnlocked)
             {
                 buttonInfo.priceTxt.gameObject.SetActive(false);
@@ -97,10 +102,16 @@ public class RoomShopManager : MonoBehaviour
 
             buttonInfo.titleTxt.text = item.roomName;
 
+            if (item.roomSprite != null)
+            {
+                buttonInfo.icon.sprite = item.roomSprite;
+            }
+
             if (item.isUnlocked)
             {
                 buttonInfo.priceTxt.gameObject.SetActive(false);
                 buttonInfo.priceInt.text = "Unlocked";
+
                 button.GetComponent<Button>().interactable = false;
             }
             else

@@ -685,6 +685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textID: 
   customUIButton: 1
+  customUIText: 0
 --- !u!1 &5694409428367421688
 GameObject:
   m_ObjectHideFlags: 0
@@ -871,6 +872,7 @@ MonoBehaviour:
   _price: {fileID: 6981623375014219825}
   _traduction: {fileID: 2598636159023456696}
   button: {fileID: 1627813755150051696}
+  image: {fileID: 8069877835410504020}
 --- !u!1 &7797334126394628303
 GameObject:
   m_ObjectHideFlags: 0

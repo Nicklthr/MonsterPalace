@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textID: 
   customUIButton: 0
+  customUIText: 0
 --- !u!1 &2659752755310764401
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textID: 
   customUIButton: 0
+  customUIText: 0
 --- !u!1 &6992229632950471005
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +540,7 @@ GameObject:
   - component: {fileID: 5561587047578661613}
   - component: {fileID: 4756210268724697208}
   m_Layer: 5
-  m_Name: Image
+  m_Name: RoomImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

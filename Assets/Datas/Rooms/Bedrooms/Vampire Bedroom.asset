@@ -23,3 +23,4 @@ MonoBehaviour:
   quantityBuyable: 1
   prefab: {fileID: 6991953852801744058, guid: cdf12c0f460bff743ab122b590f45e51, type: 3}
   isUnlocked: 0
+  roomSprite: {fileID: 21300000, guid: 7f3e2c77dead9664d8dbc5fdad83a760, type: 3}

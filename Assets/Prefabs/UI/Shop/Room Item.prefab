@@ -854,6 +854,7 @@ MonoBehaviour:
   titleTxt: {fileID: 7137914525274390693}
   priceTxt: {fileID: 3382616217991866597}
   priceInt: {fileID: 6050387833047048333}
+  icon: {fileID: 2813314866571480866}
 --- !u!114 &8002188178136373798
 MonoBehaviour:
   m_ObjectHideFlags: 0

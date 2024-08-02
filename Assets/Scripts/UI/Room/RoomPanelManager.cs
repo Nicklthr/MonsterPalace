@@ -13,6 +13,7 @@ public class RoomPanelManager : MonoBehaviour
     [SerializeField] private Room _room;
 
     [SerializeField] private TextMeshProUGUI _roomName;
+    [SerializeField] private Image _roomImage;
     [SerializeField] private GameObject _header;
     [SerializeField] private GameObject _freeRoom;
     [SerializeField] private GameObject _customerRow;
@@ -45,6 +46,11 @@ public class RoomPanelManager : MonoBehaviour
 
         FindRoomInHotel();
         _header.SetActive(true);
+
+        if (_room.roomType.roomSprite)
+        {
+            _roomImage.sprite = _room.roomType.roomSprite;
+        }
 
         _roomName.gameObject.GetComponent<TextTraduction>().AssignID("roomname_"+ _room.roomName);
         //_roomName.text = _room.roomName;

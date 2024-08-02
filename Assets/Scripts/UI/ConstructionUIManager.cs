@@ -133,6 +133,10 @@ public class ConstructionUIManager : MonoBehaviour
             //button.GetComponent<TextTraduction>().AssignID("roomname_" + room.roomName.ToString());
             button.GetComponent<RoomBtnUI>().SetName("roomname_" + room.roomName.ToString());
 
+            if (room.roomSprite) {
+                button.GetComponent<RoomBtnUI>().image.sprite = room.roomSprite;
+            }
+
             button.GetComponent<RoomBtnUI>().button.onClick.AddListener( () => CreateNewRoom( room ) );
             button.name = room.roomName.ToString();
         }
