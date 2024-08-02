@@ -90,7 +90,7 @@ public class MonsterController : MonoBehaviour
         patienceMax = monsterDatas.patienceMax;
         currentStayDuration = 0;
         //roomPosition = null;
-        satisfaction = 50;
+        satisfaction = 0;
         canLeave = false;
         timeToMove = false;
         timeToEat = false;
@@ -713,9 +713,20 @@ public class MonsterController : MonoBehaviour
 
     public void GiveEvaluation()
     {
-        starsRate = satisfaction / 20;
+        starsRate = ConvertValue(satisfaction);
         HotelRateManager hotelratemanager = FindObjectOfType<HotelRateManager>();
         hotelratemanager.AddReview(new RateReviews(starsRate, "Test", monsterName, monsterDatas.monsterType, satisfaction));
+    }
+    public float ConvertValue(float inputValue)
+    {
+        if (inputValue < -100f || inputValue > 100f)
+        {
+            return -1f;
+        }
+
+        float outputValue = (inputValue + 100f) / 40f;
+
+        return outputValue;
     }
 
     public void CheckOut()
