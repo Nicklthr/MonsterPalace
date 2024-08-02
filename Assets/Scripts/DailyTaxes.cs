@@ -26,9 +26,9 @@ public class DailyTaxes : MonoBehaviour
 
     [Header("Room Taxes")]
     [Tooltip("Coût quotidien pour chaque type de pièces")]
-    public float basicRoomTaxes = 12f;
-    public float specialRoomTaxes = 16f;
-    public float activityRoomTaxes = 22f;
+    public float basicRoomTaxes = 7f;
+    public float specialRoomTaxes = 9f;
+    public float activityRoomTaxes = 15f;
 
     public UnityEvent OnTaxesPaid = new UnityEvent();
 
@@ -70,9 +70,9 @@ public class DailyTaxes : MonoBehaviour
     public void Taxes()
     {
 
-        _moneyManager.PayTaxe(basicRoomTaxes * FindCountRoomByType(RoomType.BASE));
-        _moneyManager.PayTaxe(specialRoomTaxes * FindCountRoomByType(RoomType.BEDROOM));
-        _moneyManager.PayTaxe(activityRoomTaxes * FindCountRoomByType(RoomType.ACTIVITY));
+        _moneyManager.PayTaxe(basicRoomTaxes * FindCountRoomByType(RoomType.BASE) * 7);
+        _moneyManager.PayTaxe(specialRoomTaxes * FindCountRoomByType(RoomType.BEDROOM) * 7);
+        _moneyManager.PayTaxe(activityRoomTaxes * FindCountRoomByType(RoomType.ACTIVITY) * 7);
 
         taxed = true;
 
