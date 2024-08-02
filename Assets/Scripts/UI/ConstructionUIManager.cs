@@ -91,7 +91,8 @@ public class ConstructionUIManager : MonoBehaviour
             var button = Instantiate(categoryBtnPrefb, roomConstructionPanel.transform);
             button.name = category.RoomType.ToString();
 
-            button.GetComponent<ButtonManager>().buttonText = category.RoomType.ToString();
+            button.GetComponent<TextTraduction>().AssignID("runmenu_button" + category.RoomType.ToString());
+            //button.GetComponent<ButtonManager>().buttonText = category.RoomType.ToString();
             button.GetComponent<ButtonManager>().UpdateUI();
 
             button.GetComponent<Button>().onClick.AddListener(() => OpenCategoryRooms( category ));
@@ -99,7 +100,8 @@ public class ConstructionUIManager : MonoBehaviour
         }
 
         var stageButton = Instantiate(categoryBtnPrefb, roomConstructionPanel.transform);
-        stageButton.GetComponent<ButtonManager>().buttonText = "STAGES";
+        stageButton.GetComponent<TextTraduction>().AssignID("runmenu_buttonfloors");
+        //stageButton.GetComponent<ButtonManager>().buttonText = "STAGES";
         stageButton.GetComponent<ButtonManager>().UpdateUI();
 
         stageButton.GetComponent<Button>().onClick.AddListener(() => OpenStagePanel());
@@ -127,7 +129,9 @@ public class ConstructionUIManager : MonoBehaviour
             var button = Instantiate( roomCategoryBtnPrefab, categoryPanel.transform );
 
             button.GetComponent<RoomBtnUI>().SetPrice(room.cost);
-            button.GetComponent<RoomBtnUI>().SetName(room.roomName.ToString());
+
+            //button.GetComponent<TextTraduction>().AssignID("roomname_" + room.roomName.ToString());
+            button.GetComponent<RoomBtnUI>().SetName("roomname_" + room.roomName.ToString());
 
             button.GetComponent<RoomBtnUI>().button.onClick.AddListener( () => CreateNewRoom( room ) );
             button.name = room.roomName.ToString();

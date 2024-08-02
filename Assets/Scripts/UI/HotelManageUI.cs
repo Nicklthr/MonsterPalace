@@ -31,8 +31,8 @@ public class HotelManageUI : MonoBehaviour
 
     void Update()
     {
-        _customers.text = "Customers : " + CustomerInHotel().ToString();
-        _customersWating.text = "Waiting : " + CustomersWaiting().ToString();
+        _customers.text = CustomerInHotel().ToString();
+        _customersWating.text = CustomersWaiting().ToString();
     }
 
     private int RoomsInHotel(RoomType roomType)
@@ -51,9 +51,9 @@ public class HotelManageUI : MonoBehaviour
 
     public void UpdateUIRooms()
     {
-        _bedrooms.text = "Bedrooms : " + RoomsInHotel(RoomType.BEDROOM).ToString();
-        _activityRooms.text = "Activity : " + RoomsInHotel(RoomType.ACTIVITY).ToString();
-        _diningRooms.text = "Dining : " + RoomsInHotel(RoomType.DINING).ToString();
+        _bedrooms.text = RoomsInHotel(RoomType.BEDROOM).ToString();
+        _activityRooms.text = RoomsInHotel(RoomType.ACTIVITY).ToString();
+        _diningRooms.text = RoomsInHotel(RoomType.DINING).ToString();
     }
 
     private int CustomersWaiting()

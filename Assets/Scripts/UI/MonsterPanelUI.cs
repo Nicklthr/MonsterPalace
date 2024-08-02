@@ -111,7 +111,8 @@ public class MonsterPanelUI : MonoBehaviour
                 _noRoomPanel.SetActive(false);
                 _canAssignRoomYet.SetActive(false);
                 _roomPanel.SetActive(true);
-                _roomPanel.GetComponentInChildren<TextMeshProUGUI>().text = _hotel.rooms.Find(room => room.monsterID == _monsterController.monsterID).roomName;
+                _roomPanel.GetComponentInChildren<TextTraduction>().AssignID("roomname_"+_hotel.rooms.Find(room => room.monsterID == _monsterController.monsterID).roomName);
+                //_roomPanel.GetComponentInChildren<TextMeshProUGUI>().text = _hotel.rooms.Find(room => room.monsterID == _monsterController.monsterID).roomName;
 
                 _availableRooms.SetActive(false);
             }
@@ -122,12 +123,14 @@ public class MonsterPanelUI : MonoBehaviour
 
                 if ( _availableRoomsPanelUI.HasBuildedRoomsInHotel() )
                 {
-                    _noRoomPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Choose a room to assign to your customer.";
+                    _noRoomPanel.GetComponentInChildren<TextTraduction>().AssignID("monsterpanel_chooseroom");
+                    //_noRoomPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Choose a room to assign to your customer.";
 
                 }
                 else
                 {
-                    _noRoomPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Build more rooms !";
+                    _noRoomPanel.GetComponentInChildren<TextTraduction>().AssignID("monsterpanel_buildroom");
+                    //_noRoomPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Build more rooms !";
                 }
 
                 _availableRooms.SetActive(true);
@@ -141,16 +144,17 @@ public class MonsterPanelUI : MonoBehaviour
                 _noRoomPanel.SetActive(false);
                 _roomPanel.SetActive(true);
 
-                _roomPanel.GetComponentInChildren<TextMeshProUGUI>().text = _hotel.rooms.Find(room => room.monsterID == _monsterController.monsterID).roomName;
+                _roomPanel.GetComponentInChildren<TextTraduction>().AssignID("roomname_" + _hotel.rooms.Find(room => room.monsterID == _monsterController.monsterID).roomName);
+               //_roomPanel.GetComponentInChildren<TextMeshProUGUI>().text = _hotel.rooms.Find(room => room.monsterID == _monsterController.monsterID).roomName;
 
-                // ------------------------------------------------------------------------------------------------------------------------------------------------
-                // Get the room position (calculate center of the room, cause the room pivot is at the bottom left corner) then move the camera to this position
-                Room room = _hotel.rooms.Find(room => room.monsterID == _monsterController.monsterID);
+               // ------------------------------------------------------------------------------------------------------------------------------------------------
+               // Get the room position (calculate center of the room, cause the room pivot is at the bottom left corner) then move the camera to this position
+               Room room = _hotel.rooms.Find(room => room.monsterID == _monsterController.monsterID);
                 GameObject roomObject = GameObject.Find(room.roomID);
 
                 Vector3 position = new Vector3(roomObject.transform.position.x + (room.roomSize.x / 2), roomObject.transform.position.y + (room.roomSize.y / 2), 0);
 
-                _roomPanel.GetComponentInChildren<Button>().onClick.AddListener(() => _cameraController.MoveToTarget(position));
+               // _roomPanel.GetComponentInChildren<Button>().onClick.AddListener(() => _cameraController.MoveToTarget(position));
                 // ------------------------------------------------------------------------------------------------------------------------------------------------
 
                 _availableRooms.SetActive(false);

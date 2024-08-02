@@ -1,3 +1,4 @@
+using Michsky.UI.Dark;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ public class TextTraduction : MonoBehaviour
 {
 
     public string textID;
+    public bool customUIButton = false;
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +26,17 @@ public class TextTraduction : MonoBehaviour
     public void GetText()
     {
         if (textID != null && textID != "")
-        {
-            gameObject.GetComponent<TextMeshProUGUI>().text = LanguageHandler.Instance.GetTranslation(textID);
+        {  
+
+            if (customUIButton)
+            {
+                ButtonManager uiObject = gameObject.GetComponent<ButtonManager>();
+                uiObject.buttonText = LanguageHandler.Instance.GetTranslation(textID);
+            }
+            else
+            {
+                gameObject.GetComponent<TextMeshProUGUI>().text = LanguageHandler.Instance.GetTranslation(textID);
+            }
         }
     }
 

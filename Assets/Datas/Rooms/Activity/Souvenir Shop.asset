@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16dd45f2910a7e940b208100b2d8b53c, type: 3}
   m_Name: Souvenir Shop
   m_EditorClassIdentifier: 
-  roomName: Souvenir Shop
+  roomName: SouvenirShop
   roomSize: {x: 8, y: 5, z: 8}
   roomType: 2
   activityType: 6

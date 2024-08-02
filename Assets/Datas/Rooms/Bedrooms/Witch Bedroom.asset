@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16dd45f2910a7e940b208100b2d8b53c, type: 3}
   m_Name: Witch Bedroom
   m_EditorClassIdentifier: 
-  roomName: Witch Bedroom
+  roomName: WitchBedroom
   roomSize: {x: 8, y: 5, z: 8}
   roomType: 0
   activityType: 8

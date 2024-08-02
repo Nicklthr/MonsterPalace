@@ -11,11 +11,14 @@ public class RoomBtnUI : MonoBehaviour
     private ButtonManager _name;
     [SerializeField]
     private TextMeshProUGUI _price;
+    [SerializeField]
+    private TextTraduction _traduction;
     public Button button;
 
     public void SetName(string name)
     {
-        _name.buttonText = name.ToUpper();
+        //_name.buttonText = name.ToUpper();
+        _traduction.AssignID(name);
         _name.UpdateUI();
     }
 

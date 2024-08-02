@@ -36,7 +36,7 @@ butchermenu	Butcher	Boucher
 gimpmenu	Gimp	Gimp
 ghoulmenu	Ghoul	Goule
 yokaimenu	Yokai	Yokai
-vampiredescription	A vampire is a mythical creature that subsists by feeding on the vital essence (generally in the form of blood) of the living	Un vampire est une créature mythique qui subsiste en se nourrissant de l'essence vitale (généralement sous forme de sang) des vivants.
+vampiredescription	A vampire is a mythical creature that subsists by feeding on the vital essence (generally in the form of blood) of the living	Un vampire est une creature mythique qui subsiste en se nourrissant de l'essence vitale (generalement sous forme de sang) des vivants.
 witchdescription	witch description	Description d'une sorcière
 werewolfdescription	werewolf description	Description d'un loup-garou
 demondescription	demon description	Description d'un démon
@@ -86,3 +86,77 @@ neighbourbutton	Neighbours	Voisins
 activitybutton	Activities	Activités
 likelabel	Likes	Aime
 dislikelabel	Dislikes	N'aime pas
+menu_playbutton	PLAY	JOUER
+menu_playtitle	LET'S PLAY	JOUONS
+menu_playdescription	Open a new hotel	Ouvrir un nouvel hotel
+menu_newgamebutton	NEW GAME	NOUVELLE PARTIE
+menu_newgamedescription	Start your career as a monster hotel manager	Commencez votre carriere de gerant d'hotels de monstres
+menu_bestiarybutton	BESTIARY	BESTIAIRE
+menu_bestiarydescription	All the information you have collected on monsters	Toutes les informations que vous avez recoltees sur les monstres
+menu_shopbutton	SHOP	BOUTIQUE
+menu_shopdescription	Buy new possibilities for your future hotels	Achetez de nouvelles possibilites pour vos futurs hotels
+menu_coins	Coins:	Jetons :
+menu_bedroomblueprints	BEDROOM BLUEPRINTS	PLANS DE CHAMBRE
+menu_activityblueprints	ACTIVITY ROOM BLUEPRINTS	PLANS DE PIECES D'ACTIVITE
+menu_recipes	FOOD RECIPES	RECETTES DE CUISINE
+menu_blueprintlabel	BLUEPRINT	PLAN
+menu_recipelabel	RECIPE	RECETTE
+menu_closebutton	CLOSE	FERMER
+menu_prevtabbutton	PREVIOUS TAB	ONGLET PRECEDENT
+menu_nexttabbutton	NEXT TAB	ONGLET SUIVANT
+menu_settingsbutton	SETTINGS	OPTIONS
+menu_gameplaytab	GAMEPLAY	JEU
+menu_generalsection	GENERAL	GENERAL
+menu_languagesection	LANGUAGE	LANGUE
+menu_french	FRENCH	FRANCAIS
+menu_english	ENGLISH	ANGLAIS
+menu_audiotab	AUDIO	AUDIO
+menu_mastervolume	MASTER VOLUME	GENERAL
+menu_musicvolume	MUSIC VOLUME	MUSIQUE
+menu_sfxvolume	SFX VOLUME	EFFETS SONORES
+menu_helpbutton	HELP	COMMANDES
+menu_quitbutton	QUIT	QUITTER
+runmenu_money	Money:	Argent :
+runmenu_day	Day:	Jour :
+runmenu_bedrooms	Bedrooms:	Chambres :
+runmenu_activities	Activities:	Activites :
+runmenu_dining	Dining:	Cantines :
+runmenu_build	BUILD	CONSTRUIRE
+runmenu_rating	Overall rating	Note globale
+runmenu_reviews	Reviews	Avis
+runmenu_customers	Customers	Clients
+runmenu_waiting	Waiting	En attente
+monsterpanel_name	Monster name	Nom du monstre
+monsterpanel_noassign	You cannot yet assign a room	Vous ne pouvez pas encore assigner de chambre
+monsterpanel_chooseroom	Choose a room to assign to your customer.	Choisissez une chambre à attribuer à votre client.
+monsterpanel_buildroom	Build more rooms !	Construisez plus de chambres !
+monsterpanel_see	See	Voir
+roompanel_free	Room available	Chambre disponible
+roompanel_nofood	No menu assigned	Aucun menu assigne
+roompanel_menubutton	MENU	MENU
+roompanel_capacity	Max capacity:	Capacité maximum :
+roompanel_roomusing	Customer using:	Utilisateurs actuels :
+roompanel_light	Brightness:	Luminosité :
+runmenu_buttonbedroom	BEDROOM	CHAMBRE
+runmenu_buttondining	DINING	CANTINE
+runmenu_buttonactivity	ACTIVITY	ACTIVITE
+runmenu_buttonfloors	FLOOR	ETAGE
+runmenu_buttonback	BACK	RETOUR
+roomname_classicbedroom	CLASSIC BEDROOM	CHAMBRE CLASSIQUE
+roomname_butcherbedroom	Butcher Bedroom	Chambre de boucher
+roomname_demonbedroom	Demon Bedroom	Chambre de demon
+roomname_ghoulbedroom	Ghoul Bedroom	Chambre de goule 
+roomname_gimpbedroom	Gimp Bedroom	Chambre de gimp
+roomname_vampirebedroom	Vampire Bedroom	Chambre de vampire
+roomname_werewolfbedroom	WereWolf Bedroom	Chambre de loup-garou
+roomname_witchbedroom	Witch Bedroom	Chambre de sorcière
+roomname_yokaibedroom	Yokai Bedroom	Chambre de yokai
+roomname_classicdining	Classic Dining	Cantine Classique
+roomname_alchemyroom	Alchemy Room	Salle d'alchimie
+roomname_bathroom	Bathroom	Salle de bain
+roomname_greenhouse	Greenhouse	Serre
+roomname_library	Library	Bibliothèque
+roomname_musichall	Music Hall	Salle de musique
+roomname_souvenirshop	Souvenir Shop	Boutique de Souvenirs
+roomname_tortureroom	Torture Room	Salle de torture
+roomname_workshop	Workshop	Atelier

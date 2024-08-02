@@ -1,11 +1,14 @@
+using Michsky.UI.Dark;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LanguageHandler : MonoBehaviour
 {
     [SerializeField] private TextAsset fullTranslation;
+    [SerializeField] private GameObject canvas;
     private LanguageType curSelectedLanguage = LanguageType.English;
     private const string LANGUAGE_KEY = "CurLanguageKey";
 
@@ -13,6 +16,8 @@ public class LanguageHandler : MonoBehaviour
     private Dictionary<string, string> translations = new Dictionary<string, string>();
 
     public List<TextTraduction> txtList;
+
+    public List<LayoutGroup> layoutGroupsList;
 
 
     public void LanguageHandlerSubscription(TextTraduction txt)
@@ -64,7 +69,7 @@ public class LanguageHandler : MonoBehaviour
         return translations[fullStringID.ToLower()];
     }
 
-    private void ReloadLanguage()
+    public void ReloadLanguage()
     {
         if (PlayerPrefs.HasKey(LANGUAGE_KEY))
         {
@@ -79,6 +84,8 @@ public class LanguageHandler : MonoBehaviour
         {
             t.GetText();
         }
+
+        RefreshLayoutGroupsImmediateAndRecursive(canvas);
 
     }
 
@@ -99,6 +106,23 @@ public class LanguageHandler : MonoBehaviour
     public void ChangeToEnglish()
     {
         SelectNewLanguage(LanguageType.English);
+    }
+
+    public void RefreshLayoutGroupsImmediateAndRecursive(GameObject root)
+    {
+
+        layoutGroupsList.Clear();
+
+        foreach (var layoutGroup in root.GetComponentsInChildren<LayoutGroup>())
+        {
+            layoutGroupsList.Add(layoutGroup);
+           
+        }
+
+        for(int i = layoutGroupsList.Count - 1; i >= 0; i--)
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(layoutGroupsList[i].GetComponent<RectTransform>());
+        }
     }
 
 }
