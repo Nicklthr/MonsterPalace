@@ -15,4 +15,4 @@ MonoBehaviour:
   currentStartRating: 2
   intialStartRating: 2
   satisfactionQuantity: 0
-  startSatisfactionQuantity: 0
+  startSatisfactionQuantity: 50
