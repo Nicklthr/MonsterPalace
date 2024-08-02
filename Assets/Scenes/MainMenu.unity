@@ -1870,6 +1870,7 @@ MonoBehaviour:
     panelName: 
     button: {fileID: 0}
   mainPanelManager: {fileID: 3245590719856464721}
+  _playButton: {fileID: 1763096424}
   debug: 0
 --- !u!4 &1640566843
 Transform:
@@ -1985,6 +1986,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6770968600742117884}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1763096424 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1815191889920192334, guid: c657d748a751cfe498add5309d0e88e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6770968600742117884}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763096419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1824840279
 MonoBehaviour:
   m_ObjectHideFlags: 0
