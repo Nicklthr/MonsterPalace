@@ -19,7 +19,19 @@ public class ReviewPanelManagerUI : MonoBehaviour
     [SerializeField] private Transform _reviewListContent;
 
     [Space(10)]
-    [SerializeField] private TextMeshProUGUI _globalReview;
+    [Header("Reviews")]
+    [SerializeField] private TextMeshProUGUI _reviewsCount;
+
+    [Header("Satisfaction TextMesh")]
+    [Space(10)]
+    [SerializeField] private TextMeshProUGUI _satisfactionQuantity;
+    [SerializeField] private TextMeshProUGUI _satisfactionMaxQuantity;
+
+    [Header("Satisfaction Bar")]
+    [Space(10)]
+    [SerializeField] private Image _satisfactionBar;
+    [SerializeField] private MMF_Player _feelUpdateBar;
+    [SerializeField] private MMF_Player _feelAlertBar;
 
     [Space(10)]
     [Header("Manager")]
@@ -49,6 +61,16 @@ public class ReviewPanelManagerUI : MonoBehaviour
 
     public void Update()
     {
+
+        if (IsSatisfactionValueInAlertRange())
+        {
+            _feelAlertBar.PlayFeedbacks();
+        }else
+        {
+            _feelAlertBar.StopFeedbacks();
+            _satisfactionBar.color = Color.white;
+        }
+
         if ( _debug )
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -61,28 +83,61 @@ public class ReviewPanelManagerUI : MonoBehaviour
 
     private void UpdateGlobalReview()
     {
-        _ratingBarStar.UpdateBar(_hotelRateManager.averageCurrentRating);
+        int currentSatisfactionQuantity = int.Parse( _satisfactionQuantity.text );
 
-        float _noteGlobale;
-        _noteGlobale = Mathf.Round(_hotelRateManager.averageCurrentRating * 10) / 10;
+        _feelUpdateBar.GetFeedbackOfType<MMF_ImageFill>().CurveRemapZero = ConvertTo01Range(currentSatisfactionQuantity);
+        _feelUpdateBar.GetFeedbackOfType<MMF_ImageFill>().CurveRemapOne = ConvertTo01Range(ConvertSatisfactionValue(_hotelRateManager.currentSatisfactionQuantity));
+        _feelUpdateBar.PlayFeedbacks();
 
-        _globalReview.text = "Note globale "+ _noteGlobale.ToString()+ "/5";
+        Debug.Log(ConvertTo01Range(currentSatisfactionQuantity));
 
-        string reviewBtnText = "";
 
+        NumericTextAnimator.Instance.AnimateTextTo( _satisfactionQuantity, (int)ConvertSatisfactionValue(_hotelRateManager.currentSatisfactionQuantity));
+        _satisfactionMaxQuantity.text = "/" + _hotelRateManager.MinMaxSatisfactionThreshold.y.ToString();
+        
         if (_hotelRateManager.totalReviews == 0)
         {
-            reviewBtnText = "0 avis";
+            NumericTextAnimator.Instance.AnimateTextTo(_reviewsCount, _hotelRateManager.totalReviews);
         }
         else
         {
-            reviewBtnText = _hotelRateManager.totalReviews + " avis";
+            NumericTextAnimator.Instance.AnimateTextTo(_reviewsCount, _hotelRateManager.totalReviews);
             gameObject.GetComponent<MMF_Player>().PlayFeedbacks();
         }
-        _reveiwsBtn.GetComponentInChildren<TextMeshProUGUI>().text = reviewBtnText;
 
         UpdateReviewList();
-        
+
+        OnReviewAdd.Invoke();
+
+    }
+
+    private void UpdateGlobalReviewAtStart()
+    {
+        int currentSatisfactionQuantity = 0;
+
+        _feelUpdateBar.GetFeedbackOfType<MMF_ImageFill>().CurveRemapZero = ConvertTo01Range(ConvertSatisfactionValue(currentSatisfactionQuantity));
+        _feelUpdateBar.GetFeedbackOfType<MMF_ImageFill>().CurveRemapOne = ConvertTo01Range(ConvertSatisfactionValue(_hotelRateManager.currentSatisfactionQuantity));
+
+        _feelUpdateBar.PlayFeedbacks();
+
+        Debug.Log(ConvertTo01Range(currentSatisfactionQuantity));
+
+
+        NumericTextAnimator.Instance.AnimateTextTo(_satisfactionQuantity, (int)ConvertSatisfactionValue(_hotelRateManager.currentSatisfactionQuantity));
+        _satisfactionMaxQuantity.text = "/" + _hotelRateManager.MinMaxSatisfactionThreshold.y.ToString();
+
+        if (_hotelRateManager.totalReviews == 0)
+        {
+            NumericTextAnimator.Instance.AnimateTextTo(_reviewsCount, _hotelRateManager.totalReviews);
+        }
+        else
+        {
+            NumericTextAnimator.Instance.AnimateTextTo(_reviewsCount, _hotelRateManager.totalReviews);
+            gameObject.GetComponent<MMF_Player>().PlayFeedbacks();
+        }
+
+        UpdateReviewList();
+
         OnReviewAdd.Invoke();
     }
 
@@ -108,33 +163,37 @@ public class ReviewPanelManagerUI : MonoBehaviour
         }
     }
 
-    private void UpdateGlobalReviewAtStart()
-    {
-        _ratingBarStar.UpdateBar(_hotelRateManager.averageCurrentRating);
-
-        float _noteGlobale;
-        _noteGlobale = Mathf.Round(_hotelRateManager.averageCurrentRating * 10) / 10;
-
-        _globalReview.text = "Note globale " + _noteGlobale.ToString() + "/5";
-
-        string reviewBtnText = "";
-
-        if (_hotelRateManager.totalReviews == 0)
-        {
-            reviewBtnText = "0 avis";
-        }
-        else
-        {
-            reviewBtnText = _hotelRateManager.totalReviews + " avis";
-        }
-        _reveiwsBtn.GetComponentInChildren<TextMeshProUGUI>().text = reviewBtnText;
-
-        UpdateReviewList();
-
-    }
-
     private Sprite GetSpriteMonsterByType( MonsterType type )
     {
         return _monsters.Find( monster => monster.monsterType == type ).monsterSprite;
+    }
+   
+
+    public float ConvertSatisfactionValue(float value)
+    {
+        // S'assurer que la valeur d'entrée est bien entre -100 et 100
+        value = Mathf.Clamp(value, -100f, 100f);
+
+        // Conversion de la plage [-100, 100] à [0, 100]
+        return (value + 100f) / 2f;
+    }
+
+    public float ConvertTo01Range(float value)
+    {
+        // S'assurer que la valeur d'entrée est bien entre 0 et 100
+        value = Mathf.Clamp(value, 0f, 100f);
+
+        // Conversion de la plage [0, 100] à [0, 1]
+        return value / 100f;
+    }
+
+    private bool IsSatisfactionValueInAlertRange()
+    {
+        float value = ConvertSatisfactionValue(_hotelRateManager.currentSatisfactionQuantity);
+
+        // S'assurer que la valeur d'entrée est bien entre 0 et 100
+        value = Mathf.Clamp(value, 0f, 100f);
+
+        return value <= 25f;
     }
 }

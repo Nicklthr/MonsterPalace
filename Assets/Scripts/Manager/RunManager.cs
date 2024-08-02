@@ -64,23 +64,23 @@ public class RunManager : MonoBehaviour
 
     private void Update()
     {
-        if (_hotelRateManager.hotelRating.currentStartRating < 1)
+        if (_hotelRateManager.hotelRating.satisfactionQuantity <= _hotelRateManager.MinMaxSatisfactionThreshold.x)
         {
             OnRunLost();
         }
-        else if (_hotelRateManager.hotelRating.currentStartRating >= 5)
+        else if (_hotelRateManager.hotelRating.satisfactionQuantity >= _hotelRateManager.MinMaxSatisfactionThreshold.y)
         {
             OnRunWin();
         }
 
-        if (_moneyManager.playerMoney <= 0)
+        if ( _moneyManager.playerMoney <= 0 )
         {
             OnRunLost();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if ( _debugMode )
         {
-            _moneyManager.PayTaxe(50);
+            DebugMode();
         }
     }
 
@@ -170,5 +170,37 @@ public class RunManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         GameManager.Instance.PauseGame();
+    }
+
+    private void DebugMode()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            _moneyManager.PayTaxe(50f);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            _moneyManager.AddMoney(100f);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            _hotelRateManager.AddReview(new RateReviews(5, "Wowwww dev good", "Dev", MonsterType.DEMON, 10));
+        }
+
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            _hotelRateManager.AddReview(new RateReviews(0, "Wowwww dev bad", "Dev", MonsterType.WITCH, -10));
+        }
+    }
+
+    public float ConvertSatisfactionValue(float value)
+    {
+        // S'assurer que la valeur d'entrée est bien entre -100 et 100
+        value = Mathf.Clamp(value, -100f, 100f);
+
+        // Conversion de la plage [-100, 100] à [0, 100]
+        return (value + 100f) / 2f;
     }
 }

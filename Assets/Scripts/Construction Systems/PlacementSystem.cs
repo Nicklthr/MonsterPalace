@@ -90,23 +90,7 @@ public class PlacementSystem : MonoBehaviour
                 }
 
                 room.AddRoomPlacement(gridPosition.y < 0 ? RoomPlacement.UNDERGROUND : RoomPlacement.OVERGROUND);
-
-                if (dir == "right" || dir == "left" && gridPosition.y > 0)
-                {
-                    room.AddRoomPlacement( RoomPlacement.LIGHT );
-
-                } else if (dir == "right" || dir == "left" && gridPosition.y < 0 )
-                {
-                    room.AddRoomPlacement(RoomPlacement.DARK);
-
-                }else if ( dir == "both" && gridPosition.y > 0 )
-                {
-                    room.AddRoomPlacement(RoomPlacement.DARK);
-
-                }else if (dir == "both" && gridPosition.y < 0)
-                {
-                    room.AddRoomPlacement(RoomPlacement.DARK);
-                }
+                room.AddRoomPlacement(gridPosition.y < 0 ? RoomPlacement.DARK : RoomPlacement.LIGHT);
 
                 newRoom.GetComponent<RoomController>().ToggleLights();
 

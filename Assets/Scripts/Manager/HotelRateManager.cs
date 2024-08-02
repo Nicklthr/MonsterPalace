@@ -11,6 +11,9 @@ public class RateReviews
     public float note { get; private set; }
 
     [field: SerializeField]
+    public float satisfactionQuantity { get; private set; }
+
+    [field: SerializeField]
     public string review { get; private set; }
 
     [field: SerializeField]
@@ -19,9 +22,10 @@ public class RateReviews
     [field: SerializeField]
     public MonsterType type { get; private set; }
 
-    public RateReviews(float note, string review, string monsterName, MonsterType type) 
+    public RateReviews(float note, string review, string monsterName, MonsterType type, float satisfactionQuantity = 0) 
     { 
         this.note = note;
+        this.satisfactionQuantity = satisfactionQuantity;
         this.review = "- "+ review + " -";
         this.monsterName = monsterName;
         this.type = type;
@@ -34,6 +38,8 @@ public class HotelRateManager : MonoBehaviour
 
     public float averageCurrentRating;
     public int totalReviews;
+    public float currentSatisfactionQuantity;
+    public Vector2 MinMaxSatisfactionThreshold = new Vector2(-100, 100);
 
     public event Action OnReviewAdd;
     public event Action OnInitialRating;
@@ -43,13 +49,8 @@ public class HotelRateManager : MonoBehaviour
     {
         hotelRating.InitializeRateing();
 
-        AddReview(new RateReviews(2, "Great hotel", "Dracula", MonsterType.VAMPIRE), false);
-        AddReview(new RateReviews(2, "Not bad", "Frankenstein", MonsterType.GHOUL), false);
-        AddReview(new RateReviews(2, "I love it", "Wolfy", MonsterType.WEREWOLF), false);
-        AddReview(new RateReviews(2, "Good place", "Mother", MonsterType.WITCH), false);
-        AddReview(new RateReviews(2, "I will come back", "Bhou", MonsterType.YOKAI), false);
-
         averageCurrentRating = hotelRating.intialStartRating;
+        currentSatisfactionQuantity = hotelRating.startSatisfactionQuantity;
         OnInitialRating?.Invoke();
     }
 
@@ -71,6 +72,10 @@ public class HotelRateManager : MonoBehaviour
     public void AddReview(RateReviews reviews, bool useEvent = true)
     {
         listReviews.Add(reviews);
+
+        hotelRating.satisfactionQuantity += reviews.satisfactionQuantity;
+        currentSatisfactionQuantity = hotelRating.satisfactionQuantity;
+
         RateUpdate();
         if( useEvent) {
             OnReviewAdd?.Invoke();

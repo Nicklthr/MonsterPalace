@@ -8,10 +8,13 @@ using UnityEngine;
 public class SO_HotelRating : ScriptableObject
 {
     public int currentStartRating = 0;
-    public int intialStartRating = 2;
+    public int intialStartRating = 0;
+    public float satisfactionQuantity = 0;
+    public float startSatisfactionQuantity = 0;
 
     public void InitializeRateing()
     {
         currentStartRating = intialStartRating;
+        satisfactionQuantity = startSatisfactionQuantity;
     }
 }
