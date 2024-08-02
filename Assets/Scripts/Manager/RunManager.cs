@@ -64,11 +64,11 @@ public class RunManager : MonoBehaviour
 
     private void Update()
     {
-        if (_hotelRateManager.hotelRating.satisfactionQuantity <= _hotelRateManager.MinMaxSatisfactionThreshold.x)
+        if ( _hotelRateManager.hotelRating.satisfactionQuantity <= 0 )
         {
             OnRunLost();
         }
-        else if (_hotelRateManager.hotelRating.satisfactionQuantity >= _hotelRateManager.MinMaxSatisfactionThreshold.y)
+        else if ( _hotelRateManager.hotelRating.satisfactionQuantity >= 100f )
         {
             OnRunWin();
         }

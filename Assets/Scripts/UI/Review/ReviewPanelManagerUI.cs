@@ -86,13 +86,13 @@ public class ReviewPanelManagerUI : MonoBehaviour
         int currentSatisfactionQuantity = int.Parse( _satisfactionQuantity.text );
 
         _feelUpdateBar.GetFeedbackOfType<MMF_ImageFill>().CurveRemapZero = ConvertTo01Range(currentSatisfactionQuantity);
-        _feelUpdateBar.GetFeedbackOfType<MMF_ImageFill>().CurveRemapOne = ConvertTo01Range(ConvertSatisfactionValue(_hotelRateManager.currentSatisfactionQuantity));
+        _feelUpdateBar.GetFeedbackOfType<MMF_ImageFill>().CurveRemapOne = ConvertTo01Range(_hotelRateManager.currentSatisfactionQuantity);
         _feelUpdateBar.PlayFeedbacks();
 
         Debug.Log(ConvertTo01Range(currentSatisfactionQuantity));
 
 
-        NumericTextAnimator.Instance.AnimateTextTo( _satisfactionQuantity, (int)ConvertSatisfactionValue(_hotelRateManager.currentSatisfactionQuantity));
+        NumericTextAnimator.Instance.AnimateTextTo( _satisfactionQuantity, (int)_hotelRateManager.currentSatisfactionQuantity);
         _satisfactionMaxQuantity.text = "/" + _hotelRateManager.MinMaxSatisfactionThreshold.y.ToString();
         
         if (_hotelRateManager.totalReviews == 0)
@@ -116,14 +116,14 @@ public class ReviewPanelManagerUI : MonoBehaviour
         int currentSatisfactionQuantity = 0;
 
         _feelUpdateBar.GetFeedbackOfType<MMF_ImageFill>().CurveRemapZero = ConvertTo01Range(ConvertSatisfactionValue(currentSatisfactionQuantity));
-        _feelUpdateBar.GetFeedbackOfType<MMF_ImageFill>().CurveRemapOne = ConvertTo01Range(ConvertSatisfactionValue(_hotelRateManager.currentSatisfactionQuantity));
+        _feelUpdateBar.GetFeedbackOfType<MMF_ImageFill>().CurveRemapOne = ConvertTo01Range(_hotelRateManager.currentSatisfactionQuantity);
 
         _feelUpdateBar.PlayFeedbacks();
 
         Debug.Log(ConvertTo01Range(currentSatisfactionQuantity));
 
 
-        NumericTextAnimator.Instance.AnimateTextTo(_satisfactionQuantity, (int)ConvertSatisfactionValue(_hotelRateManager.currentSatisfactionQuantity));
+        NumericTextAnimator.Instance.AnimateTextTo(_satisfactionQuantity, (int)_hotelRateManager.currentSatisfactionQuantity);
         _satisfactionMaxQuantity.text = "/" + _hotelRateManager.MinMaxSatisfactionThreshold.y.ToString();
 
         if (_hotelRateManager.totalReviews == 0)

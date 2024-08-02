@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Michsky.UI.Dark.MainPanelManager;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class MainMenuManager : MonoBehaviour
     public List<PanelToHide> panelToHide = new List<PanelToHide>();
 
     public MainPanelManager mainPanelManager;
+    [SerializeField] private Button _playButton;
 
     public bool debug = false;
 
@@ -25,6 +27,9 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
+        if(_playButton != null)
+            _playButton.onClick.AddListener( () => GameManager.Instance.StartNewRun() );
+
         if (debug)
             return;
 
