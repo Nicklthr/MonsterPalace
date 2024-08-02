@@ -24,6 +24,7 @@ public class SO_RoomType : ScriptableObject
     public int quantityBuyable = 1;
     public GameObject prefab;
     public bool isUnlocked = false;
+    public Sprite roomSprite;
 }
 
 [Serializable]

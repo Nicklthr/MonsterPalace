@@ -14,6 +14,7 @@ public class RoomBtnUI : MonoBehaviour
     [SerializeField]
     private TextTraduction _traduction;
     public Button button;
+    public Image image;
 
     public void SetName(string name)
     {

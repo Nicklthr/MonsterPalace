@@ -22,4 +22,5 @@ MonoBehaviour:
   coinCost: 50
   quantityBuyable: 1
   prefab: {fileID: 8446868217674311755, guid: 0d49bb0113763f149bddc77ede3a709c, type: 3}
-  isUnlocked: 1
+  isUnlocked: 0
+  roomSprite: {fileID: 21300000, guid: f21ac4a1ec1541143bf8b389c06b24b0, type: 3}

@@ -67,6 +67,10 @@ public class AvailableRoomsPanelUI : MonoBehaviour
             // ajouter un listener pour le bouton
             button.GetComponentInChildren<TextTraduction>().AssignID("roomname_"+room.roomName);
             button.GetComponentInChildren<Button>().onClick.AddListener(() => SelectRoom(room));
+            if (room.roomType.roomSprite)
+            {
+                button.transform.Find("RoomImage").GetComponent<Image>().sprite = room.roomType.roomSprite;
+            }
         }
     }
 
