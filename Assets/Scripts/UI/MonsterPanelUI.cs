@@ -92,7 +92,7 @@ public class MonsterPanelUI : MonoBehaviour
 
         _monsterName.text = _monsterController.monsterName;
         _monsterPic.sprite = _monsterController.monsterDatas.monsterSprite;
-        _monsterStayDay.text = _monsterController.currentStayDuration.ToString() + "/" + _monsterController.stayDuration.ToString() + " Jours";
+        _monsterStayDay.text = _monsterController.currentStayDuration.ToString() + "/" + _monsterController.stayDuration.ToString();
 
         if (_monsterController.commentaries.Count > 0)
         {

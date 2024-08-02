@@ -45,7 +45,9 @@ public class RoomPanelManager : MonoBehaviour
 
         FindRoomInHotel();
         _header.SetActive(true);
-        _roomName.text = _room.roomName;
+
+        _roomName.gameObject.GetComponent<TextTraduction>().AssignID("roomname_"+ _room.roomName);
+        //_roomName.text = _room.roomName;
 
         switch (_room.type)
         {
@@ -135,7 +137,8 @@ public class RoomPanelManager : MonoBehaviour
                 _NofoodRow.SetActive( false );
                 _foodRow.SetActive( true );
 
-                _foodRow.GetComponentInChildren<TextMeshProUGUI>().text = "Repas : " + _room.foodAssigned.foodName;
+                _foodRow.GetComponentInChildren<TextTraduction>().AssignID("meal_" + _room.foodAssigned.foodName);
+                //_foodRow.GetComponentInChildren<TextMeshProUGUI>().text = "Repas : " + _room.foodAssigned.foodName;
             }
         }
     }

@@ -36,14 +36,14 @@ butchermenu	Butcher	Boucher
 gimpmenu	Gimp	Gimp
 ghoulmenu	Ghoul	Goule
 yokaimenu	Yokai	Yokai
-vampiredescription	A vampire is a mythical creature that subsists by feeding on the vital essence (generally in the form of blood) of the living	Un vampire est une creature mythique qui subsiste en se nourrissant de l'essence vitale (generalement sous forme de sang) des vivants.
-witchdescription	witch description	Description d'une sorcière
-werewolfdescription	werewolf description	Description d'un loup-garou
-demondescription	demon description	Description d'un démon
-butcherdescription	butcher description	Description d'un boucher
-gimpdescription	gimp description	Description d'un gimp
-ghouldescription	ghoul description	Description d'une goule
-yokaidescription	yokai description	Description d'un yokai
+vampiredescription	The Vampire, elegant and dangerous, seduces his victims before draining their blood. His hypnotic gaze and sharp fangs leave no chance for escape.	Le Vampire, élégant et dangereux, séduit ses victimes avant de les vider de leur sang. Son regard hypnotique et ses crocs acérés ne laissent aucune chance.
+witchdescription	The Witch loves brewing mysterious potions and casting formidable spells. A mere glance from her could turn you into a slimy toad! 	La Sorcière adore concocter des potions mystérieuses et jeter des sorts redoutables. Un simple regard de sa part pourrait vous transformer en crapaud baveux !
+werewolfdescription	The Werewolf, master of full moon nights, prowls in search of his next prey. His spine-chilling howl signals a relentless hunt.	Le Loup-Garou, maître des nuits de pleine lune, rôde en quête de sa prochaine proie. Son hurlement glaçant l'échine annonce une chasse sans merci.
+demondescription	The Demon, with his sharp horns and evil grin, haunts the nightmares of the bravest. Get too close, and you might lose more than just a night's sleep. 	Le Démon, avec ses cornes acérées et son sourire maléfique, hante les cauchemars des plus courageux. Approchez-le et vous risquez de perdre bien plus qu'une simple nuit de sommeil. 
+butcherdescription	The Butcher, armed with sharp blades, prepares bloody feasts that would make anyone pale with horror. His cold gaze and precise movements are those of a terror artist.	Le Boucher, armé de ses lames tranchantes, prépare des festins sanglants qui feraient pâlir d'horreur. Son regard froid et ses gestes précis sont ceux d'un artiste de la terreur.
+gimpdescription	The Latex Gimp, with his bizarre costume and sinister laugh, embodies pure unease. Every appearance promises a waking nightmare.	Le Gimp en latex, avec son costume étrange et son rire sinistre, est l'incarnation même du malaise. Chaque apparition de sa part est une promesse de cauchemar éveillé.
+ghouldescription	The Ghoul, creature of graveyards, feasts on decaying flesh. Her foul stench and insatiable hunger make her a terrifying guest.	La Goule, créature des cimetières, se repaît de chair en décomposition. Son odeur fétide et son appétit insatiable font d'elle un invité terrifiant.
+yokaidescription	The Yokai, a mysterious and unpredictable spirit, can switch from mischief to terror in an instant. His presence turns the hotel into a place of haunting and fear.	Le Yokai, esprit mystérieux et imprévisible, peut passer de l'espièglerie à la terreur en un clin d'œil. Sa présence transforme l'hôtel en un lieu de hantise et de peur.
 library	library	la bibliothèque
 musichall	music hall	la salle de musique
 gym	gym	la salle de sport
@@ -128,15 +128,19 @@ runmenu_customers	Customers	Clients
 runmenu_waiting	Waiting	En attente
 monsterpanel_name	Monster name	Nom du monstre
 monsterpanel_noassign	You cannot yet assign a room	Vous ne pouvez pas encore assigner de chambre
-monsterpanel_chooseroom	Choose a room to assign to your customer.	Choisissez une chambre à attribuer à votre client.
+monsterpanel_chooseroom	Choose a room to assign to your customer	Choisissez une chambre a attribuer à votre client
 monsterpanel_buildroom	Build more rooms !	Construisez plus de chambres !
 monsterpanel_see	See	Voir
+monsterpanel_noroom	Your hotel does not have any rooms	Votre hotel ne dispose d'aucune chambre
+monsterpanel_assign	Assign	Assigner
+monsterpanel_days	Days	Jours
 roompanel_free	Room available	Chambre disponible
 roompanel_nofood	No menu assigned	Aucun menu assigne
 roompanel_menubutton	MENU	MENU
-roompanel_capacity	Max capacity:	Capacité maximum :
+roompanel_capacity	Max capacity:	Capacite maximum :
 roompanel_roomusing	Customer using:	Utilisateurs actuels :
-roompanel_light	Brightness:	Luminosité :
+roompanel_light	Brightness:	Luminosite :
+roompanel_meal	Meal:	Repas :
 runmenu_buttonbedroom	BEDROOM	CHAMBRE
 runmenu_buttondining	DINING	CANTINE
 runmenu_buttonactivity	ACTIVITY	ACTIVITE
@@ -149,14 +153,30 @@ roomname_ghoulbedroom	Ghoul Bedroom	Chambre de goule
 roomname_gimpbedroom	Gimp Bedroom	Chambre de gimp
 roomname_vampirebedroom	Vampire Bedroom	Chambre de vampire
 roomname_werewolfbedroom	WereWolf Bedroom	Chambre de loup-garou
-roomname_witchbedroom	Witch Bedroom	Chambre de sorcière
+roomname_witchbedroom	Witch Bedroom	Chambre de sorciere
 roomname_yokaibedroom	Yokai Bedroom	Chambre de yokai
 roomname_classicdining	Classic Dining	Cantine Classique
 roomname_alchemyroom	Alchemy Room	Salle d'alchimie
 roomname_bathroom	Bathroom	Salle de bain
 roomname_greenhouse	Greenhouse	Serre
-roomname_library	Library	Bibliothèque
+roomname_library	Library	Bibliotheque
 roomname_musichall	Music Hall	Salle de musique
 roomname_souvenirshop	Souvenir Shop	Boutique de Souvenirs
 roomname_tortureroom	Torture Room	Salle de torture
 roomname_workshop	Workshop	Atelier
+roomname_upperstair	Upper Floor	Etage
+roomname_understair	Basement	Sous-sol
+reviewpanel_satisfaction	Satisfaction:	Satisfaction :
+menu_continuebutton	Continue	Continuer
+menu_cancelbutton	Cancel	Annuler
+menu_victory_title	Congratulations	Felicitations
+menu_victory_desc	Your hotel has been upgraded  to a Palace level!	Votre hôtel a été surclassé  au niveau de palace !
+menu_defeat_title	Bankrupt	Faillite
+menu_defeat_desc	Unfortunately, your hotel has gone bankrupt.  Better luck next time!	Malheureusement, votre hôtel a fait faillite.  Plus de chance la prochaine fois!
+menu_quit_title	EXIT	QUITTER
+menu_quit_desc	ARE YOU SURE YOU WANT TO EXIT?	ÊTES-VOUS SÛR DE VOULOIR QUITTER?
+foodpanel_title	Select Room Menu 	Sélectionner le menu de la chambre
+meal_blood	Blood	Sang
+meal_fruitjuice	Fruit Juice	Jus de Fruit
+meal_jucymeat	Juicy Meat	Viande Juteuse
+meal_carrotcake	Carrot Cake	Gateau de Carotte

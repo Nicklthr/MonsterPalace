@@ -172,13 +172,13 @@ public class ConstructionUIManager : MonoBehaviour
     {
         var addStageButton = Instantiate( roomCategoryBtnPrefab, stagePanel.transform );
         addStageButton.GetComponent<RoomBtnUI>().SetPrice(_stairRoom.cost);
-        addStageButton.GetComponent<RoomBtnUI>().SetName("UPPER STAIR");
+        addStageButton.GetComponent<RoomBtnUI>().SetName("roomname_upperstair");
 
         addStageButton.GetComponent<RoomBtnUI>().button.onClick.AddListener(() => AddStage());
 
         var addBasementButton = Instantiate( roomCategoryBtnPrefab, stagePanel.transform );
         addBasementButton.GetComponent<RoomBtnUI>().SetPrice(_stairRoom.cost);
-        addBasementButton.GetComponent<RoomBtnUI>().SetName("UNDER STAIR");
+        addBasementButton.GetComponent<RoomBtnUI>().SetName("roomname_understair");
 
         addBasementButton.GetComponent<RoomBtnUI>().button.onClick.AddListener(() => AddBasement());
 

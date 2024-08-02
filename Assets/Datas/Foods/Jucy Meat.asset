@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1139cf9a9af525479b67bd62a25ded1, type: 3}
   m_Name: Jucy Meat
   m_EditorClassIdentifier: 
-  foodName: Jucy Meat
+  foodName: JucyMeat
   sprite: {fileID: 0}
   description: 
   typeList: 030000000100000004000000

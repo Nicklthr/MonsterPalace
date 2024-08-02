@@ -11,8 +11,8 @@ public class RoomInformationsPanelUI : MonoBehaviour
 
     public void SetRoomInformations(int maxCapacity, int userCount, string light)
     {
-        _maxCapacity.text = "Max users : " + maxCapacity.ToString();
-        _currentUserCount.text = "Current users : " + userCount.ToString();
+        _maxCapacity.text = maxCapacity.ToString();
+        _currentUserCount.text = userCount.ToString();
         _light.text = light;
     }
 }

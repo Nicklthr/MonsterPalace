@@ -12,7 +12,8 @@ public class CardFoodUI : MonoBehaviour
 
     public void SetFood( SO_Food food )
     {
-        _foodName.text = food.foodName;
+        //_foodName.text = food.foodName;
+        _foodName.gameObject.GetComponent<TextTraduction>().AssignID("meal_"+food.foodName);
         //_foodImage.sprite = food.foodImage;
     }
 }

@@ -63,8 +63,9 @@ public class AvailableRoomsPanelUI : MonoBehaviour
 
         foreach (Room room in availableRooms)
         {
-            var button = Instantiate( _roomPrefab, _availableRoomsPanel.transform ); 
+            var button = Instantiate( _roomPrefab, _availableRoomsPanel.transform );
             // ajouter un listener pour le bouton
+            button.GetComponentInChildren<TextTraduction>().AssignID("roomname_"+room.roomName);
             button.GetComponentInChildren<Button>().onClick.AddListener(() => SelectRoom(room));
         }
     }

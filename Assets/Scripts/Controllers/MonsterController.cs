@@ -21,8 +21,8 @@ public class MonsterController : MonoBehaviour
     public string monsterName;
     public string monsterID;
     private float patienceMax;
-    [Range(0, 100)]
-    public int satisfaction = 50;
+    [Range(-100, 100)]
+    public int satisfaction = 0;
 
     public float starsRate = 0f;
     public string review = "";
@@ -400,9 +400,9 @@ public class MonsterController : MonoBehaviour
     public void notHappy(int value, string message, bool id = false)
     {
         satisfaction -= value;
-        if(satisfaction < 0)
+        if(satisfaction < -100)
         {
-            satisfaction = 0;
+            satisfaction = -100;
         }
         animator.SetTrigger("isAngry");
         audiosource.clip = angrySound;
