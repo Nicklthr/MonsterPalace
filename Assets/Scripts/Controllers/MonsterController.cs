@@ -715,7 +715,7 @@ public class MonsterController : MonoBehaviour
     {
         starsRate = satisfaction / 20;
         HotelRateManager hotelratemanager = FindObjectOfType<HotelRateManager>();
-        hotelratemanager.AddReview(new RateReviews(starsRate, "Test", monsterName, monsterDatas.monsterType));
+        hotelratemanager.AddReview(new RateReviews(starsRate, "Test", monsterName, monsterDatas.monsterType, satisfaction));
     }
 
     public void CheckOut()

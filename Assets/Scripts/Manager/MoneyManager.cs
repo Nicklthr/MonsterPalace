@@ -99,4 +99,10 @@ public class MoneyManager : MonoBehaviour
         _argentSO.playerMoney -= price;
         OnMoneyChange?.Invoke();
     }
+
+    public void AddMoney( float price )
+    {
+        _argentSO.playerMoney += price;
+        OnMoneyChange?.Invoke();
+    }
 }
