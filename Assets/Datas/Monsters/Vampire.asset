@@ -25,6 +25,6 @@ MonoBehaviour:
   foodLike: 0300000000000000
   foodDislike: 02000000
   activityLike: 0000000005000000
-  patienceMax: 10
+  patienceMax: 25
   monsterNameList: {fileID: 11400000, guid: fc2a09b010093bc4f809ade15494ceb2, type: 2}
   monsterSprite: {fileID: 21300000, guid: 37ecfb2d95e788a4d9fca41c4e869c07, type: 3}
