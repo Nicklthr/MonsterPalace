@@ -43,6 +43,7 @@ public class CycleDayTimeUI : MonoBehaviour
 
     void UpdateDayUI()
     {
-        TextMeshFader.Instance.FadeTextWithUpdate( _dayText, _dayNightCycle.currentDayOfTheWeek + " -", 1f );
+        
+        TextMeshFader.Instance.FadeTextWithUpdate( _dayText, LanguageHandler.Instance.GetTranslation(_dayNightCycle.currentDayOfTheWeek), 1f );
     }
 }
