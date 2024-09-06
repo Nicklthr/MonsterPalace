@@ -15,6 +15,8 @@ public class MainMenuManager : MonoBehaviour
     public MainPanelManager mainPanelManager;
     [SerializeField] private Button _playButton;
 
+    [SerializeField] private string _playTestLink;
+
     public bool debug = false;
 
     [System.Serializable]
@@ -80,6 +82,12 @@ public class MainMenuManager : MonoBehaviour
             }
         }
         
+    }
+
+    public void PlayTestLink()
+    {
+        Application.OpenURL(_playTestLink);
+
     }
 
 }
