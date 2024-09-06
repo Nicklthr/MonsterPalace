@@ -180,3 +180,12 @@ meal_blood	Blood	Sang
 meal_fruitjuice	Fruit Juice	Jus de Fruit
 meal_jucymeat	Juicy Meat	Viande Juteuse
 meal_carrotcake	Carrot Cake	Gateau de Carotte
+meal_meatpie	Meat Pie	Tourte à la viande
+meal_veggiesalad	Veggie Salad	Salade végétarienne
+monday	Monday	Lundi
+tuesday	Tuesday	Mardi
+wednesday	Wednesday	Mercredi
+thursday	Thursday	Jeudi
+friday	Friday	Vendredi
+saturday	Saturday	Samedi
+sunday	Sunday	Dimanche

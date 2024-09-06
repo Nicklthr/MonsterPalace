@@ -88,25 +88,25 @@ public class DayNightCycle : MonoBehaviour
         switch (dayOfTheWeek)
         {
             case 1:
-                currentDayOfTheWeek = "Monday";
+                currentDayOfTheWeek = "monday";
                 break;
             case 2:
-                currentDayOfTheWeek = "Tuesday";
+                currentDayOfTheWeek = "tuesday";
                 break;
             case 3:
-                currentDayOfTheWeek = "Wednesday";
+                currentDayOfTheWeek = "wednesday";
                 break;
             case 4:
-                currentDayOfTheWeek = "Thursday";
+                currentDayOfTheWeek = "thursday";
                 break;
             case 5:
-                currentDayOfTheWeek = "Friday";
+                currentDayOfTheWeek = "friday";
                 break;
             case 6:
-                currentDayOfTheWeek = "Saturday";
+                currentDayOfTheWeek = "saturday";
                 break;
             case 7:
-                currentDayOfTheWeek = "Sunday";
+                currentDayOfTheWeek = "sunday";
                 break;
         }
     }
