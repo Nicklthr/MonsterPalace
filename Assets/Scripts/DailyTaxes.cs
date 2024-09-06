@@ -18,7 +18,7 @@ public class DailyTaxes : MonoBehaviour
 
     private bool taxed = false;
 
-    [Header("Room Number")]
+    /*[Header("Room Number")]
     [Tooltip("Nombre de pièces de chaque type présentes dans l'hôtel")]
     public int basicRoomNumber;
     public int specialRoomNumber;
@@ -28,7 +28,12 @@ public class DailyTaxes : MonoBehaviour
     [Tooltip("Coût quotidien pour chaque type de pièces")]
     public float basicRoomTaxes = 7f;
     public float specialRoomTaxes = 9f;
-    public float activityRoomTaxes = 15f;
+    public float activityRoomTaxes = 15f;*/
+
+    public float taxesPrice = 100f;
+    public float increaseTaxesAmount = 50f;
+    public bool increasedTaxes = false;
+    public string taxesTxt = "";
 
     public UnityEvent OnTaxesPaid = new UnityEvent();
 
@@ -41,6 +46,9 @@ public class DailyTaxes : MonoBehaviour
 
     void Update()
     {
+
+        taxesTxt = "Next cost of taxes : " + taxesPrice;
+
         if (useTaxeDay)
         {
             if (_cycle.currentDayOfTheWeek == taxeDay && !taxed)
@@ -51,6 +59,7 @@ public class DailyTaxes : MonoBehaviour
             if (_cycle.currentDayOfTheWeek != taxeDay)
             {
                 taxed = false;
+                increasedTaxes = false;
             }
         }
         else
@@ -63,25 +72,34 @@ public class DailyTaxes : MonoBehaviour
             if (_cycle.currentHour == taxeHour + 1)
             {
                 taxed = false;
+                increasedTaxes = false;
             }
         }
     }
 
     public void Taxes()
     {
+        _moneyManager.PayTaxe(taxesPrice);
 
-        _moneyManager.PayTaxe(basicRoomTaxes * FindCountRoomByType(RoomType.BASE) * 7);
-        _moneyManager.PayTaxe(specialRoomTaxes * FindCountRoomByType(RoomType.BEDROOM) * 7);
-        _moneyManager.PayTaxe(activityRoomTaxes * FindCountRoomByType(RoomType.ACTIVITY) * 7);
+        IncreaseTaxes();
+
+        //_moneyManager.PayTaxe(basicRoomTaxes * FindCountRoomByType(RoomType.BASE) * 7);
+        //_moneyManager.PayTaxe(specialRoomTaxes * FindCountRoomByType(RoomType.BEDROOM) * 7);
+        //_moneyManager.PayTaxe(activityRoomTaxes * FindCountRoomByType(RoomType.ACTIVITY) * 7);
 
         taxed = true;
 
         OnTaxesPaid.Invoke();
-
-        //Debug.Log("Payement quotidien effectué!");
     }
 
-    public int FindCountRoomByType(RoomType type)
+    public void IncreaseTaxes()
+    {
+        taxesPrice += increaseTaxesAmount;
+
+        increasedTaxes = true;
+    }
+
+    /*public int FindCountRoomByType(RoomType type)
     {
         int count = _hotel._hotel.rooms.FindAll(room => room.type == type).Count;
 
@@ -94,5 +112,5 @@ public class DailyTaxes : MonoBehaviour
         {
             return count;
         }
-    }
+    }*/
 }
