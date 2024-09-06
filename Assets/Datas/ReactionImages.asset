@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee56d5ae601067646b2720c3174cd2a5, type: 3}
+  m_Name: ReactionImages
+  m_EditorClassIdentifier: 
+  ReactionImages:
+    _serializedList:
+    - Key: happy
+      Value: {fileID: 21300000, guid: d85551d40cd3c104695b7fe37032189a, type: 3}
+    - Key: angry
+      Value: {fileID: 21300000, guid: 33f1370746887ca4c9a5936f4c9bd908, type: 3}
+    - Key: eat
+      Value: {fileID: 21300000, guid: d85551d40cd3c104695b7fe37032189a, type: 3}
+    - Key: activity
+      Value: {fileID: 21300000, guid: f44272c489bf0b9468bf20b2331038ca, type: 3}
+    - Key: pay
+      Value: {fileID: 21300000, guid: f44272c489bf0b9468bf20b2331038ca, type: 3}
+    - Key: dislike
+      Value: {fileID: 21300000, guid: 49fca329ece5a4e4595751d683208e5e, type: 3}
+    - Key: noActivity
+      Value: {fileID: 21300000, guid: 33f1370746887ca4c9a5936f4c9bd908, type: 3}
+    - Key: noDiner
+      Value: {fileID: 21300000, guid: 33f1370746887ca4c9a5936f4c9bd908, type: 3}
+    - Key: noMenu
+      Value: {fileID: 21300000, guid: 33f1370746887ca4c9a5936f4c9bd908, type: 3}
+    - Key: checkOut
+      Value: {fileID: 21300000, guid: d85551d40cd3c104695b7fe37032189a, type: 3}
+    - Key: waiting
+      Value: {fileID: 21300000, guid: f44272c489bf0b9468bf20b2331038ca, type: 3}
+    - Key: like
+      Value: {fileID: 21300000, guid: 621d06f8459698f408542c272e656d8e, type: 3}

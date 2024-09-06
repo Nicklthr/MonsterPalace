@@ -4,6 +4,8 @@ using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.AI;
 using System;
+using UnityEngine.UI;
+using BehaviorDesigner.Runtime.Tasks.MonsterTask;
 
 public class MonsterController : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class MonsterController : MonoBehaviour
     [SerializeField] private AudioSource audiosource;
     [SerializeField] private AudioClip happySound;
     [SerializeField] private AudioClip angrySound;
+    [SerializeField] private Image reactionImage;
+    [SerializeField] public SO_ReactionImage reactionImageDatas;
 
     private float defaultSpeed;
 
@@ -100,7 +104,8 @@ public class MonsterController : MonoBehaviour
         waitingQ = true;
         defaultSpeed = agent.speed;
         endLine = false;
-        
+        DeactivateReaction();
+
 
 
         //Name
@@ -293,11 +298,13 @@ public class MonsterController : MonoBehaviour
 
         if (roomFind)
         {
+            setReaction(reactionImageDatas.returnEmote("eat"));
             roomFind = false;
             return true;
         }
         else
         {
+            setReaction(reactionImageDatas.returnEmote("noDiner"));
             if (message == "")
             {
                 message = LanguageHandler.Instance.GetTranslation("nocanteen");
@@ -353,11 +360,13 @@ public class MonsterController : MonoBehaviour
 
         if (roomFind)
         {
+            setReaction(reactionImageDatas.returnEmote("activity"));
             roomFind = false;
             return true;
         }
         else
         {
+            setReaction(reactionImageDatas.returnEmote("noActivity"));
             if (message == "")
             {
                 message = LanguageHandler.Instance.GetTranslation("noactivity");
@@ -383,6 +392,7 @@ public class MonsterController : MonoBehaviour
         {
             satisfaction = 100;
         }
+        ActivateReaction();
         animator.SetTrigger("isHappy");
         audiosource.clip = happySound;
         audiosource.Play();
@@ -404,6 +414,7 @@ public class MonsterController : MonoBehaviour
         {
             satisfaction = -100;
         }
+        ActivateReaction();
         animator.SetTrigger("isAngry");
         audiosource.clip = angrySound;
         audiosource.Play();
@@ -483,16 +494,19 @@ public class MonsterController : MonoBehaviour
 
                     if(satisfood > 0)
                     {
+                        setReaction(reactionImageDatas.returnEmote("like"));
                         Happy(satisfood, message);
                     }
                     else if(satisfood < 0)
                     {
+                        setReaction(reactionImageDatas.returnEmote("dislike"));
                         notHappy(-satisfood, message);
                     }
 
                 }
                 else
                 {
+                    setReaction(reactionImageDatas.returnEmote("noMenu"));
                     message = LanguageHandler.Instance.GetTranslation("nofood");
                     notHappy(30, message);
                 }
@@ -515,10 +529,12 @@ public class MonsterController : MonoBehaviour
                 if (room.monsterTypeOfRoom == monsterDatas.monsterType)
                 {
                     message = LanguageHandler.Instance.GetTranslation("roomTypeLike");
+                    setReaction(reactionImageDatas.returnEmote("happy"));
                     Happy(30, message);
                 }
                 else if(room.monsterTypeOfRoom != MonsterType.NONE)
                 {
+                    setReaction(reactionImageDatas.returnEmote("angry"));
                     message = LanguageHandler.Instance.GetTranslation("roomTypeDislike");
                     notHappy(30, message);
                 }
@@ -593,10 +609,12 @@ public class MonsterController : MonoBehaviour
 
                     if (satisplac > 0)
                     {
+                        setReaction(reactionImageDatas.returnEmote("happy"));
                         Happy(satisplac, message);
                     }
                     else if (satisplac < 0)
                     {
+                        setReaction(reactionImageDatas.returnEmote("angry"));
                         notHappy(-satisplac, message);
                     }
 
@@ -698,10 +716,12 @@ public class MonsterController : MonoBehaviour
 
         if (satisneighboor > 0)
         {
+            setReaction(reactionImageDatas.returnEmote("happy"));
             Happy(satisneighboor, message);
         }
         else if (satisneighboor < 0)
         {
+            setReaction(reactionImageDatas.returnEmote("angry"));
             notHappy(-satisneighboor, message);
         }
     }
@@ -772,6 +792,21 @@ public class MonsterController : MonoBehaviour
         {
             endLine = true;
         }
+    }
+
+    public void ActivateReaction()
+    {
+        reactionImage.enabled = true;
+    }
+
+    public void DeactivateReaction()
+    {
+        reactionImage.enabled = false;
+    }
+
+    public void setReaction(Sprite sprite)
+    {
+        reactionImage.sprite = sprite;
     }
 
 }
