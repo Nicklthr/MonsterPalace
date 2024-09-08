@@ -12,6 +12,7 @@ public class TextTraduction : MonoBehaviour
     public string textID;
     public bool customUIButton = false;
     public bool customUIText = false;
+    public bool tooltip = false;
 
 
     // Start is called before the first frame update
@@ -40,6 +41,11 @@ public class TextTraduction : MonoBehaviour
                 ModalWindowManager uiObject = gameObject.GetComponent<ModalWindowManager>();
                 uiObject.title = LanguageHandler.Instance.GetTranslation(textID+"_title");
                 uiObject.description = LanguageHandler.Instance.GetTranslation(textID+"_desc");
+            }
+            else if (tooltip)
+            {
+                TooltipTrigger trigger = gameObject.GetComponent<TooltipTrigger>();
+                trigger.content = LanguageHandler.Instance.GetTranslation(textID);
             }
             else
             {

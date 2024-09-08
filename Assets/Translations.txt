@@ -189,3 +189,14 @@ thursday	Thursday	Jeudi
 friday	Friday	Vendredi
 saturday	Saturday	Samedi
 sunday	Sunday	Dimanche
+tooltip_money	The amount you have available	La somme dont vous disposez
+tooltip_time	Current date and time	Date et heure actuelles
+tooltip_satisfaction	Customer satisfaction gauge	Jauge de satisfaction des clients 
+tooltip_bedroom	Total number of rooms in the hotel	Nombre de chambres total dans l'hôtel
+tooltip_dining	Total number of canteens in the hotel	Nombre de cantines total dans l'hôtel
+tooltip_activity	Total number of activity rooms in the hotel	Nombre de salles d'activité total dans l'hôtel
+tooltip_customer	Number of guests in the hotel	Nombre de client dans l'hôtel
+tooltip_waiting	Number of customers at reception	Nombre de client à l'accueil
+tooltip_build	Start building	Commencer à construire
+tooltip_bestiary	Consult the bestiary	Consulter le bestiaire
+tooltip_quit	Leave the game	Quitter la partie
