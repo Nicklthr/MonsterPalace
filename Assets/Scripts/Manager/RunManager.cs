@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using Michsky.UI.Dark;
 using System;
 using System.Collections;
+using UnityEngine.Rendering;
 public class RunManager : MonoBehaviour
 {
     [Header("References")]
@@ -35,6 +36,12 @@ public class RunManager : MonoBehaviour
     [Space(10)]
     [Header("Debug Mode")]
     [SerializeField] private bool _debugMode = false;
+
+    [Space(10)]
+    [Header("End Screen Stats")]
+    public float runChrono = 0f;     
+    public bool isGameRunning = false;
+    public int coinsGranted;
 
     private void Awake()
     {
@@ -82,6 +89,11 @@ public class RunManager : MonoBehaviour
         {
             DebugMode();
         }
+
+        if (isGameRunning)
+        {
+            runChrono += Time.deltaTime;
+        }
     }
 
     private void OnDestroy()
@@ -116,6 +128,8 @@ public class RunManager : MonoBehaviour
     {
         onRunStart.Invoke();
        _saveManager.SaveGame();
+        isGameRunning = true;
+        coinsGranted = 0;
     }
 
     private void OnRunPause()
@@ -134,6 +148,7 @@ public class RunManager : MonoBehaviour
         _saveManager.SaveGame();
         _musicController.StopMusic(true);
         onRunLost.Invoke();
+        isGameRunning = false;
 
         StartCoroutine(WaitAndPause(3f));
 
@@ -143,8 +158,10 @@ public class RunManager : MonoBehaviour
 
     private void CoinScoreAdd()
     {
-        int amout = (int)_hotelRateManager.totalReviews;
-        _jetonSO.AddCoin(amout);
+        //int amout = (int)_hotelRateManager.totalReviews;
+        //_jetonSO.AddCoin(amout);
+        coinsGranted = (int)_hotelRateManager.totalReviews;
+        _jetonSO.AddCoin(coinsGranted);
         OnAddCoin?.Invoke();
     }
 
@@ -154,6 +171,7 @@ public class RunManager : MonoBehaviour
         _saveManager.SaveGame();
         _musicController.StopMusic(true);
         onRunWin.Invoke();
+        isGameRunning = false;
 
         StartCoroutine(WaitAndPause(3f));
 

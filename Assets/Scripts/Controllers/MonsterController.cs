@@ -729,6 +729,7 @@ public class MonsterController : MonoBehaviour
     public void Pay()
     {
         moneyManager.Payment(stayDuration);
+        EndSceenStats.Instance.CustomersCountAdd(1);
     }
 
     public void GiveEvaluation()
