@@ -15,6 +15,7 @@ MonoBehaviour:
   sceneDatas_byGuid:
     keys:
     - e19f41baa857b774a8076d517b327e65
+    - aa718a75d7a56eb45a06fd1fb156bc22
     values:
     - goDatas_byGlobalId:
         keys:
@@ -34,3 +35,6 @@ MonoBehaviour:
           iconNameOrGuid: PreMatCube
         - colorIndex: 4
           iconNameOrGuid: Camera Icon
+    - goDatas_byGlobalId:
+        keys: []
+        values: []

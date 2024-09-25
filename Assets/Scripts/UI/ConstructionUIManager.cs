@@ -46,17 +46,9 @@ public class ConstructionUIManager : MonoBehaviour
     private bool _IsNextPanelCoroutineRunning = false;
     private bool _IsBackPanelCoroutineRunning = false;
 
-    private void Awake()
-    {
-        //roomConstructionPanel.SetActive(false);
-    }
-
     private void Start()
     {
         _placementSystem = FindObjectOfType<PlacementSystem>();
-
-        //builderBtn.GetComponent<Button>().onClick.AddListener( OpenConstructionPanel );
-        //builderBtn.GetComponent<Button>().onClick.AddListener( () => _placementSystem.ToggleGridVisualization() );
         PopulateCategories();
     }
 
@@ -70,15 +62,8 @@ public class ConstructionUIManager : MonoBehaviour
 
     public void OpenConstructionPanel()
     {
-        //mainPanel.GetComponent<UIDissolveEffect>().DissolveOut();
-        //roomConstructionPanel.GetComponent<UIDissolveEffect>().DissolveIn();
-
         StartCoroutine(NextPanel(mainPanel, roomConstructionPanel));
-
         _placementSystem.ToggleGridVisualization();
-        //builderBtn.SetActive( false );
-        //mainPanel.SetActive( false );
-        //roomConstructionPanel.SetActive( true );
     }
 
     private void PopulateCategories()
@@ -89,19 +74,16 @@ public class ConstructionUIManager : MonoBehaviour
             if ( category.rooms.Any( room => room.isUnlocked == true ) == false ) continue;
 
             var button = Instantiate(categoryBtnPrefb, roomConstructionPanel.transform);
+
             button.name = category.RoomType.ToString();
-
             button.GetComponent<TextTraduction>().AssignID("runmenu_button" + category.RoomType.ToString());
-            //button.GetComponent<ButtonManager>().buttonText = category.RoomType.ToString();
             button.GetComponent<ButtonManager>().UpdateUI();
-
             button.GetComponent<Button>().onClick.AddListener(() => OpenCategoryRooms( category ));
 
         }
 
         var stageButton = Instantiate(categoryBtnPrefb, roomConstructionPanel.transform);
         stageButton.GetComponent<TextTraduction>().AssignID("runmenu_buttonfloors");
-        //stageButton.GetComponent<ButtonManager>().buttonText = "STAGES";
         stageButton.GetComponent<ButtonManager>().UpdateUI();
 
         stageButton.GetComponent<Button>().onClick.AddListener(() => OpenStagePanel());
@@ -111,8 +93,6 @@ public class ConstructionUIManager : MonoBehaviour
 
     private void OpenCategoryRooms( RoomDB category )
     {
-        //roomConstructionPanel.SetActive( false );
-        //categoryPanel.SetActive( true );
         ClearCategoriesPanel();
         PopulateSubCategorie( category );
 
@@ -127,10 +107,7 @@ public class ConstructionUIManager : MonoBehaviour
             if( room.isUnlocked == false ) continue;
 
             var button = Instantiate( roomCategoryBtnPrefab, categoryPanel.transform );
-
             button.GetComponent<RoomBtnUI>().SetPrice(room.cost);
-
-            //button.GetComponent<TextTraduction>().AssignID("roomname_" + room.roomName.ToString());
             button.GetComponent<RoomBtnUI>().SetName("roomname_" + room.roomName.ToString());
 
             if (room.roomSprite) {
@@ -214,6 +191,11 @@ public class ConstructionUIManager : MonoBehaviour
     private IEnumerator NextPanel( GameObject currentPanel, GameObject nextPanel )
     {
         if ( _IsNextPanelCoroutineRunning || _IsBackPanelCoroutineRunning ) yield break;
+
+        if ( currentPanel.GetComponent<TooltipTrigger>())
+        {
+            TooltipSystem.Hide();
+        }
 
         _IsNextPanelCoroutineRunning = true;
         currentPanel.GetComponent<UIDissolveEffect>().DissolveOut();

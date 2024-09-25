@@ -120,7 +120,7 @@ public class ReviewPanelManagerUI : MonoBehaviour
 
         _feelUpdateBar.PlayFeedbacks();
 
-        Debug.Log(ConvertTo01Range(currentSatisfactionQuantity));
+        //Debug.Log(ConvertTo01Range(currentSatisfactionQuantity));
 
 
         NumericTextAnimator.Instance.AnimateTextTo(_satisfactionQuantity, (int)_hotelRateManager.currentSatisfactionQuantity);

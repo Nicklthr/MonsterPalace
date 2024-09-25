@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815228bcee294f7439aa6226e47fdf98, type: 3}
   m_Name: PlayerCoin
   m_EditorClassIdentifier: 
-  playerCoin: 50
+  playerCoin: 500
   payedAmount: 0
   gainedAmount: 0

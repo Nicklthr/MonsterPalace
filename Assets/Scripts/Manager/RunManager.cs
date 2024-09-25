@@ -54,7 +54,16 @@ public class RunManager : MonoBehaviour
         _saveManager = FindObjectOfType<SaveManager>();
         _hotelRateManager = FindObjectOfType<HotelRateManager>();
         _moneyManager = FindObjectOfType<MoneyManager>();
-        
+
+        if (_dissolveEffect != null)
+        {
+            GameObject dissolveObject = _dissolveEffect.gameObject;
+            if (!dissolveObject.activeSelf)
+            {
+                dissolveObject.SetActive(true);
+            }
+        }
+
         CheckRef();
 
         GameManager.Instance.onPlay.AddListener(OnRunStart);
@@ -65,7 +74,7 @@ public class RunManager : MonoBehaviour
     public void Start()
     {
         _musicController.PlayMusic( _runMusic, true );
-        _dissolveEffect.DissolveOut();
+        StartCoroutine(DissolveOutCoroutine());
     }
 
 
@@ -80,7 +89,7 @@ public class RunManager : MonoBehaviour
             OnRunWin();
         }
 
-        if ( _moneyManager.playerMoney < 0 )
+        if ( _moneyManager.playerMoney <= 0 )
         {
             OnRunLost();
         }
@@ -220,5 +229,11 @@ public class RunManager : MonoBehaviour
 
         // Conversion de la plage [-100, 100] à [0, 100]
         return (value + 100f) / 2f;
+    }
+
+    private IEnumerator DissolveOutCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        _dissolveEffect.DissolveOut();
     }
 }

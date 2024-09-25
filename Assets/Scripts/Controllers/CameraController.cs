@@ -76,7 +76,7 @@ public class CameraController : MonoBehaviour
 
             Camera.main.transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
-        if (pos.y <= 0.1)
+        if (pos.y <= 0.02)
         {
             if (Camera.main.transform.position.y < GetMinY())
             {

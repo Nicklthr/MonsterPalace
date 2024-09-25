@@ -245,7 +245,7 @@ public class MonsterController : MonoBehaviour
         currentHour = hour;
         controlDone = false;
 
-        if ( currentHour == arrivalHour)
+        if ( currentHour == arrivalHour && roomAssigned)
         {
             currentStayDuration++;
             neighbourControl();
@@ -729,7 +729,9 @@ public class MonsterController : MonoBehaviour
     public void Pay()
     {
         moneyManager.Payment(stayDuration);
-        EndSceenStats.Instance.CustomersCountAdd(1);
+        if (EndSceenStats.Instance) {
+            EndSceenStats.Instance.CustomersCountAdd(1);
+        }
     }
 
     public void GiveEvaluation()
