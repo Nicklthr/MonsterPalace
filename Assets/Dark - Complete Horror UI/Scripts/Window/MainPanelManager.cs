@@ -273,5 +273,34 @@ namespace Michsky.UI.Dark
             yield return new WaitForSecondsRealtime(disablePanelAfter);
             currentPanel.SetActive(false);
         }
+
+        public void FadeOutCurrentPanel()
+        {
+            if (currentPanel != null)
+            {
+                currentPanelAnimator = currentPanel.GetComponent<Animator>();
+                if (currentPanelAnimator != null)
+                {
+                    currentPanelAnimator.SetFloat("Anim Speed", animationSpeed);
+                    currentPanelAnimator.CrossFade(panelFadeOut, animationSmoothness);
+                }
+            }
+        }
+
+        public void FadeOutAllPanels()
+        {
+            foreach (PanelItem panel in panels)
+            {
+                if (panel.panelObject != null)
+                {
+                    Animator panelAnimator = panel.panelObject.GetComponent<Animator>();
+                    if (panelAnimator != null)
+                    {
+                        panelAnimator.SetFloat("Anim Speed", animationSpeed);
+                        panelAnimator.CrossFade(panelFadeOut, animationSmoothness);
+                    }
+                }
+            }
+        }
     }
 }

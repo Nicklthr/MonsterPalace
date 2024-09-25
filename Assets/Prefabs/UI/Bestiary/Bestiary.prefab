@@ -149,6 +149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textID: dislikelabel
+  customUIButton: 0
+  customUIText: 0
+  tooltip: 0
 --- !u!1 &145729317477227998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,6 +1673,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textID: foodbutton
+  customUIButton: 0
+  customUIText: 0
+  tooltip: 0
 --- !u!1 &1702632038380782760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,6 +1825,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textID: likelabel
+  customUIButton: 0
+  customUIText: 0
+  tooltip: 0
 --- !u!1 &1703998905904274290
 GameObject:
   m_ObjectHideFlags: 0
@@ -2357,6 +2366,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textID: activitybutton
+  customUIButton: 0
+  customUIText: 0
+  tooltip: 0
 --- !u!1 &2255925276240537762
 GameObject:
   m_ObjectHideFlags: 0
@@ -2983,6 +2995,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textID: placementbutton
+  customUIButton: 0
+  customUIText: 0
+  tooltip: 0
 --- !u!1 &2870480854677028352
 GameObject:
   m_ObjectHideFlags: 0
@@ -3132,6 +3147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textID: dislikelabel
+  customUIButton: 0
+  customUIText: 0
+  tooltip: 0
 --- !u!1 &2896678554888355771
 GameObject:
   m_ObjectHideFlags: 0
@@ -3281,6 +3299,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textID: 
+  customUIButton: 0
+  customUIText: 0
+  tooltip: 0
 --- !u!1 &2961392348873861363
 GameObject:
   m_ObjectHideFlags: 0
@@ -4537,6 +4558,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textID: neighbourbutton
+  customUIButton: 0
+  customUIText: 0
+  tooltip: 0
 --- !u!1 &3974180417882636726
 GameObject:
   m_ObjectHideFlags: 0
@@ -4952,6 +4976,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textID: dislikelabel
+  customUIButton: 0
+  customUIText: 0
+  tooltip: 0
 --- !u!1 &4163120552062540349
 GameObject:
   m_ObjectHideFlags: 0
@@ -5101,6 +5128,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textID: likelabel
+  customUIButton: 0
+  customUIText: 0
+  tooltip: 0
 --- !u!1 &4205019347022389903
 GameObject:
   m_ObjectHideFlags: 0
@@ -5321,6 +5351,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textID: 
+  customUIButton: 0
+  customUIText: 0
+  tooltip: 0
 --- !u!1 &4461622438127727366
 GameObject:
   m_ObjectHideFlags: 0
@@ -5470,6 +5503,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textID: likelabel
+  customUIButton: 0
+  customUIText: 0
+  tooltip: 0
 --- !u!1 &4583049433459617864
 GameObject:
   m_ObjectHideFlags: 0
@@ -6931,6 +6967,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textID: likelabel
+  customUIButton: 0
+  customUIText: 0
+  tooltip: 0
 --- !u!1 &8023063404743292394
 GameObject:
   m_ObjectHideFlags: 0
