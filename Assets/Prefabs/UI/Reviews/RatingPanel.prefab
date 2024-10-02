@@ -136,7 +136,12 @@ MonoBehaviour:
   _reviewPrefab: {fileID: 809320167241641657, guid: a2ae8d5826bf0534d861a5a66955f5b1,
     type: 3}
   _reviewListContent: {fileID: 6806755535377356230}
-  _globalReview: {fileID: 2484033150116511694}
+  _reviewsCount: {fileID: 0}
+  _satisfactionQuantity: {fileID: 0}
+  _satisfactionMaxQuantity: {fileID: 0}
+  _satisfactionBar: {fileID: 0}
+  _feelUpdateBar: {fileID: 0}
+  _feelAlertBar: {fileID: 0}
   _hotelRateManager: {fileID: 0}
   OnReviewAdd:
     m_PersistentCalls:

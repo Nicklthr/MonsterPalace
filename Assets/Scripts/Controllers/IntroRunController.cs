@@ -25,6 +25,16 @@ public class IntroRunController : MonoBehaviour
         transitionHelper.DissolveIn();
         yield return new WaitForSeconds(2f);
         onIntroEnd.Invoke();
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.StartNewRun();
+        }
+        else
+        {
+            Debug.LogError("GameManager not found CA MARCHE PAS IDIOTA");
+        }
+
         Debug.Log("Intro terminée");
     }
 }

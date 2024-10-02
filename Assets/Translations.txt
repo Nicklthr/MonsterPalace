@@ -200,3 +200,5 @@ tooltip_waiting	Number of customers at reception	Nombre de client à l'accueil
 tooltip_build	Start building	Commencer à construire
 tooltip_bestiary	Consult the bestiary	Consulter le bestiaire
 tooltip_quit	Leave the game	Quitter la partie
+tooltip_taxes	Money due next Saturday	Argent à payer le prochain samedi 
+runmenu_taxes	Taxes:	Taxes :

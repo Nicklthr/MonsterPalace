@@ -13,8 +13,8 @@ public class DailyTaxes : MonoBehaviour
     private int taxeHour = 8;
 
     [SerializeField] bool useTaxeDay = false;
-    [SerializeField] private string taxeDay = "Monday";
-    [SerializeField] private string taxeDayAlert = "Sunday";
+    [SerializeField] private int taxeDay = 1;
+    [SerializeField] private int taxeDayAlert = 7;
 
     private bool taxed = false;
 
@@ -51,12 +51,13 @@ public class DailyTaxes : MonoBehaviour
 
         if (useTaxeDay)
         {
-            if (_cycle.currentDayOfTheWeek == taxeDay && !taxed)
+            //Debug.Log(_cycle.dayOfTheWeek + " " + taxeDay + " " + taxed);
+            if (_cycle.dayOfTheWeek == taxeDay && !taxed)
             {
                 Taxes();
             }
 
-            if (_cycle.currentDayOfTheWeek != taxeDay)
+            if (_cycle.dayOfTheWeek != taxeDay)
             {
                 taxed = false;
                 increasedTaxes = false;

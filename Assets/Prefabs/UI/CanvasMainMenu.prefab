@@ -26302,10 +26302,12 @@ MonoBehaviour:
     panelObject: {fileID: 2576223895468464343}
     panelButton: {fileID: 2866654966182438565}
     defaultSelected: {fileID: 4727848935247091665}
+    isLock: 0
   - panelName: Load Save
     panelObject: {fileID: 8792446904827691243}
     panelButton: {fileID: 8755165865698463575}
     defaultSelected: {fileID: 4799383960207716258}
+    isLock: 0
   settingsHelper: 0
   instantInOnEnable: 0
   currentPanelIndex: 0
@@ -40400,10 +40402,12 @@ MonoBehaviour:
     panelObject: {fileID: 5790694171068785772}
     panelButton: {fileID: 8585398136142137198}
     defaultSelected: {fileID: 5183266592535305820}
+    isLock: 0
   - panelName: Favorites
     panelObject: {fileID: 339966981169215304}
     panelButton: {fileID: 6600149762428164910}
     defaultSelected: {fileID: 1245905584597172013}
+    isLock: 0
   settingsHelper: 0
   instantInOnEnable: 0
   currentPanelIndex: 0
@@ -53289,6 +53293,7 @@ MonoBehaviour:
     panelObject: {fileID: 6010052278640979955}
     panelButton: {fileID: 215270553905798621}
     defaultSelected: {fileID: 1245905584597172013}
+    isLock: 0
   settingsHelper: 0
   instantInOnEnable: 0
   currentPanelIndex: 0
@@ -59838,22 +59843,27 @@ MonoBehaviour:
     panelObject: {fileID: 462969135829147733}
     panelButton: {fileID: 0}
     defaultSelected: {fileID: 8548921431469773701}
+    isLock: 0
   - panelName: Story
     panelObject: {fileID: 3548673403836671291}
     panelButton: {fileID: 0}
     defaultSelected: {fileID: 4727848935247091665}
+    isLock: 0
   - panelName: Multiplayer
     panelObject: {fileID: 5498260181194785255}
     panelButton: {fileID: 0}
     defaultSelected: {fileID: 5183266592535305820}
+    isLock: 0
   - panelName: Help
     panelObject: {fileID: 7220627578458096426}
     panelButton: {fileID: 0}
     defaultSelected: {fileID: 0}
+    isLock: 0
   - panelName: Settings
     panelObject: {fileID: 8320423424165034055}
     panelButton: {fileID: 0}
     defaultSelected: {fileID: 5609747549520684558}
+    isLock: 0
   settingsHelper: 0
   instantInOnEnable: 1
   currentPanelIndex: 0
@@ -60386,18 +60396,22 @@ MonoBehaviour:
     panelObject: {fileID: 6075849726931455699}
     panelButton: {fileID: 3954744161437592627}
     defaultSelected: {fileID: 5609747549520684558}
+    isLock: 0
   - panelName: Controls
     panelObject: {fileID: 6682412723371852995}
     panelButton: {fileID: 5168877873697665562}
     defaultSelected: {fileID: 9082850073042926800}
+    isLock: 0
   - panelName: Audio
     panelObject: {fileID: 3880590513622793333}
     panelButton: {fileID: 48864060612712505}
     defaultSelected: {fileID: 6570491034546876445}
+    isLock: 0
   - panelName: Visuals
     panelObject: {fileID: 1255345238314473660}
     panelButton: {fileID: 6862800844585928111}
     defaultSelected: {fileID: 3908175624777353908}
+    isLock: 0
   settingsHelper: 0
   instantInOnEnable: 0
   currentPanelIndex: 0
