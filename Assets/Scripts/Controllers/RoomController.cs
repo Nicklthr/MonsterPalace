@@ -2,10 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomController : MonoBehaviour
+public class RoomController : MonoBehaviour, ISelectable
 {
     [SerializeField] private Light[] _lights;
     [SerializeField] private GameObject _removableFacade;
+    [SerializeField] private Room room;
+    public Room Room => room;
+
+    private OutlineRoom _outline;
+
+    public void OnHoverEnter() => SetOutline(true);
+    public void OnHoverExit() => SetOutline(false);
+    public void OnSelect() => SetOutline(true);
+    public void OnDeselect() => SetOutline(false);
+
+    private void Awake()
+    {
+        _outline = GetComponent<OutlineRoom>();
+    }
 
     private void Start()
     {
@@ -15,6 +29,19 @@ public class RoomController : MonoBehaviour
         }
 
         _removableFacade.SetActive( false );
+    }
+
+    public void SetRoom(Room room)
+    {
+        this.room = room;
+    }
+
+    private void SetOutline(bool enabled)
+    {
+        if (_outline != null)
+        {
+            _outline.enabled = enabled;
+        }
     }
 
     public void ToggleLights()

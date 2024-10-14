@@ -8,6 +8,7 @@ public class MusicController : MonoBehaviour
     public float volume = 0.5f;
 
     private Coroutine fadeCoroutine;
+    private Coroutine fadeVolumeCoroutine;
 
     void Start()
     {
@@ -29,7 +30,7 @@ public class MusicController : MonoBehaviour
 
         if (fadeIn)
         {
-            fadeCoroutine = StartCoroutine(FadeMusic(0f, volume));
+            fadeCoroutine = StartCoroutine(FadeMusic(0f, volume, fadeDuration));
         }
         else
         {
@@ -45,7 +46,7 @@ public class MusicController : MonoBehaviour
             {
                 StopCoroutine(fadeCoroutine);
             }
-            fadeCoroutine = StartCoroutine(FadeMusic(audioSource.volume, 0f));
+            fadeCoroutine = StartCoroutine(FadeMusic(audioSource.volume, 0f, fadeDuration));
         }
         else
         {
@@ -53,14 +54,14 @@ public class MusicController : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeMusic(float startVolume, float endVolume)
+    private IEnumerator FadeMusic(float startVolume, float endVolume, float fadeDurationTime)
     {
         float elapsedTime = 0f;
 
-        while (elapsedTime < fadeDuration)
+        while (elapsedTime < fadeDurationTime)
         {
-            audioSource.volume = Mathf.Lerp(startVolume, endVolume, elapsedTime / fadeDuration);
-            elapsedTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(startVolume, endVolume, elapsedTime / fadeDurationTime);
+            elapsedTime += Time.unscaledDeltaTime;
             yield return null;
         }
 
@@ -70,5 +71,36 @@ public class MusicController : MonoBehaviour
         {
             audioSource.Stop();
         }
+    }
+
+    public void ChangeVolume(float newVolume)
+    {
+        if (fadeVolumeCoroutine != null)
+        {
+            StopCoroutine(fadeVolumeCoroutine);
+        }
+
+        fadeVolumeCoroutine = StartCoroutine(ChangeVolumeCoroutine(newVolume, 0.5f));
+    }
+
+    private IEnumerator ChangeVolumeCoroutine(float newVolume, float duration)
+    {
+        float elapsedTime = 0f;
+        float startVolume = audioSource.volume;
+
+        if (duration <= 0f)
+        {
+            audioSource.volume = newVolume;
+            yield break;
+        }
+
+        while (elapsedTime < duration)
+        {
+            audioSource.volume = Mathf.Lerp(startVolume, newVolume, elapsedTime / duration);
+            elapsedTime += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        audioSource.volume = newVolume;
     }
 }

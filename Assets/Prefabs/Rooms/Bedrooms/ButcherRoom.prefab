@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2828681875984683811
 Transform:
   m_ObjectHideFlags: 0
@@ -1822,7 +1822,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2007998593914351680
 Transform:
   m_ObjectHideFlags: 0
@@ -1991,6 +1991,25 @@ MonoBehaviour:
   _lights:
   - {fileID: 1799573096865717517}
   _removableFacade: {fileID: 9032877725819224464}
+  room:
+    roomType: {fileID: 0}
+    positionInGrid: {x: 0, y: 0, z: 0}
+    roomID: 
+    roomSize: {x: 0, y: 0, z: 0}
+    roomName: 
+    activityType: 0
+    type: 0
+    monsterTypeOfRoom: 0
+    roomPlacement: 
+    foodAssigned: {fileID: 0}
+    monsterID: 
+    monsterDataCurrentCustomer: {fileID: 0}
+    maxUsers: 0
+    currentUsers: 0
+    cost: 0
+    roomObject: {fileID: 0}
+    targets: []
+    level: 0
 --- !u!65 &6364100618271848945
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2486,7 +2505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &606831950400095956
 Transform:
   m_ObjectHideFlags: 0
@@ -3268,7 +3287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5583074894887889473
 Transform:
   m_ObjectHideFlags: 0
@@ -3518,7 +3537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &656762480074343048
 Transform:
   m_ObjectHideFlags: 0
@@ -4192,7 +4211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1396426084482967540
 Transform:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class RoomPanelManager : MonoBehaviour
 {
     [SerializeField] private GameObject _roomPanel;
-    [SerializeField] private RoomSelectionManager _roomSelectionManager;
     [SerializeField] private SO_Hotel _hotel;
     [SerializeField] private Room _room;
 
@@ -29,22 +28,36 @@ public class RoomPanelManager : MonoBehaviour
 
     private void Start()
     {
-        _roomSelectionManager = FindObjectOfType<RoomSelectionManager>();
         _roomPanel.SetActive(false);
-        _roomSelectionManager.OnSelectedRoom += ShowRoomPanel;
-        _roomSelectionManager.OnDeSelectedRoom += HideRoomPanel;
+        SelectionManager.Instance.OnSelected += HandleSelection;
+        SelectionManager.Instance.OnDeselected += HandleDeselection;
 
         _NofoodRow.GetComponentInChildren<Button>().onClick.AddListener(() =>
         {
-           MenuPanel();
+            MenuPanel();
         });
     }
 
-    private void ShowRoomPanel()
+    private void HandleSelection(ISelectable selectable)
+    {
+        if (selectable is RoomController selectedRoom)
+        {
+            ShowRoomPanel(selectedRoom);
+        }
+    }
+
+    private void HandleDeselection(ISelectable selectable)
+    {
+        if (selectable is RoomController)
+        {
+            HideRoomPanel();
+        }
+    }
+
+    private void ShowRoomPanel(RoomController selectedRoom)
     {
         _roomPanel.SetActive(true);
-
-        FindRoomInHotel();
+        _room = selectedRoom.Room;
         _header.SetActive(true);
 
         if (_room.roomType.roomSprite)
@@ -52,8 +65,7 @@ public class RoomPanelManager : MonoBehaviour
             _roomImage.sprite = _room.roomType.roomSprite;
         }
 
-        _roomName.gameObject.GetComponent<TextTraduction>().AssignID("roomname_"+ _room.roomName);
-        //_roomName.text = _room.roomName;
+        _roomName.gameObject.GetComponent<TextTraduction>().AssignID("roomname_" + _room.roomName);
 
         switch (_room.type)
         {
@@ -67,22 +79,7 @@ public class RoomPanelManager : MonoBehaviour
 
         _roomInformations.SetActive(true);
 
-        string placement = "";
-
-        if ( _room.roomPlacement.Length == 0 )
-        {
-            placement = "No placement";
-        }else if ( _room.roomPlacement.Length == 1 )
-        {
-            placement = _room.roomPlacement[0].ToString();
-        }
-        else
-        {
-            foreach ( RoomPlacement roomPlacement in _room.roomPlacement )
-            {
-                placement += roomPlacement.ToString() + ", ";
-            }
-        }
+        string placement = GetPlacementString();
 
         _roomInformations.GetComponent<RoomInformationsPanelUI>().SetRoomInformations(_room.maxUsers, _room.currentUsers, placement);
     }
@@ -98,23 +95,21 @@ public class RoomPanelManager : MonoBehaviour
         _freeRoom.SetActive(false);
 
         _roomPanel.SetActive(false);
-
     }
 
-    private void FindRoomInHotel()
+    private string GetPlacementString()
     {
-       foreach ( Room room in _hotel.rooms )
-        {
-            if ( room.roomID == _roomSelectionManager._selectedRoom.name )
-            {
-                _room = room;
-            }
-        }
+        if (_room.roomPlacement.Length == 0)
+            return "No placement";
+        else if (_room.roomPlacement.Length == 1)
+            return _room.roomPlacement[0].ToString();
+        else
+            return string.Join(", ", _room.roomPlacement);
     }
 
     private void HandleRoom()
     {
-        if ( _room.monsterID == null )
+        if (_room.monsterID == null)
         {
             _freeRoom.SetActive(true);
             _customerRow.SetActive(false);
@@ -126,25 +121,24 @@ public class RoomPanelManager : MonoBehaviour
             _freeRoom.SetActive(false);
             _customerRow.SetActive(true);
 
-            MonsterController monster = GameObject.Find( _room.monsterID ).GetComponent<MonsterController>();
+            MonsterController monster = GameObject.Find(_room.monsterID)?.GetComponent<MonsterController>();
 
-            if( monster != null )
+            if (monster != null)
             {
-                _customerRow.GetComponent<CustomerRowUI>().SetCustomerData( monster.monsterName, monster.monsterDatas.monsterSprite );
+                _customerRow.GetComponent<CustomerRowUI>().SetCustomerData(monster.monsterName, monster.monsterDatas.monsterSprite);
             }
 
-            if( _room.foodAssigned == null )
+            if (_room.foodAssigned == null)
             {
-                _NofoodRow.SetActive( true );
-                _foodRow.SetActive( false );
+                _NofoodRow.SetActive(true);
+                _foodRow.SetActive(false);
             }
             else
             {
-                _NofoodRow.SetActive( false );
-                _foodRow.SetActive( true );
+                _NofoodRow.SetActive(false);
+                _foodRow.SetActive(true);
 
                 _foodRow.GetComponentInChildren<TextTraduction>().AssignID("meal_" + _room.foodAssigned.foodName);
-                //_foodRow.GetComponentInChildren<TextMeshProUGUI>().text = "Repas : " + _room.foodAssigned.foodName;
             }
         }
     }
@@ -158,33 +152,31 @@ public class RoomPanelManager : MonoBehaviour
 
     public void MenuPanel()
     {
-
         _menuPanel.SetActive(true);
 
-        foreach ( Transform child in _foodGrid )
+        foreach (Transform child in _foodGrid)
         {
             Destroy(child.gameObject);
         }
 
-        foreach ( SO_Food food in _foods )
+        foreach (SO_Food food in _foods)
         {
-            if ( food.isUnlocked == false ) continue;
+            if (!food.isUnlocked) continue;
 
             GameObject card = Instantiate(_cardPrefab, _foodGrid);
 
-            card.GetComponent<CardFoodUI>().SetFood( food );
+            card.GetComponent<CardFoodUI>().SetFood(food);
             card.GetComponentInChildren<Button>().onClick.AddListener(() =>
             {
-                SetRoomFood( food );
-           });
+                SetRoomFood(food);
+            });
         }
-
     }
 
-    public void SetRoomFood( SO_Food food )
+    public void SetRoomFood(SO_Food food)
     {
         _room.foodAssigned = food;
-        _menuPanel.SetActive( false );
+        _menuPanel.SetActive(false);
         HandleRoom();
     }
 }

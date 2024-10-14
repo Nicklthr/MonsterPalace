@@ -22,6 +22,17 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private Vector2 _MinMaxBoundsX = new Vector2(0, 0);
 
+    [Header("Camera Zones")]
+    [Space(10)]
+    [SerializeField] private float _rightZone = 0.9f;
+    [SerializeField] private float _leftZone = 0.1f;
+    [SerializeField] private float _topZone = 0.98f;
+    [SerializeField] private float _bottomZone = 0.02f;
+
+    [Header("Keyboard Controls")]
+    [Space(10)]
+    public InputAction movement;
+
     private void Update()
     {
         if (isMovingToTarget)
@@ -31,6 +42,7 @@ public class CameraController : MonoBehaviour
         else
         {
             HandleMove();
+            HandleKeyboardMove();
         }
         HandleZoom();
     }
@@ -38,6 +50,13 @@ public class CameraController : MonoBehaviour
     private void OnEnable()
     {
         zoom.Enable();
+        movement.Enable();
+    }
+
+    private void OnDisable()
+    {
+        zoom.Disable();
+        movement.Disable();
     }
 
     public void MoveToTarget(Vector3 target)
@@ -58,40 +77,54 @@ public class CameraController : MonoBehaviour
     private void HandleMove()
     {
         Vector3 pos = Camera.main.ScreenToViewportPoint(Mouse.current.position.ReadValue());
-        if (pos.x <= 0.1)
-        {
-            if ( Camera.main.transform.position.x < _MinMaxBoundsX.x && _MinMaxBoundsX.x != 0)
-            {
-                return;
-            }
 
-            Camera.main.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-        }
-        else if (pos.x >= 0.9)
-        {
-            if ( Camera.main.transform.position.x > _MinMaxBoundsX.y && _MinMaxBoundsX.y != 0 )
-            {
-                return;
-            }
+        Vector3 moveDirection = Vector3.zero;
 
-            Camera.main.transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-        }
-        if (pos.y <= 0.02)
+        if (pos.x <= _leftZone && (Camera.main.transform.position.x >= _MinMaxBoundsX.x || _MinMaxBoundsX.x == 0))
         {
-            if (Camera.main.transform.position.y < GetMinY())
-            {
-                return;
-            }
-            Camera.main.transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+            moveDirection += Vector3.left;
         }
-        else if (pos.y >= 0.98)
+        else if (pos.x >= _rightZone && (Camera.main.transform.position.x <= _MinMaxBoundsX.y || _MinMaxBoundsX.y == 0))
         {
-            if (Camera.main.transform.position.y > GetMaxY())
-            {
-                return;
-            }
-            Camera.main.transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+            moveDirection += Vector3.right;
         }
+
+        if (pos.y <= _bottomZone && Camera.main.transform.position.y >= (HotelController.Instance.MinStage * HotelController.Instance.GetLevelHeight()))
+        {
+            moveDirection += Vector3.down;
+        }
+        else if (pos.y >= _topZone && Camera.main.transform.position.y <= ((HotelController.Instance.MaxStage * HotelController.Instance.GetLevelHeight()) + 5))
+        {
+            moveDirection += Vector3.up;
+        }
+
+        Camera.main.transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+    }
+
+    private void HandleKeyboardMove()
+    {
+        Vector2 input = movement.ReadValue<Vector2>();
+        Vector3 moveDirection = Vector3.zero;
+
+        if (input.x < 0 && (Camera.main.transform.position.x >= _MinMaxBoundsX.x || _MinMaxBoundsX.x == 0))
+        {
+            moveDirection += Vector3.left;
+        }
+        else if (input.x > 0 && (Camera.main.transform.position.x <= _MinMaxBoundsX.y || _MinMaxBoundsX.y == 0))
+        {
+            moveDirection += Vector3.right;
+        }
+
+        if (input.y < 0 && Camera.main.transform.position.y >= (HotelController.Instance.MinStage * HotelController.Instance.GetLevelHeight()))
+        {
+            moveDirection += Vector3.down;
+        }
+        else if (input.y > 0 && Camera.main.transform.position.y <= ((HotelController.Instance.MaxStage * HotelController.Instance.GetLevelHeight()) + 5))
+        {
+            moveDirection += Vector3.up;
+        }
+
+        Camera.main.transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
     }
 
     private bool IsUnderGroundStage()
@@ -99,33 +132,6 @@ public class CameraController : MonoBehaviour
         List<Room> baseroom = _dataHotel.rooms.FindAll(room => room.roomType.roomType == RoomType.BASE);
 
         return baseroom.Exists(room => room.level < 0);
-    }
-
-    private int GetMaxY()
-    {
-        List<Room> baseroom = _dataHotel.rooms.FindAll(room => room.roomType.roomType == RoomType.BASE);
-
-        int max = 0;
-        foreach (Room room in baseroom)
-        {
-            if ( room.level > max )
-            {
-                max = room.level;
-            }
-        }
-
-        return (max * 5) + 5;
-    }
-
-    private int GetMinY()
-    {
-        List<Room> baseRooms = _dataHotel.rooms.FindAll(room => room.roomType.roomType == RoomType.BASE);
-
-        int level = 0;
-
-        level = baseRooms.Min(x => x.level);
-
-        return (level * 5);
     }
 
     private void HandleZoom()
@@ -143,5 +149,4 @@ public class CameraController : MonoBehaviour
 
     public bool IsPointerOverUI()
     => EventSystem.current.IsPointerOverGameObject();
-
 }

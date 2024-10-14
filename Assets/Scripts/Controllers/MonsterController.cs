@@ -7,7 +7,7 @@ using System;
 using UnityEngine.UI;
 using BehaviorDesigner.Runtime.Tasks.MonsterTask;
 
-public class MonsterController : MonoBehaviour
+public class MonsterController : MonoBehaviour, ISelectable
 {
     [Header("Datas")]
     public SO_Monster monsterDatas;
@@ -75,6 +75,12 @@ public class MonsterController : MonoBehaviour
     //Monster commentary
     public List<string> commentaries = new List<string>();
     public static event Action<MonsterController> OnNewCommentaire;
+
+    private Outline _outline;
+    public void OnHoverEnter() => SetOutline(true);
+    public void OnHoverExit() => SetOutline(false);
+    public void OnSelect() => SetOutline(true);
+    public void OnDeselect() => SetOutline(false);
 
     //Beahviour tree variables
     #region Beahviour tree variables
@@ -182,6 +188,7 @@ public class MonsterController : MonoBehaviour
         agent.updateRotation = false;
         lookDirection = new Vector3(0, 0, -90);
         moneyManager = FindObjectOfType<MoneyManager>();
+        _outline = GetComponent<Outline>();
     }
 
     // Start is called before the first frame update
@@ -238,6 +245,14 @@ public class MonsterController : MonoBehaviour
     {
         transform.position = startPosition.position;
         GiveEvaluation();
+    }
+
+    private void SetOutline(bool enabled)
+    {
+        if (_outline != null)
+        {
+            _outline.enabled = enabled;
+        }
     }
 
     public void changeHour(int hour)
@@ -754,24 +769,19 @@ public class MonsterController : MonoBehaviour
 
     public void CheckOut()
     {
-        foreach (Room room in hotelDatas.rooms)
+        Room assignedRoom = hotelDatas.rooms.Find(room => room.type == RoomType.BEDROOM && room.monsterID == monsterID);
+        if (assignedRoom != null)
         {
-            if (room.type == RoomType.BEDROOM && room.monsterID == monsterID)
+            if (assignedRoom.CheckOutMonster(monsterID))
             {
-                room.monsterID = null;
-                room.currentUsers--;
-                room.monsterDataCurrentCustomer = null;
-                room.foodAssigned = null;
-                //roomPosition = null;
+                // Réinitialiser les données spécifiques au monstre après avoir quitté la chambre
                 roomAssigned = false;
-                roomPosition = new Vector3(0,0,0);
-
-                RoomController roomController = GameObject.Find(room.roomID).GetComponent<RoomController>();
-                roomController.ToggleLights();
-
-                break;
+                roomPosition = new Vector3(0, 0, 0);
             }
-
+        }
+        else
+        {
+            Debug.LogError("Monster: No assigned room found for this monster");
         }
     }
 

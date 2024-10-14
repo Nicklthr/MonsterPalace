@@ -63,7 +63,7 @@ public class ConstructionUIManager : MonoBehaviour
     public void OpenConstructionPanel()
     {
         StartCoroutine(NextPanel(mainPanel, roomConstructionPanel));
-        _placementSystem.ToggleGridVisualization();
+        //_placementSystem.ToggleGridVisualization();
     }
 
     private void PopulateCategories()
@@ -88,7 +88,7 @@ public class ConstructionUIManager : MonoBehaviour
 
         stageButton.GetComponent<Button>().onClick.AddListener(() => OpenStagePanel());
 
-        GenerateBackBtn(roomConstructionPanel, mainPanel).GetComponent<Button>().onClick.AddListener(() => _placementSystem.ToggleGridVisualization());
+        GenerateBackBtn(roomConstructionPanel, mainPanel);
     }
 
     private void OpenCategoryRooms( RoomDB category )
@@ -169,13 +169,13 @@ public class ConstructionUIManager : MonoBehaviour
     private void AddStage()
     {
         //Debug.Log("Add stage");
-        _placementSystem.AddUpperStaire();
+        HotelController.Instance.AddUpperStair();
     }
 
     private void AddBasement()
     {
         //Debug.Log("Add basement");
-        _placementSystem.AddUnderStaire();
+        HotelController.Instance.AddUnderStair();
     }
     
     private GameObject GenerateBackBtn(GameObject currentPanel, GameObject backPanel)
