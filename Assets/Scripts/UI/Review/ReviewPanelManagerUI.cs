@@ -89,7 +89,7 @@ public class ReviewPanelManagerUI : MonoBehaviour
         _feelUpdateBar.GetFeedbackOfType<MMF_ImageFill>().CurveRemapOne = ConvertTo01Range(_hotelRateManager.currentSatisfactionQuantity);
         _feelUpdateBar.PlayFeedbacks();
 
-        Debug.Log(ConvertTo01Range(currentSatisfactionQuantity));
+        //Debug.Log(ConvertTo01Range(currentSatisfactionQuantity));
 
 
         NumericTextAnimator.Instance.AnimateTextTo( _satisfactionQuantity, (int)_hotelRateManager.currentSatisfactionQuantity);
