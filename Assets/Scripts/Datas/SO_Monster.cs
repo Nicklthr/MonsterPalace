@@ -21,6 +21,8 @@ public class SO_Monster : ScriptableObject
     [Range(0, 23)]
     public int activityHourMax;
 
+    public float confortMultiplicateur = 1;
+
     public MonsterType[] neighboorLike;
     public MonsterType[] neighboorDislike;
 

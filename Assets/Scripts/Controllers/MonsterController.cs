@@ -33,7 +33,7 @@ public class MonsterController : MonoBehaviour, ISelectable
 
     public MoneyManager moneyManager;
 
-    [Header("Planning")]
+    /*[Header("Planning")]
     public int eatingHour;
     public int activityHour;
     public int arrivalHour;
@@ -41,7 +41,21 @@ public class MonsterController : MonoBehaviour, ISelectable
     [Header("Time of the Day")]
     [Range(0, 23)]
     [SerializeField] private int currentHour;
-    [SerializeField] private DayNightCycle timer;
+    [SerializeField] private DayNightCycle timer;*/
+
+    [Header("Needs values")]
+    public float hungerValue = 100f;
+    public float hungerMultiplyValue = 1f;
+    public bool hungerIsPaused = true;
+    public bool hungerCheck = false;
+    public float hungerFirstCheckValue = 50;
+    public float hungerCurrentCheckValue = 50;
+    public float boredomValue = 100f;
+    public float boredomMultiplyValue = 1f;
+    public bool boredomIsPaused = true;
+    public bool boredomCheck = false;
+    public float boredomFirstCheckValue = 50;
+    public float boredomCurrentCheckValue = 50;
 
 
     [Header("Stay Duration")]
@@ -85,7 +99,7 @@ public class MonsterController : MonoBehaviour, ISelectable
     //Beahviour tree variables
     #region Beahviour tree variables
     public float MyPatienceMax { get { return patienceMax; } set { patienceMax = value; } }
-    public int MycurrentHour { get { return currentHour; } set { currentHour = value; } }
+   // public int MycurrentHour { get { return currentHour; } set { currentHour = value; } }
     public int MystayDuration { get { return stayDuration; } set { stayDuration = value; } }
     public int MycurrentStayDuration { get { return currentStayDuration; } set { currentStayDuration = value; } }
     public Vector3 MystartPositionVector { get { return startPositionVector; } set { startPositionVector = value; } }
@@ -112,13 +126,24 @@ public class MonsterController : MonoBehaviour, ISelectable
         endLine = false;
         DeactivateReaction();
 
+        hungerValue = 100f;
+        hungerMultiplyValue = 1f;
+        hungerIsPaused = true;
+        hungerCheck = false;
+        hungerCurrentCheckValue = hungerFirstCheckValue;
+        boredomValue = 100f;
+        boredomMultiplyValue = 1f;
+        boredomIsPaused = true;
+        boredomCheck = false;
+        boredomCurrentCheckValue = boredomFirstCheckValue;
+
 
 
         //Name
         monsterName = monsterDatas.monsterNameList.Name[UnityEngine.Random.Range(0, monsterDatas.monsterNameList.Name.Length)];
 
         //Eating Hour
-        if (monsterDatas.eatingHourMax < monsterDatas.eatingHourMin)
+        /*if (monsterDatas.eatingHourMax < monsterDatas.eatingHourMin)
         {
             eatingHour = UnityEngine.Random.Range(monsterDatas.eatingHourMin, (24 + monsterDatas.eatingHourMax));
 
@@ -166,7 +191,7 @@ public class MonsterController : MonoBehaviour, ISelectable
                     eatingHour = 0;
                 }
             }
-        }
+        }*/
 
         //StayDuration
         stayDuration = UnityEngine.Random.Range(stayDurationMin, stayDurationMax);
@@ -182,7 +207,7 @@ public class MonsterController : MonoBehaviour, ISelectable
 
     private void Awake()
     {
-        timer = GameObject.FindGameObjectWithTag("Time").GetComponent<DayNightCycle>();
+        //timer = GameObject.FindGameObjectWithTag("Time").GetComponent<DayNightCycle>();
         startPosition = GameObject.FindGameObjectWithTag("StartPosition").transform;
         //receptionPosition = GameObject.FindGameObjectWithTag("ReceptionPosition").transform;
         agent.updateRotation = false;
@@ -204,6 +229,49 @@ public class MonsterController : MonoBehaviour, ISelectable
         {
             roomPositionVector = roomPosition.position;
         }*/
+        satisfaction = (currentStayDuration * 100) / stayDuration;
+
+        if (!hungerIsPaused && !canLeave)
+        {
+            hungerValue -= Time.deltaTime / hungerMultiplyValue;
+            if (hungerValue < 0)
+            {
+                hungerValue = 0;
+            }
+
+            if(hungerValue < hungerCurrentCheckValue && hungerValue > 0)
+            {
+                goToEat();
+            }
+
+            if (hungerValue == 0) 
+            {
+                notHappy(0, "noroom", true);
+                canLeave = true;
+            }
+        }
+
+        if (!boredomIsPaused && !canLeave)
+        {
+            boredomValue -= Time.deltaTime / boredomMultiplyValue;
+            if (boredomValue < 0)
+            {
+                boredomValue = 0;
+            }
+
+            if(boredomValue < boredomCurrentCheckValue && boredomValue > 0)
+            {
+                goToActivity();
+            }
+
+            if (boredomValue == 0)
+            {
+                notHappy(0, "noroom", true);
+                canLeave = true;
+            }
+
+        }
+
 
         if (agent.remainingDistance > 0)
         {
@@ -214,10 +282,10 @@ public class MonsterController : MonoBehaviour, ISelectable
             animator.SetBool("isWalking", false);
         }
 
-        if(currentHour != timer.currentHour)
+       /* if(currentHour != timer.currentHour)
         {
             changeHour(timer.currentHour);
-        }
+        }*/
 
         if (currentStayDuration == stayDuration && !timeToMove)
         {
@@ -255,7 +323,7 @@ public class MonsterController : MonoBehaviour, ISelectable
         }
     }
 
-    public void changeHour(int hour)
+    /*public void changeHour(int hour)
     {
         currentHour = hour;
         controlDone = false;
@@ -276,7 +344,7 @@ public class MonsterController : MonoBehaviour, ISelectable
             timeToMove = true;
             timeToActivity = true;
         }
-    }
+    }*/
 
     public bool searchEating()
     {
@@ -324,7 +392,7 @@ public class MonsterController : MonoBehaviour, ISelectable
             {
                 message = LanguageHandler.Instance.GetTranslation("nocanteen");
             }
-            notHappy(10, message);
+            notHappy(4, message);
             return false;
         }
         
@@ -386,7 +454,7 @@ public class MonsterController : MonoBehaviour, ISelectable
             {
                 message = LanguageHandler.Instance.GetTranslation("noactivity");
             }
-            notHappy(10, message);
+            notHappy(5, message);
             return false;
         }
     }
@@ -402,11 +470,44 @@ public class MonsterController : MonoBehaviour, ISelectable
 
     public void Happy(int value, string message, bool id = false)
     {
-        satisfaction += value;
-        if (satisfaction > 100)
+        if (value == 1)
         {
-            satisfaction = 100;
+            //Multiplicateur
+            hungerMultiplyValue += 1;
+            boredomMultiplyValue += 1;
         }
+        else if (value == 2)
+        {
+            //Nourriture Correct
+            hungerValue += 30;
+            hungerCurrentCheckValue += 30;
+            if (hungerCurrentCheckValue > hungerFirstCheckValue)
+            {
+                hungerCurrentCheckValue = hungerFirstCheckValue;
+            }
+        }
+        else if (value == 3)
+        {
+            //Nourriture excellente
+            hungerValue += 50;
+            hungerCurrentCheckValue += 50;
+            if (hungerCurrentCheckValue > hungerFirstCheckValue)
+            {
+                hungerCurrentCheckValue = hungerFirstCheckValue;
+            }
+        }
+        else if (value == 4)
+        {
+            //Activité ok
+            boredomValue += 30;
+            boredomCurrentCheckValue += 30;
+            if(boredomCurrentCheckValue > boredomFirstCheckValue)
+            {
+                boredomCurrentCheckValue = boredomFirstCheckValue;
+            }
+        }
+ 
+
         ActivateReaction();
         animator.SetTrigger("isHappy");
         audiosource.clip = happySound;
@@ -424,11 +525,61 @@ public class MonsterController : MonoBehaviour, ISelectable
 
     public void notHappy(int value, string message, bool id = false)
     {
-        satisfaction -= value;
-        if(satisfaction < -100)
+
+        if (value == 1)
         {
-            satisfaction = -100;
+            //Multiplicateur
+            hungerMultiplyValue = hungerMultiplyValue/2;
+            boredomMultiplyValue = boredomMultiplyValue/2;
         }
+        else if (value == 2)
+        {
+            //Nourriture inCorrect
+            hungerValue -= 10;
+            hungerCurrentCheckValue -= 10;
+
+        }
+        else if (value == 3)
+        {
+            //Nourriture horrible ou Pas de repas
+            hungerValue -= 20;
+            hungerCurrentCheckValue -= 20;
+
+            if (hungerValue < 0)
+            {
+                hungerValue = 0;
+            }
+
+        }
+        else if (value == 4)
+        {
+            //Pas de cantine
+            //hungerValue -= 20;
+            //hungerCurrentCheckValue -= 10;
+
+            if (hungerValue < 0)
+            {
+                hungerValue = 0;
+            }
+            hungerIsPaused = false;
+            boredomIsPaused = false;
+        }
+        else if (value == 5)
+        {
+            //Pas d'activité
+            //Pas de cantine
+            //boredomValue -= 20;
+            //boredomCurrentCheckValue -= 10;
+
+            if (boredomValue < 0)
+            {
+                boredomValue = 0;
+            }
+            hungerIsPaused = false;
+            boredomIsPaused = false;
+        }
+
+
         ActivateReaction();
         animator.SetTrigger("isAngry");
         audiosource.clip = angrySound;
@@ -478,6 +629,7 @@ public class MonsterController : MonoBehaviour, ISelectable
                         if (numberdislike == room.foodAssigned.typeList.Length && numberdislike > 1)
                         {
                             message = LanguageHandler.Instance.GetTranslation("foodhate");
+                            satisfood = -3;
                         }
 
                     }
@@ -502,6 +654,7 @@ public class MonsterController : MonoBehaviour, ISelectable
                             if (numberlike == monsterDatas.foodLike.Length && numberlike > 1)
                             {
                                 message = LanguageHandler.Instance.GetTranslation("foodlove");
+                                satisfood = 3;
                             }
 
                         }
@@ -510,12 +663,28 @@ public class MonsterController : MonoBehaviour, ISelectable
                     if(satisfood > 0)
                     {
                         setReaction(reactionImageDatas.returnEmote("like"));
-                        Happy(satisfood, message);
+                        if (satisfood == 3)
+                        {
+                            Happy(satisfood, message);
+                        }
+                        else
+                        {
+                            Happy(2, message);
+                        }
+                       
                     }
                     else if(satisfood < 0)
                     {
                         setReaction(reactionImageDatas.returnEmote("dislike"));
-                        notHappy(-satisfood, message);
+                        if (satisfood == -3)
+                        {
+                            notHappy(-satisfood, message);
+                        }
+                        else
+                        {
+                            notHappy(2, message);
+                        }
+                        
                     }
 
                 }
@@ -523,7 +692,7 @@ public class MonsterController : MonoBehaviour, ISelectable
                 {
                     setReaction(reactionImageDatas.returnEmote("noMenu"));
                     message = LanguageHandler.Instance.GetTranslation("nofood");
-                    notHappy(30, message);
+                    notHappy(3, message);
                 }
                 
                 break;
@@ -533,7 +702,7 @@ public class MonsterController : MonoBehaviour, ISelectable
 
     public void roomControl()
     {
-        arrivalHour = currentHour;
+        //arrivalHour = currentHour;
 
         string message = "";
         foreach (Room room in hotelDatas.rooms)
@@ -545,13 +714,13 @@ public class MonsterController : MonoBehaviour, ISelectable
                 {
                     message = LanguageHandler.Instance.GetTranslation("roomTypeLike");
                     setReaction(reactionImageDatas.returnEmote("happy"));
-                    Happy(30, message);
+                    Happy(1, message);
                 }
                 else if(room.monsterTypeOfRoom != MonsterType.NONE)
                 {
                     setReaction(reactionImageDatas.returnEmote("angry"));
                     message = LanguageHandler.Instance.GetTranslation("roomTypeDislike");
-                    notHappy(30, message);
+                    notHappy(1, message);
                 }
 
                 break;
@@ -625,12 +794,12 @@ public class MonsterController : MonoBehaviour, ISelectable
                     if (satisplac > 0)
                     {
                         setReaction(reactionImageDatas.returnEmote("happy"));
-                        Happy(satisplac, message);
+                        Happy(1, message);
                     }
                     else if (satisplac < 0)
                     {
                         setReaction(reactionImageDatas.returnEmote("angry"));
-                        notHappy(-satisplac, message);
+                        notHappy(1, message);
                     }
 
                 break;
@@ -732,12 +901,12 @@ public class MonsterController : MonoBehaviour, ISelectable
         if (satisneighboor > 0)
         {
             setReaction(reactionImageDatas.returnEmote("happy"));
-            Happy(satisneighboor, message);
+            Happy(1, message);
         }
         else if (satisneighboor < 0)
         {
             setReaction(reactionImageDatas.returnEmote("angry"));
-            notHappy(-satisneighboor, message);
+            notHappy(1, message);
         }
     }
 
@@ -820,6 +989,24 @@ public class MonsterController : MonoBehaviour, ISelectable
     public void setReaction(Sprite sprite)
     {
         reactionImage.sprite = sprite;
+    }
+
+    public void goToEat()
+    {
+        hungerIsPaused = true;
+        boredomIsPaused = true;
+        timeToEat = true;
+        timeToMove = true;
+        hungerCurrentCheckValue -= 10;
+    }
+
+    public void goToActivity()
+    {
+        hungerIsPaused = true;
+        boredomIsPaused = true;
+        timeToActivity = true;
+        timeToMove = true;
+        boredomCurrentCheckValue -= 10;
     }
 
 }
