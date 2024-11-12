@@ -39,7 +39,6 @@ public class HotelController : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(this.gameObject);
         _occupiedPositions = new Dictionary<int, HashSet<Vector2Int>>();
         _moneyManager = FindObjectOfType<MoneyManager>();
     }

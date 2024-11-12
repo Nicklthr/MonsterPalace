@@ -12663,7 +12663,6 @@ GameObject:
   - component: {fileID: 5762289062042933985}
   - component: {fileID: 7120647895216453238}
   - component: {fileID: -775253266707292297}
-  - component: {fileID: 494852525789556646}
   m_Layer: 10
   m_Name: BasicRoom
   m_TagString: Room
@@ -12717,6 +12716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lights:
   - {fileID: 5595887822664494094}
+  suitcaseStack: {fileID: 8511442302560984204}
   _removableFacade: {fileID: 4384375787304231787}
   room:
     roomType: {fileID: 0}
@@ -12752,7 +12752,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -12778,19 +12778,6 @@ MonoBehaviour:
   bakeValues: []
   renderers:
   - {fileID: 3408769332120321201}
---- !u!114 &494852525789556646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7979408197378562090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab4539588ca8ab946b2903d757fdf4b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  suitcaseStack: {fileID: 8511442302560984204}
 --- !u!1 &8128881056294106530
 GameObject:
   m_ObjectHideFlags: 0

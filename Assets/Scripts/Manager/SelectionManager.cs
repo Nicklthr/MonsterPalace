@@ -6,28 +6,13 @@ using System.Collections.Generic;
 
 public class SelectionManager : MonoBehaviour
 {
-    private static SelectionManager _instance;
-    public static SelectionManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<SelectionManager>();
-                if (_instance == null)
-                {
-                    GameObject go = new GameObject("SelectionManager");
-                    _instance = go.AddComponent<SelectionManager>();
-                }
-            }
-            return _instance;
-        }
-    }
+    public static SelectionManager Instance { get; private set; }
 
     public InputAction mouseAction;
     public InputAction selectionAction;
 
-    [SerializeField] private LayerMask selectableMask;
+    [SerializeField] private LayerMask monsterLayerMask;
+    [SerializeField] private LayerMask roomLayerMask;
 
     private ISelectable _hoveredObject;
     private ISelectable _selectedObject;
@@ -39,14 +24,23 @@ public class SelectionManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instance != null && _instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
         }
         else
         {
-            _instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            Instance = this;
+        }
+
+        if (mouseAction == null)
+        {
+            mouseAction = new InputAction(binding: "<Mouse>/position");
+        }
+
+        if (selectionAction == null)
+        {
+            selectionAction = new InputAction(binding: "<Mouse>/leftButton");
         }
     }
 
@@ -83,7 +77,34 @@ public class SelectionManager : MonoBehaviour
         Vector2 mousePosition = mouseAction.ReadValue<Vector2>();
         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, selectableMask))
+        RaycastHit hit;
+
+        // Essayez d'abord de sélectionner un monstre
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, monsterLayerMask))
+        {
+            ISelectable selectable = hit.transform.GetComponent<ISelectable>();
+            if (selectable != null)
+            {
+                if (_hoveredObject != selectable)
+                {
+                    if (_hoveredObject != null && _hoveredObject != _selectedObject)
+                    {
+                        _hoveredObject.OnHoverExit();
+                    }
+                    _hoveredObject = selectable;
+                    if (_hoveredObject != _selectedObject)
+                    {
+                        _hoveredObject.OnHoverEnter();
+                    }
+                }
+            }
+            else
+            {
+                ClearHoveredObject();
+            }
+        }
+        // Sinon, essayez de sélectionner une pièce
+        else if (Physics.Raycast(ray, out hit, Mathf.Infinity, roomLayerMask))
         {
             ISelectable selectable = hit.transform.GetComponent<ISelectable>();
             if (selectable != null)

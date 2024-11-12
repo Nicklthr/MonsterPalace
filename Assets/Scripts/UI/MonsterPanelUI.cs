@@ -32,14 +32,15 @@ public class MonsterPanelUI : MonoBehaviour
     [SerializeField] private MonsterController _monsterController;
     [SerializeField] private CameraController _cameraController;
 
-    public event Action OnMonsterPanelOpen, OnMonsterPanelClose;
+    [Space(10)]
+    [SerializeField] private Image _hungerBar;
+    [SerializeField] private Image _boredomBar;
+    [SerializeField] private TextMeshProUGUI _hungerPercent;
+    [SerializeField] private TextMeshProUGUI _boredomPercent;
+    [SerializeField] private TextMeshProUGUI _hungerCoef;
+    [SerializeField] private TextMeshProUGUI _boredomCoef;
 
-    private void OnEnable()
-    {
-        MonsterController.OnNewCommentaire += UpdateMonsterCommentaire;
-        SelectionManager.Instance.OnSelected += HandleSelection;
-        SelectionManager.Instance.OnDeselected += HandleDeselection;
-    }
+    public event Action OnMonsterPanelOpen, OnMonsterPanelClose;
 
     private void OnDisable()
     {
@@ -58,6 +59,10 @@ public class MonsterPanelUI : MonoBehaviour
 
         _monsterPanel.SetActive(false);
         _cameraController = FindObjectOfType<CameraController>();
+
+        MonsterController.OnNewCommentaire += UpdateMonsterCommentaire;
+        SelectionManager.Instance.OnSelected += HandleSelection;
+        SelectionManager.Instance.OnDeselected += HandleDeselection;
     }
 
     private void Update()
@@ -89,6 +94,10 @@ public class MonsterPanelUI : MonoBehaviour
         _monsterPanel.SetActive(true);
     }
 
+    /// <summary>
+    /// La mise à jour du panneau du monstre est effectuée à chaque frame pour afficher les informations en temps réel.
+    /// Mise à jour des informations du monstre, des barres de statut, des coefficients, des commentaires et de l'assignation de la chambre.
+    /// </summary>
     private void UpdateMonsterPanel()
     {
         if (_monsterController == null)
@@ -99,6 +108,27 @@ public class MonsterPanelUI : MonoBehaviour
         _monsterName.text = _monsterController.monsterName;
         _monsterPic.sprite = _monsterController.monsterDatas.monsterSprite;
         _monsterStayDay.text = $"{_monsterController.currentStayDuration}/{_monsterController.stayDuration}";
+
+        // Status bars and coefficients
+        if (_hungerBar != null || _boredomBar != null)
+        {
+            var hungerVal = _monsterController.hungerValue <= 1 ?
+                _monsterController.hungerValue * 100 : _monsterController.hungerValue;
+            var boredomVal = _monsterController.boredomValue <= 1 ?
+                _monsterController.boredomValue * 100 : _monsterController.boredomValue;
+
+            _hungerPercent.text = hungerVal.ToString("F0");
+            _boredomPercent.text = boredomVal.ToString("F0");
+
+            _hungerBar.fillAmount = hungerVal / 100f;
+            _boredomBar.fillAmount = boredomVal / 100f;
+
+            if (_boredomCoef != null || _hungerCoef != null)
+            {
+                _hungerCoef.text = _monsterController.hungerMultiplyValue.ToString();
+                _boredomCoef.text = _monsterController.boredomMultiplyValue.ToString();
+            }
+        }
 
         UpdateCommentPanel();
         UpdateRoomAssignment();
