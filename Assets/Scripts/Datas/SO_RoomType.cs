@@ -174,17 +174,6 @@ public class Room
 
         // Toggle room lights
         roomObject.GetComponentInChildren<RoomController>().ToggleLights();
-        BedroomController bedroomController = roomObject.GetComponentInChildren<BedroomController>();
-        if (bedroomController != null)
-        {
-            bedroomController.ActivateSuitcase();
-            Debug.Log("BedroomController found");
-        }
-        else
-        {
-            Debug.Log("No BedroomController found");
-        }
-
         return true;
     }
 
@@ -213,13 +202,6 @@ public class Room
         {
             RoomController roomController = roomObject.GetComponentInChildren<RoomController>();
             roomController.ToggleLights();
-        }
-
-        // Deactivate suitcase if needed
-        BedroomController bedroomController = roomObject.GetComponentInChildren<BedroomController>();
-        if (bedroomController != null)
-        {
-            bedroomController.DeactivateSuitcase();
         }
 
         return true;

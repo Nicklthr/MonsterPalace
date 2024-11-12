@@ -25,6 +25,10 @@ public class PlacementSystem : MonoBehaviour
 
     private void Start()
     {
+
+        _grid = FindObjectOfType<Grid>();
+       
+
         _mouseIndicator.SetActive(false);
         _moneyManager = FindObjectOfType<MoneyManager>();
     }
