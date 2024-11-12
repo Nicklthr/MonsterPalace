@@ -202,3 +202,8 @@ tooltip_bestiary	Consult the bestiary	Consulter le bestiaire
 tooltip_quit	Leave the game	Quitter la partie
 tooltip_taxes	Money due next Saturday	Argent à payer le prochain samedi 
 runmenu_taxes	Taxes:	Taxes :
+runmenu_coins	Coins won	Jetons gagnés
+runmenu_gametime	Play Time	Temps de jeu
+coef_monster_label	Multiplier	Multiplicateur
+hunger_statbar_label	Hunger	Faim
+boredom_statbar_label	Boredom	Ennui
