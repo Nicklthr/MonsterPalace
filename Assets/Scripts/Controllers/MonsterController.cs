@@ -993,8 +993,8 @@ public class MonsterController : MonoBehaviour, ISelectable
 
     public void goToEat()
     {
-        hungerIsPaused = true;
-        boredomIsPaused = true;
+        //hungerIsPaused = true;
+        //boredomIsPaused = true;
         timeToEat = true;
         timeToMove = true;
         hungerCurrentCheckValue -= 10;
@@ -1002,8 +1002,8 @@ public class MonsterController : MonoBehaviour, ISelectable
 
     public void goToActivity()
     {
-        hungerIsPaused = true;
-        boredomIsPaused = true;
+        //hungerIsPaused = true;
+        //boredomIsPaused = true;
         timeToActivity = true;
         timeToMove = true;
         boredomCurrentCheckValue -= 10;
