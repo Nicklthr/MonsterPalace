@@ -35,13 +35,13 @@ public class MonsterController : MonoBehaviour, ISelectable
 
     /*[Header("Planning")]
     public int eatingHour;
-    public int activityHour;
+    public int activityHour;*/
+    [SerializeField] private DayNightCycle timer;
     public int arrivalHour;
 
     [Header("Time of the Day")]
     [Range(0, 23)]
     [SerializeField] private int currentHour;
-    [SerializeField] private DayNightCycle timer;*/
 
     [Header("Needs values")]
     public float hungerValue = 100f;
@@ -207,7 +207,7 @@ public class MonsterController : MonoBehaviour, ISelectable
 
     private void Awake()
     {
-        //timer = GameObject.FindGameObjectWithTag("Time").GetComponent<DayNightCycle>();
+        timer = GameObject.FindGameObjectWithTag("Time").GetComponent<DayNightCycle>();
         startPosition = GameObject.FindGameObjectWithTag("StartPosition").transform;
         //receptionPosition = GameObject.FindGameObjectWithTag("ReceptionPosition").transform;
         agent.updateRotation = false;
@@ -282,16 +282,15 @@ public class MonsterController : MonoBehaviour, ISelectable
             animator.SetBool("isWalking", false);
         }
 
-       /* if(currentHour != timer.currentHour)
+        if(currentHour != timer.currentHour)
         {
             changeHour(timer.currentHour);
-        }*/
+        }
 
         if (currentStayDuration == stayDuration && !timeToMove)
         {
             canLeave = true;
         }
-
 
     }
 
@@ -323,7 +322,7 @@ public class MonsterController : MonoBehaviour, ISelectable
         }
     }
 
-    /*public void changeHour(int hour)
+    public void changeHour(int hour)
     {
         currentHour = hour;
         controlDone = false;
@@ -331,9 +330,9 @@ public class MonsterController : MonoBehaviour, ISelectable
         if ( currentHour == arrivalHour && roomAssigned)
         {
             currentStayDuration++;
-            neighbourControl();
+            //neighbourControl();
         }
-
+        /*
         if (currentHour == eatingHour && roomAssigned) 
         {
             timeToMove = true;
@@ -344,7 +343,8 @@ public class MonsterController : MonoBehaviour, ISelectable
             timeToMove = true;
             timeToActivity = true;
         }
-    }*/
+        */
+    }
 
     public bool searchEating()
     {
@@ -920,10 +920,16 @@ public class MonsterController : MonoBehaviour, ISelectable
 
     public void GiveEvaluation()
     {
-        starsRate = ConvertValue(satisfaction);
+        // ratio nombre de jour passé dans l'hotel / nombre de jour de réservation * 10
+
+        var ratio = (float)currentStayDuration / stayDuration;
+
+        starsRate = ConvertValue(ratio);
         HotelRateManager hotelratemanager = FindObjectOfType<HotelRateManager>();
-        hotelratemanager.AddReview(new RateReviews(starsRate, "Test", monsterName, monsterDatas.monsterType, (satisfaction / 10f)));
+
+        hotelratemanager.AddReview(new RateReviews(starsRate, "Test", monsterName, monsterDatas.monsterType, (ratio * 10f)));
     }
+
     public float ConvertValue(float inputValue)
     {
         if (inputValue < -100f || inputValue > 100f)
@@ -946,6 +952,7 @@ public class MonsterController : MonoBehaviour, ISelectable
                 // Réinitialiser les données spécifiques au monstre après avoir quitté la chambre
                 roomAssigned = false;
                 roomPosition = new Vector3(0, 0, 0);
+                GiveEvaluation();
             }
         }
         else
