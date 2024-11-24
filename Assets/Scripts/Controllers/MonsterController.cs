@@ -138,7 +138,6 @@ public class MonsterController : MonoBehaviour, ISelectable
         boredomCurrentCheckValue = boredomFirstCheckValue;
 
 
-
         //Name
         monsterName = monsterDatas.monsterNameList.Name[UnityEngine.Random.Range(0, monsterDatas.monsterNameList.Name.Length)];
 
@@ -194,7 +193,8 @@ public class MonsterController : MonoBehaviour, ISelectable
         }*/
 
         //StayDuration
-        stayDuration = UnityEngine.Random.Range(stayDurationMin, stayDurationMax);
+        //stayDuration = UnityEngine.Random.Range(stayDurationMin, stayDurationMax);
+        stayDuration = UnityEngine.Random.Range(2, stayDurationMax);
 
         //ReceptionPosition
         //agent.destination = receptionPosition.position;
@@ -311,7 +311,6 @@ public class MonsterController : MonoBehaviour, ISelectable
     private void OnDisable()
     {
         transform.position = startPosition.position;
-        GiveEvaluation();
     }
 
     private void SetOutline(bool enabled)
@@ -918,16 +917,31 @@ public class MonsterController : MonoBehaviour, ISelectable
         }
     }
 
+    /// <summary>
+    /// Évalue la satisfaction du client en fonction de la durée de son séjour
+    /// et met à jour la note de l'hôtel en conséquence.
+    /// </summary>
     public void GiveEvaluation()
     {
-        // ratio nombre de jour passé dans l'hotel / nombre de jour de réservation * 10
-
+        // Calculer le ratio du nombre de jours passés par rapport au nombre de jours réservés
         var ratio = (float)currentStayDuration / stayDuration;
 
-        starsRate = ConvertValue(ratio);
-        HotelRateManager hotelratemanager = FindObjectOfType<HotelRateManager>();
+        // Calculer la note sur 5 étoiles en arrondissant le ratio * 5
+        starsRate = Mathf.RoundToInt(ratio * 5f);
 
-        hotelratemanager.AddReview(new RateReviews(starsRate, "Test", monsterName, monsterDatas.monsterType, (ratio * 10f)));
+        // Calculer les points de satisfaction, négatifs si le client est resté moins de la moitié du séjour
+        int satisfactionPoints = Mathf.RoundToInt((ratio - 0.5f) * 20f);
+
+        // Trouver le gestionnaire de notation de l'hôtel
+        HotelRateManager hotelRateManager = FindObjectOfType<HotelRateManager>();
+
+        // Ajouter l'évaluation avec les valeurs calculées
+        hotelRateManager.AddReview(new RateReviews(
+            starsRate,
+            "Je suis satisfait seulement à " + Mathf.RoundToInt(ratio * 100f) + "%",
+            monsterName,
+            monsterDatas.monsterType,
+            satisfactionPoints));
     }
 
     public float ConvertValue(float inputValue)
@@ -949,10 +963,12 @@ public class MonsterController : MonoBehaviour, ISelectable
         {
             if (assignedRoom.CheckOutMonster(monsterID))
             {
+               GiveEvaluation();
+
+
                 // Réinitialiser les données spécifiques au monstre après avoir quitté la chambre
                 roomAssigned = false;
                 roomPosition = new Vector3(0, 0, 0);
-                GiveEvaluation();
             }
         }
         else
